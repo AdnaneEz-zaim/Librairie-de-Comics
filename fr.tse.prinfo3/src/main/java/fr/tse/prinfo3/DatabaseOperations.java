@@ -2,6 +2,7 @@ package fr.tse.prinfo3;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -117,11 +118,24 @@ public class DatabaseOperations {
 	}
 
 
-	/**
-     * FIXME Describe what this query does
-     *
-     * @return describe the returned value
-     */
+	
+	public void insertUser(String email, String password, String username) {
+		try {
+			this.myConnection.setAutoCommit(false);
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user VALUE (0, ?, ?, ?)");
+			
+			 laRequete.setString(1, email);
+			 laRequete.setString(2, password);
+			 laRequete.setString(3, username);
+			 laRequete.execute();
+			 
+			myConnection.commit();
+			laRequete.close();
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     public void selectAllUser() {
     	try {
     		Statement query = this.myConnection.createStatement();
@@ -138,7 +152,6 @@ public class DatabaseOperations {
 		    }
     		
     		query.close();
-	    	close();
 	    	
 			
 		} catch (SQLException e) {
