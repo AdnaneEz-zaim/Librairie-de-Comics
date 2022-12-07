@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutY="75.0" prefHeight="327.0" prefWidth="950.0" style="-fx-background-color: #a42f2f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="237.8">
+      <Pane id="Info_specifique" layoutY="75.0" prefHeight="327.0" prefWidth="950.0" style="-fx-background-color: #a42f2f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="237.8">
          <children>
             <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As one of the longest continually published comic book characters, Wonder Woman’s history has undergone some changes over the years, though a few elements remain consistent in all of her depictions. She is the princess of the Amazons, a race of women who live free of men on Paradise Island (later dubbed Themyscira). After growing up on this island, Wonder Woman (whom her mother named Diana) journeys to Man’s World on a mission of diplomacy, peace, and love.Until DC's New 52 relaunch, there were a few other aspects of the origin story that remained consistent. Her mother, Hippolyta, created her out of clay, and the Greek gods bestowed her with life. She grew up among the Amazons who taught her the skills of a warrior as well as the lessons of peace and love. When Steve Trevor, an American pilot, crash landed on Paradise Island, the Amazons had a contest to take him back to Man’s World and serve as the champion emissary of all the Amazons represent.In the golden age, this was accompanied by a romantic relationship between Diana and Steve Trevor that persisted throughout the golden and silver age versions of the character.After Crisis on Infinite Earths, the character’s origin was slightly retold by Greg Potter and George Perez. In this version, the Amazons were reincarnations of the souls of abused and murdered women from ancient days. In 1200 B.C. a debate occurred on Mount Olympus on how mankind should be made to relate to the gods. Ares, the god of war and destruction, wanted to descend upon the world with his army and crush mankind submission. This was opposed by the others gods present including Artemis, who wanted peace and suggested creating a new race that would lead humans on the right path." textAlignment="JUSTIFY" wrappingWidth="901.5489807128906">
                <font>
@@ -29,7 +29,7 @@
             <Line endX="817.6000366210938" endY="0.2470703125" layoutX="92.0" layoutY="52.0" startX="-77.60002136230469" startY="0.2470703125" stroke="#ffffff83" />
          </children>
       </Pane>
-      <Pane prefHeight="78.0" prefWidth="950.0" style="-fx-background-color: c44444;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane id="Top" prefHeight="78.0" prefWidth="950.0" style="-fx-background-color: c44444;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView id="Logo" fitHeight="72.0" fitWidth="224.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,7 +59,7 @@
                </graphic></Button>
          </children>
       </Pane>
-      <Pane layoutY="78.0" prefHeight="175.0" prefWidth="950.0" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane id="Info_main" layoutY="78.0" prefHeight="175.0" prefWidth="950.0" style="-fx-background-color: #242424;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Text fill="WHITE" fontSmoothingType="LCD" layoutX="141.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Personnage" textAlignment="CENTER">
                <font>
