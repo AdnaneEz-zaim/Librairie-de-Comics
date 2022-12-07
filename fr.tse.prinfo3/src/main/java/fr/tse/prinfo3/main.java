@@ -1,8 +1,8 @@
 package fr.tse.prinfo3;
-
 import fr.tse.prinfo3.control.Controller;
 import fr.tse.prinfo3.model.Model;
 import fr.tse.prinfo3.view.ViewMenu;
+
 // import fr.tse.prinfo3.view.TemperatureVueCelsius;
 public class main {
     public main() {

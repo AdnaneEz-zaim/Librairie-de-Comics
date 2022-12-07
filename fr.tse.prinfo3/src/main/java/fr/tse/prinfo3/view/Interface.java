@@ -55,7 +55,7 @@ public abstract class Interface implements PropertyChangeListener {
 
 
         // set logo into surface 
-        tseUniverse.setIcon(new ImageIcon("/Users/ProBook/Documents/Projet_info/Info3/tseUniverse.png"));
+        tseUniverse.setIcon(new ImageIcon("../tseUniverse.png"));
         logo.add(tseUniverse);
         surface.add(logo);
         // set search bar 
@@ -63,7 +63,7 @@ public abstract class Interface implements PropertyChangeListener {
         search.add(searchField);
         surface.add(search);
         // set profile into surface 
-        profilePic.setIcon(new ImageIcon("/Users/ProBook/Documents/Projet_info/Info3/profilePic.png"));
+        profilePic.setIcon(new ImageIcon("../profilePic.png"));
         profile.add(profilePic);
         surface.add(profile);
         

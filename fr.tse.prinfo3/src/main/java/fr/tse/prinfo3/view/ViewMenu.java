@@ -40,8 +40,8 @@ public class ViewMenu extends Interface {
 
         // set title and comics in the page "comics récents"
         // title.add(pageTitle);
-        lastComics.setIcon(new ImageIcon("/Users/ProBook/Documents/Projet_info/Info3/comicsPage.png"));
-        scrollBar.setIcon(new ImageIcon("/Users/ProBook/Documents/Projet_info/Info3/scrollbar.png"));
+        lastComics.setIcon(new ImageIcon("../comicsPage.png"));
+        scrollBar.setIcon(new ImageIcon("../scrollbar.png"));
         comics.add(lastComics);
         scrollbar.add(scrollBar);
         
