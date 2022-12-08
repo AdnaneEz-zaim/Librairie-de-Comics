@@ -14,7 +14,6 @@ public class main {
 
 
 	public static void main(String[] args) {
-		System.out.println("hello project info3");
 		String hostname = "localhost";
 		String db = "comicunivers";
 		String port = "3306";
@@ -28,12 +27,17 @@ public class main {
 
 		
 		ComicVineService comicVineService = new ComicVineService();
-		SearchResultDto result = comicVineService.search("batman", 10, 0);
-		
+		//SearchResultDto result = comicVineService.search("batman", 10, 0);
+		SearchResultDto result2 = comicVineService.searchLastesComics(30, 0);
 
-		for (Issue res : result.getResults()) {
+		/*for (Issue res : result.getResults()) {
 			System.out.println(res);
 		}
+		*/
+		for (Issue res2 : result2.getResults()) {
+			System.out.println(res2);
+		}
+		
 		
 		openMenuFXML.main(args);
 	}
