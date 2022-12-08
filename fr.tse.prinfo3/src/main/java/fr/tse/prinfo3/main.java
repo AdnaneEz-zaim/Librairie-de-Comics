@@ -36,6 +36,7 @@ public class main {
 		*/
 		for (Issue res2 : result2.getResults()) {
 			System.out.println(res2);
+			
 		}
 		
 		
