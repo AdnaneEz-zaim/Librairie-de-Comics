@@ -26,11 +26,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.5</version>
 		</dependency>
-
-		<groupId>org.mariadb.jdbc</groupId>
-		<artifactId>mariadb-java-client</artifactId>
-		<version>2.1.2</version>
-		</dependency>
 		
 		<dependency>
             <groupId>org.openjfx</groupId>
@@ -86,7 +81,6 @@
             <version>19</version>
         </dependency>
 		
->>>>>>> fr.tse.prinfo3/pom.xml
 </dependencies>
 </project>
 
