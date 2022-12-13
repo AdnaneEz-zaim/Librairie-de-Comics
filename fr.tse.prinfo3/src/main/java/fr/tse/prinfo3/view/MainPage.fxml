@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
@@ -25,10 +26,10 @@
          <children>
             <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../tseUniverse.png" />
+                  <Image url="@../../../../img/tseUniverse.png" />
                </image>
             </ImageView>
-            <TextField id="Zone_recherche" layoutX="260.0" layoutY="22.0" prefHeight="25.0" prefWidth="266.0" />
+            <TextField id="Zone_recherche" layoutX="256.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
             <MenuButton id="select_search" layoutX="559.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
                <items>
                   <MenuItem mnemonicParsing="false" text="Comics" />
@@ -38,23 +39,19 @@
             </MenuButton>
             <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="796.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../profilePic.png" />
+                  <Image url="@../../../../img/profilePic.png" />
                </image>
             </ImageView>
-            <Button id="search" layoutX="525.0" layoutY="21.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="26.0" style="-fx-background-color: #FFFFFF;">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../585e4ae9cb11b227491c3394.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a42f2f;" GridPane.rowIndex="1">
          <children>
-            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="15.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="399.0" prefWidth="831.0" />
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="185.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB" size="21.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" prefHeight="374.0" prefWidth="839.0" />
          </children>
       </Pane>
    </children>
