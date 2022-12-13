@@ -1,21 +1,37 @@
 package fr.tse.prinfo3.view;
 
 
+import fr.tse.prinfo3.control.MainPageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class openMenuFXML extends Application {
+	
+	
+	//JavaFX window controller (MVC principle)
+    protected MainPageController controller = null;
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
        
-        Parent root = FXMLLoader.load(getClass().getResource("./MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        
+        this.controller = new MainPageController();
+        
+        loader.setController(this.controller);
+        
+        Parent root = loader.load();
+        
         
         Scene scene = new Scene(root, 1000, 700);
-    
+        
+        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         stage.show();

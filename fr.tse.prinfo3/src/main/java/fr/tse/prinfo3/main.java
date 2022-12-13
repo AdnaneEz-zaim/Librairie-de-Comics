@@ -7,8 +7,11 @@ import fr.tse.prinfo3.model.SearchResultDto;
 
 
 import fr.tse.prinfo3.control.DatabaseOperations;
-
+import fr.tse.prinfo3.control.MainPageController;
 import fr.tse.prinfo3.view.openMenuFXML;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class main {
 
@@ -26,21 +29,10 @@ public class main {
 		dbComic.close();
 
 		
-		ComicVineService comicVineService = new ComicVineService();
-		//SearchResultDto result = comicVineService.search("batman", 10, 0);
-		SearchResultDto result2 = comicVineService.searchLastesComics(30, 0);
+		
+		
 
-		/*for (Issue res : result.getResults()) {
-			System.out.println(res);
-		}
-		*/
-		for (Issue res2 : result2.getResults()) {
-			System.out.println(res2);
-			
-		}
-		
-		
-		openMenuFXML.main(args);
+		Application.launch(openMenuFXML.class, args);
 	}
 
 }

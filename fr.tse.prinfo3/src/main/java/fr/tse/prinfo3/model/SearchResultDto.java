@@ -12,6 +12,7 @@ public class SearchResultDto {
 	private int number_of_total_results;
 	private List<Issue> results;
 	public List<Issue> getResults() {
+		
 		// TODO Auto-generated method stub
 		return this.results;
 	}

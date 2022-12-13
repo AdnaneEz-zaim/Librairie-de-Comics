@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 
 public class ComicVineService {
 	public ComicVineService() {
-		RestAssured.baseURI = "https://comicvine.gamespot.com/api/issues";
+		RestAssured.baseURI = "https://comicvine.gamespot.com/api";
 		RestAssured.port = 443;
 	}
 	//?api_key=f9073eee3658e2a4f39a9f531ad521b935ce87bc&sort=cover_date:desc
@@ -30,13 +30,25 @@ public class ComicVineService {
 	}
 	
 	public SearchResultDto searchLastesComics(int limit,int offset) {
+		RestAssured.baseURI += "/issues";
 		Map<String, String> params = new HashMap<String, String>();
 		
-		
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
+		
 		params.put("format", "json");
+		params.put("field_list", "id,name,image");
 		params.put("sort", "cover_date:desc");
+		
+		
+
+		params.put("limit", Integer.toString(limit));
+		params.put("offset", Integer.toString(offset));
+		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
+		
+		
+		System.out.println(given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
+				.body("status_code", equalTo(1)).when().get().getBody().asString());
 		return given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
 				.body("status_code", equalTo(1)).when().get().as(SearchResultDto.class);
 
