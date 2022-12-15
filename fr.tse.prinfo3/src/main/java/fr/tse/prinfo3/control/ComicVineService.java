@@ -3,6 +3,8 @@ package fr.tse.prinfo3.control;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import fr.tse.prinfo3.model.ResultCharacter;
 import fr.tse.prinfo3.model.ResultIssue;
 import fr.tse.prinfo3.model.SearchResultDto;
 import io.restassured.RestAssured;
@@ -16,7 +18,6 @@ public class ComicVineService {
 		RestAssured.baseURI = "https://comicvine.gamespot.com/api";
 		RestAssured.port = 443;
 	}
-	//?api_key=f9073eee3658e2a4f39a9f531ad521b935ce87bc&sort=cover_date:desc
 	public SearchResultDto search(String keyword, int limit,int offset) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
@@ -30,6 +31,7 @@ public class ComicVineService {
 				.body("status_code", equalTo(1)).when().get("/search").as(SearchResultDto.class);
 		return result;
 	}
+	
 	
 	public SearchResultDto searchLastesComics(int limit,int offset) {
 		RestAssured.baseURI += "/issues";
@@ -62,7 +64,7 @@ public class ComicVineService {
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		
 		params.put("format", "json");
-		params.put("field_list", "name,image,description,person_credits");
+		params.put("field_list", "name,image,description,person_credits,character_credits");
 	
 		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
@@ -71,6 +73,23 @@ public class ComicVineService {
 		
 		return given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
 				.body("status_code", equalTo(1)).when().get().as(ResultIssue.class);
+
+	}
+	
+	
+	public ResultCharacter searchCharacter(String idCharacter) {
+		RestAssured.baseURI += "/character/"+idCharacter;
+		
+		Map<String, String> params = new HashMap<String, String>();
+		
+		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
+		params.put("format", "json");
+		params.put("field_list", "name,image,deck,description,issue_credits");
+		
+		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
+		
+		return given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
+				.body("status_code", equalTo(1)).when().get().as(ResultCharacter.class);
 
 	}
 	

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fr.tse.prinfo3.model.Issue;
+import fr.tse.prinfo3.model.OtherCredits;
 import fr.tse.prinfo3.model.PersonCredits;
 import fr.tse.prinfo3.model.ResultIssue;
 import javafx.collections.FXCollections;
@@ -29,15 +30,16 @@ public class ComicsController implements Initializable {
 	 @FXML
 	 private AnchorPane ComicsAnchorPane;
 
-
-
 	 @FXML
 	 private TextField descComics;
-
 
 	 @FXML
 	 private ListView<String> listCreateur;
 
+	 @FXML
+	 private ListView<String> listCharacter;
+	 
+	 
 	 @FXML
 	 private Text nameComic;
 	 
@@ -82,17 +84,26 @@ public class ComicsController implements Initializable {
         descComics.setText(comics.getDescription());
         
         ObservableList<String> items =FXCollections.observableArrayList ();
+
+        ObservableList<String> characters =FXCollections.observableArrayList ();
         
 		for (PersonCredits personne : comics.getPerson_credits()) {
         	
         	if(personne.getName() !=null) {
         		items.add(personne.getName());
-
+        		
         	}
   		}		
+		 
+		for (OtherCredits character : comics.getCharacter_credits()) {
+        	
+        	if(character.getName() !=null) {
+        		characters.add(character.getName());
+        		
+        	}
+  		}	
         
-        
-        
+		listCharacter.setItems(characters);
 		listCreateur.setItems(items);
         
 		listCreateur.setCellFactory(param -> new ListCell<String>() {
