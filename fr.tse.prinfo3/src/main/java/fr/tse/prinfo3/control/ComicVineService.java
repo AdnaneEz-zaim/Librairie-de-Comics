@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.tse.prinfo3.model.Issue;
+import fr.tse.prinfo3.model.ResultIssue;
 import fr.tse.prinfo3.model.SearchResultDto;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
@@ -48,7 +49,7 @@ public class ComicVineService {
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		
 		params.put("format", "json");
-		params.put("field_list", "id,name,image,description,person_credits");
+		params.put("field_list", "id,name,image,description,volume");
 		params.put("sort", "cover_date:desc");
 		
 		
@@ -58,37 +59,29 @@ public class ComicVineService {
 		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
 		
-		System.out.println( given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
-				.body("status_code", equalTo(1)).when().get().getBody().asString());
-
-	
+		
 		
 		return given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
 				.body("status_code", equalTo(1)).when().get().as(SearchResultDto.class);
 
 	}
 	
-	public SearchResultDto searchComics(String idComic) {
+	public ResultIssue searchComics(String idComic) {
 		RestAssured.baseURI += "/issue/"+idComic;
 		Map<String, String> params = new HashMap<String, String>();
 		
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		
 		params.put("format", "json");
-		
+		params.put("field_list", "name,image,description,person_credits");
+	
 		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
 		
-		String json = given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
-				.body("status_code", equalTo(1)).when().get().getBody().asString();
-		
-		json.replaceAll("\"error\":\"OK\",\"limit\":1,\"offset\":0,\"number_of_page_results\":1,\"number_of_total_results\":1,\"status_code\":1,", "");
-		json.replaceAll(", \"version\":\"1.0\"", "");
-		System.out.println(json);
 		
 		
 		return given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
-				.body("status_code", equalTo(1)).when().get().as(SearchResultDto.class);
+				.body("status_code", equalTo(1)).when().get().as(ResultIssue.class);
 
 	}
 	

@@ -1,6 +1,7 @@
 package fr.tse.prinfo3.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,21 +13,15 @@ public class Issue {
 	
 	private String aliases;
 	private String api_detail_url;
-	
 	private List<String> associated_images;
 	private List<OtherCredits> character_credits;
-
 	private List<OtherCredits> character_died_in;
-
 	private List<OtherCredits> concept_credits;
-	
 	private String cover_date;
 	private String date_added;
-	
 	private String date_last_updated;
 	private String deck;
 	private String description;
-	
 	private String first_appearance_characters;
 	private String first_appearance_concepts;
 	private String first_appearance_locations;
@@ -38,20 +33,11 @@ public class Issue {
 	@JsonProperty(value = "image")
 	private ImagePOJO image;
 	private String issue_number;
-
 	//private List<String> location_credits;
-	
-	
 	private String name;
-	
-
 	//private List<String> object_credits;
-	
-	
 	@JsonProperty(value = "person_credits")
 	private List<PersonCredits> person_credits;
-	
-
 	private String site_detail_url;
 	private String store_date;
 	/*private List<String> story_arc_credits;
@@ -336,6 +322,47 @@ public class Issue {
 				+ ", issue_number=" + issue_number + ", name=" + name + ", person_credits=" + person_credits
 				+ ", site_detail_url=" + site_detail_url + ", store_date=" + store_date + ", volume=" + volume + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(aliases, api_detail_url, associated_images, character_credits, character_died_in,
+				concept_credits, cover_date, date_added, date_last_updated, deck, description,
+				first_appearance_characters, first_appearance_concepts, first_appearance_locations,
+				first_appearance_objects, first_appearance_storyarcs, first_appearance_teams, has_staff_review, id,
+				image, issue_number, name, person_credits, site_detail_url, store_date, volume);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Issue other = (Issue) obj;
+		return Objects.equals(aliases, other.aliases) && Objects.equals(api_detail_url, other.api_detail_url)
+				&& Objects.equals(associated_images, other.associated_images)
+				&& Objects.equals(character_credits, other.character_credits)
+				&& Objects.equals(character_died_in, other.character_died_in)
+				&& Objects.equals(concept_credits, other.concept_credits)
+				&& Objects.equals(cover_date, other.cover_date) && Objects.equals(date_added, other.date_added)
+				&& Objects.equals(date_last_updated, other.date_last_updated) && Objects.equals(deck, other.deck)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(first_appearance_characters, other.first_appearance_characters)
+				&& Objects.equals(first_appearance_concepts, other.first_appearance_concepts)
+				&& Objects.equals(first_appearance_locations, other.first_appearance_locations)
+				&& Objects.equals(first_appearance_objects, other.first_appearance_objects)
+				&& Objects.equals(first_appearance_storyarcs, other.first_appearance_storyarcs)
+				&& Objects.equals(first_appearance_teams, other.first_appearance_teams)
+				&& Objects.equals(has_staff_review, other.has_staff_review) && id == other.id
+				&& Objects.equals(image, other.image) && Objects.equals(issue_number, other.issue_number)
+				&& Objects.equals(name, other.name) && Objects.equals(person_credits, other.person_credits)
+				&& Objects.equals(site_detail_url, other.site_detail_url)
+				&& Objects.equals(store_date, other.store_date) && Objects.equals(volume, other.volume);
+	}
+	
+	
 
 	
 	

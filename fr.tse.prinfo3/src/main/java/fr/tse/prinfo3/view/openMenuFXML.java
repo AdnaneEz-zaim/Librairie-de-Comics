@@ -16,16 +16,13 @@ public class openMenuFXML extends Application {
 	
 	//JavaFX window controller (MVC principle)
     protected MainPageController controller = null;
-	//protected ComicsController controller = null;
+	
     
     @Override
     public void start(Stage stage) throws Exception {
-       
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("Comics.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         
         this.controller = new MainPageController();
-        //this.controller = new ComicsController();
         
         
         loader.setController(this.controller);
@@ -33,9 +30,9 @@ public class openMenuFXML extends Application {
         Parent root = loader.load();
         
         
+        
         Scene scene = new Scene(root, 1000, 700);
         
-        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         stage.show();

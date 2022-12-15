@@ -22,11 +22,11 @@ public class main {
 		String port = "3306";
 		String username = "root";
 		String password = "";
-		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		//DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		//dbComic.selectAllUser();
 		//dbComic.insertUser("lardon.adrian@gmail.com", "1234", "Adrian");
 		//dbComic.selectAllUser();
-		dbComic.close();
+		//dbComic.close();
 
 		
 		

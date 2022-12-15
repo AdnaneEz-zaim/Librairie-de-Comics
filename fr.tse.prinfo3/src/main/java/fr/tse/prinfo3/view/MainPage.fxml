@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="rootGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -44,14 +44,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a42f2f;" GridPane.rowIndex="1">
+      <Pane fx:id="ListPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a42f2f;" GridPane.rowIndex="1">
          <children>
             <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="185.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB" size="21.0" />
                </font>
             </Label>
-            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" prefHeight="374.0" prefWidth="839.0" />
+            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" onMouseClicked="#handleClickListView" prefHeight="374.0" prefWidth="839.0" />
          </children>
       </Pane>
    </children>
