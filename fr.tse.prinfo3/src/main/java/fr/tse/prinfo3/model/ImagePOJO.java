@@ -1,6 +1,6 @@
 package fr.tse.prinfo3.model;
 
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

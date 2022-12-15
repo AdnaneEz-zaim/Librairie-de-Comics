@@ -41,7 +41,6 @@ public class MainPageController implements Initializable {
         	if(res2.getName() !=null) {
         		items.add(res2.getName());
 
-                System.out.println(res2);
         	}
   		}		
         
