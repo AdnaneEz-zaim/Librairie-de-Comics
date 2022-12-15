@@ -31,7 +31,7 @@ public class openMenuFXML extends Application {
         
         
         
-        Scene scene = new Scene(root, 1000, 700);
+        Scene scene = new Scene(root);
         
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);

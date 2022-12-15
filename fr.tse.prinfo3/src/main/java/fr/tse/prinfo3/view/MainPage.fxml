@@ -7,52 +7,43 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="70.0" minHeight="70.0" prefHeight="64.80000610351563" valignment="CENTER" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="314.3999816894531" valignment="CENTER" vgrow="ALWAYS" />
-  </rowConstraints>
+<AnchorPane fx:id="rootAnchorPane" prefHeight="587.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: c44444;" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-         <children>
-            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../img/tseUniverse.png" />
-               </image>
-            </ImageView>
-            <TextField id="Zone_recherche" layoutX="256.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
-            <MenuButton id="select_search" layoutX="559.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Comics" />
-                  <MenuItem mnemonicParsing="false" text="Personnage" />
-                  <MenuItem mnemonicParsing="false" text="Auteur" />
-               </items>
-            </MenuButton>
-            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="796.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../img/profilePic.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="ListPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a42f2f;" GridPane.rowIndex="1">
+      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="519.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
             <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="185.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB" size="21.0" />
                </font>
             </Label>
-            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" onMouseClicked="#handleClickListView" prefHeight="374.0" prefWidth="839.0" />
+            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="458.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
+         </children>
+      </Pane>
+      <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
+         <children>
+            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/tseUniverse.png" />
+               </image>
+            </ImageView>
+            <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
+            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Comics" />
+                  <MenuItem mnemonicParsing="false" text="Personnage" />
+                  <MenuItem mnemonicParsing="false" text="Auteur" />
+               </items>
+            </MenuButton>
+            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/profilePic.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
-</GridPane>
+</AnchorPane>

@@ -14,13 +14,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
+import javafx.scene.text.TextFlow;
 import javafx.fxml.Initializable;
 
 public class ComicsController implements Initializable {
@@ -29,10 +32,13 @@ public class ComicsController implements Initializable {
 	private String id;
 	
 	 @FXML
-	 private GridPane ComicsGridPane;
+	 private AnchorPane ComicsAnchorPane;
+
+
 
 	 @FXML
-	 private Text descComics;
+	 private TextField descComics;
+
 
 	 @FXML
 	 private ListView<String> listCreateur;
@@ -59,9 +65,9 @@ public class ComicsController implements Initializable {
 			
 	     loader.setController(this.controller);
 	      
-	     GridPane mainPage = loader.load();
+	     AnchorPane mainPage = loader.load();
 	        
-	     ComicsGridPane.getChildren().setAll(mainPage);
+	     ComicsAnchorPane.getChildren().setAll(mainPage);
 
 	 }
 	 
@@ -77,6 +83,7 @@ public class ComicsController implements Initializable {
         
         
         nameComic.setText(comics.getName());
+
         descComics.setText(comics.getDescription());
         
         ObservableList<String> items =FXCollections.observableArrayList ();

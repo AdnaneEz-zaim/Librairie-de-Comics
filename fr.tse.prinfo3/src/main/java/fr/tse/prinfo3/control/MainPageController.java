@@ -18,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -35,7 +36,7 @@ public class MainPageController implements Initializable {
 	
 
     @FXML
-    private GridPane rootGrid;
+    private AnchorPane rootAnchorPane;
 	  
 	@FXML
     private ListView<String> listOfComics = new ListView<String>();
@@ -58,9 +59,9 @@ public class MainPageController implements Initializable {
 		
         loader.setController(this.controller);
         
-        GridPane comicsView = loader.load();
+        AnchorPane comicsView = loader.load();
         
-        rootGrid.getChildren().setAll(comicsView);
+        rootAnchorPane.getChildren().setAll(comicsView);
 		
 		
     }
