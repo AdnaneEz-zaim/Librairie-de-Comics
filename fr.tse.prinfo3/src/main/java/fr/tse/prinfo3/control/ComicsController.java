@@ -7,23 +7,18 @@ import java.util.ResourceBundle;
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.PersonCredits;
 import fr.tse.prinfo3.model.ResultIssue;
-import fr.tse.prinfo3.model.SearchResultDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.fxml.Initializable;
 
 public class ComicsController implements Initializable {
