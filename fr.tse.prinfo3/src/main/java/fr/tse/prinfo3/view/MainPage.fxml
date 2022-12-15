@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootAnchorPane" prefHeight="587.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="519.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+         <children>
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="185.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB" size="21.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="458.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
+         </children>
+      </Pane>
+      <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
+         <children>
+            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/tseUniverse.png" />
+               </image>
+            </ImageView>
+            <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
+            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Comics" />
+                  <MenuItem mnemonicParsing="false" text="Personnage" />
+                  <MenuItem mnemonicParsing="false" text="Auteur" />
+               </items>
+            </MenuButton>
+            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/profilePic.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
