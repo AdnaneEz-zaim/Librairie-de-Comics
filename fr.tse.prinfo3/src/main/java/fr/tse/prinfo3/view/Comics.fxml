@@ -45,12 +45,12 @@
             <Button fx:id="returnButton" layoutX="898.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Retour" />
             <Pane layoutX="273.0" layoutY="543.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
-                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créateurs" textAlignment="CENTER" underline="true">
+                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnages" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
+                  <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
                </children>
             </Pane>
          </children>

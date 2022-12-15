@@ -2,7 +2,11 @@ package fr.tse.prinfo3.control;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.OtherCredits;
@@ -39,6 +43,8 @@ public class ComicsController implements Initializable {
 	 @FXML
 	 private ListView<String> listCharacter;
 	 
+	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
+	 
 	 
 	 @FXML
 	 private Text nameComic;
@@ -47,11 +53,31 @@ public class ComicsController implements Initializable {
 	 private ImageView imgComics;
 	 
 	 protected MainPageController controller = null;
+	 protected CharacterController controllerCharac = null;
+	 
 	 
 	 ComicsController(String id){
 		 this.id=id;
 	 }
 
+
+	 @FXML
+	 void handlePersonnage(MouseEvent event) throws IOException {
+		 
+		 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
+		 
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Character.fxml"));
+		 
+		 
+		 this.controllerCharac = new CharacterController(id, this.id);
+		 
+		 loader.setController(this.controllerCharac);
+	      
+	     AnchorPane CharacterAnchorPane = loader.load();
+	        
+	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
+			
+	 }	 
 	 
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
@@ -99,7 +125,7 @@ public class ComicsController implements Initializable {
         	
         	if(character.getName() !=null) {
         		characters.add(character.getName());
-        		
+        		listOfCharacters.add(character.getId());
         	}
   		}	
         

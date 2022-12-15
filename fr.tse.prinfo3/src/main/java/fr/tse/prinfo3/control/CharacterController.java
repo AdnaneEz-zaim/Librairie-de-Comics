@@ -25,6 +25,9 @@ import javafx.scene.text.Text;
 
 public class CharacterController implements Initializable {
 	
+	private String id;
+	private String lastComics;
+	
 	@FXML
     private AnchorPane CharacterAnchorPane;
 
@@ -46,32 +49,48 @@ public class CharacterController implements Initializable {
     @FXML
     private ListView<String> listComics;
 
-    protected MainPageController controller = null;
+    protected ComicsController controller = null;
     
 
-	private ArrayList<OtherCredits> listOfIssue = new ArrayList<OtherCredits>();
-    
-	@FXML
+	private ArrayList<String> listOfIssue = new ArrayList<String>();
+	
+    @FXML
     void handleClickListView(MouseEvent event) throws IOException {
-		
-		
-		
-		
-		
+
+    	String id = "4000-"+listOfIssue.get(listComics.getSelectionModel().getSelectedIndex());
+		 
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Comics.fxml"));
+		 
+		 
+		 this.controller = new ComicsController(id);
+		 
+		 loader.setController(this.controller);
+	      
+	     AnchorPane ComicsAnchorPane = loader.load();
+	        
+	     CharacterAnchorPane.getChildren().setAll(ComicsAnchorPane);
+	     
     }
+
+    
+    
+	CharacterController(String id, String lastComics){
+		 this.id=id;
+		 this.lastComics = lastComics;
+	 }
 	
     @FXML
     void returnHandler(MouseEvent event) throws IOException {
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MainPage.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Comics.fxml"));
 		 
-		 this.controller = new MainPageController();
+		 this.controller = new ComicsController(this.lastComics);
 			
 	     loader.setController(this.controller);
 	      
-	     AnchorPane mainPage = loader.load();
+	     AnchorPane comicsPage = loader.load();
 	        
-	     CharacterAnchorPane.getChildren().setAll(mainPage);
+	     CharacterAnchorPane.getChildren().setAll(comicsPage);
 
     	
     }
@@ -80,7 +99,7 @@ public class CharacterController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		ComicVineService comicVineService = new ComicVineService();
-		ResultCharacter result = comicVineService.searchCharacter("4005-1440");
+		ResultCharacter result = comicVineService.searchCharacter(this.id);
 		
 		fr.tse.prinfo3.model.Character character = result.getResults();
 		
@@ -96,7 +115,7 @@ public class CharacterController implements Initializable {
         	
         	if(res.getName() !=null) {
         		items.add(res.getName());
-        		listOfIssue.add(res);
+        		listOfIssue.add(res.getId());
         	}
         	
   		}		
