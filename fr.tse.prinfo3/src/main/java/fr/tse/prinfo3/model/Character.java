@@ -1,23 +1,41 @@
 package fr.tse.prinfo3.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Character {
+	
 	private int id;
 	private String name;
-	private String origin;
-	private String gender;
-	private String powers;
+	@JsonProperty(value = "image")
+	private ImagePOJO image;
 	private String deck;
 	private String description;
-	private String creators;
+	private List<OtherCredits> issue_credits;
 	
-	public String getOrigin() {
-		return origin;
+	
+	
+	
+	public List<OtherCredits> getIssue_credits() {
+		return issue_credits;
 	}
-	public void setOrigin(String origin) {
-		this.origin = origin;
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+	public void setIssue_credits(List<OtherCredits> issue_credits) {
+		this.issue_credits = issue_credits;
+	}
+
+	public ImagePOJO getImage() {
+		return image;
+	}
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+	public void setImage(ImagePOJO image) {
+		this.image = image;
 	}
 	public int getId() {
 		return id;
@@ -31,18 +49,7 @@ public class Character {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getPowers() {
-		return powers;
-	}
-	public void setPowers(String powers) {
-		this.powers = powers;
-	}
+	
 	public String getDeck() {
 		return deck;
 	}
@@ -55,14 +62,12 @@ public class Character {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCreators() {
-		return creators;
-	}
-	public void setCreators(String creators) {
-		this.creators = creators;
-	}
+
 	@Override
 	public String toString() {
-		return "Issue [id=" + id +  ", name=" + name + ", origin="+ origin +", gender=" + gender +", powers=" + powers + ", deck=" + deck + ", description=" + description + ", creators=" + creators +"]";
+		return "Character [id=" + id + ", name=" + name + ", image=" + image + ", deck=" + deck + ", description="
+				+ description + ", issue_credits=" + issue_credits + "]";
 	}
+	
+	
 }

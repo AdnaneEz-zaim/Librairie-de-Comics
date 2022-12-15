@@ -12,18 +12,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="ComicsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="CharacterAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutY="74.0" prefHeight="753.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+      <Pane layoutY="74.0" prefHeight="752.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
             <Pane layoutX="273.0" layoutY="315.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
-                  <Text fx:id="nameComic111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créateurs" textAlignment="CENTER" underline="true">
+                  <Text fx:id="nameComic111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origine" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="listCreateur" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
+                  <TextField fx:id="textOrigine" editable="false" layoutX="6.0" layoutY="45.0" prefHeight="148.0" prefWidth="708.0" />
                </children>
             </Pane>
             <Pane layoutX="273.0" layoutY="53.0" prefHeight="233.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
@@ -33,24 +33,24 @@
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="descComics" alignment="TOP_LEFT" editable="false" layoutX="8.0" layoutY="44.0" prefHeight="181.0" prefWidth="708.0" />
+                  <TextField fx:id="textDescription" editable="false" layoutX="5.0" layoutY="45.0" prefHeight="181.0" prefWidth="708.0" />
                </children>
             </Pane>
-            <ImageView fx:id="imgComics" fitHeight="366.0" fitWidth="212.0" layoutX="14.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="nameComic" fontSmoothingType="LCD" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMIC" textAlignment="CENTER" underline="true">
+            <ImageView fx:id="imgCharacter" fitHeight="366.0" fitWidth="212.0" layoutX="14.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="nameCharacter" fontSmoothingType="LCD" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARACTER" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Text>
             <Button fx:id="returnButton" layoutX="898.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Retour" />
-            <Pane layoutX="273.0" layoutY="543.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+            <Pane layoutX="273.0" layoutY="530.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
-                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnages" textAlignment="CENTER" underline="true">
+                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comics" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
+                  <ListView fx:id="listComics" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handleClickListView" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
                </children>
             </Pane>
          </children>

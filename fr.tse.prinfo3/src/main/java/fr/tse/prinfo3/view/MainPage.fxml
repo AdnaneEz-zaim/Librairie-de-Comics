@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootAnchorPane" prefHeight="587.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="519.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="185.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="252.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
                <font>
-                  <Font name="Berlin Sans FB" size="21.0" />
+                  <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="458.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
+            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="68.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="636.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
