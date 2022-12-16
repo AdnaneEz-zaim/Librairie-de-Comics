@@ -15,12 +15,18 @@
    <children>
       <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="31.0" prefWidth="252.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
+            <Label layoutX="442.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listOfComics" layoutX="18.0" layoutY="68.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="636.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
+            <ListView fx:id="listOfComics" layoutX="442.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="629.0" prefWidth="549.0" style="-fx-fixed-cell-size: 100;" />
+            <Label layoutX="14.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="MA BIBLIOTHEQUE" underline="true" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="myListOfComics" layoutX="14.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="629.0" prefWidth="344.0" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">

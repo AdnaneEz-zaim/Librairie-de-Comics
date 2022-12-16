@@ -62,6 +62,19 @@ public class ComicsController implements Initializable {
 
 
 	 @FXML
+	 void addComicsToBibliotheque(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsUser(0, this.id);
+		 dbComic.close();
+	 }
+	    
+
+	 @FXML
 	 void handlePersonnage(MouseEvent event) throws IOException {
 		 
 		 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
@@ -99,7 +112,7 @@ public class ComicsController implements Initializable {
 		
 		
 		ComicVineService comicVineService = new ComicVineService();
-		ResultIssue result2 = comicVineService.searchComics(this.id);
+		ResultIssue result2 = comicVineService.searchComics("4000-"+this.id);
         
 		
         Issue comics = result2.getResults();

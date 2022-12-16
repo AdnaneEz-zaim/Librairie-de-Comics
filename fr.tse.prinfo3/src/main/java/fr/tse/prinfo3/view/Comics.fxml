@@ -53,6 +53,7 @@
                   <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
                </children>
             </Pane>
+            <Button fx:id="addToBiblio" layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Ajouter à ma bibliothèque" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
