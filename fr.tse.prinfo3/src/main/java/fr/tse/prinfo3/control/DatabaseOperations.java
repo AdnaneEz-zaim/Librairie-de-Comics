@@ -169,9 +169,9 @@ public class DatabaseOperations {
 				this.myConnection.setAutoCommit(false);
 				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET bibliotheque=? WHERE id=?");
 				
-				 laRequete.setString(1, newBiblio);
-				 laRequete.setInt(2, id);
-				 laRequete.execute();
+				laRequete.setString(1, newBiblio);
+				laRequete.setInt(2, id);
+				laRequete.execute();
 				 
 				myConnection.commit();
 				laRequete.close();
