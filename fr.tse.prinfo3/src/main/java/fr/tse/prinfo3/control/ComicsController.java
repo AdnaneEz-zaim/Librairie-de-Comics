@@ -76,7 +76,6 @@ public class ComicsController implements Initializable {
 	     AnchorPane CharacterAnchorPane = loader.load();
 	        
 	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
-			
 	 }	 
 	 
 	 @FXML

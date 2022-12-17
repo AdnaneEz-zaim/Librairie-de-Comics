@@ -159,6 +159,7 @@ public class DatabaseOperations {
 			e.printStackTrace();
 		}
     }
+    
 
     /**
      * Terminate the connection, if any
