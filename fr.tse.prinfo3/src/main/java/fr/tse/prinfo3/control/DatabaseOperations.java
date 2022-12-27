@@ -170,9 +170,9 @@ public class DatabaseOperations {
 			this.myConnection.setAutoCommit(false);
 			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire VALUE (0, ?, ?, ?)");
 			
-			 laRequete.setString(1, comment);
+			 laRequete.setString(1, id_commics);
 			 laRequete.setString(2, id_user);
-			 laRequete.setString(3, id_commics);
+			 laRequete.setString(3, comment);
 			 laRequete.execute();
 			 
 			myConnection.commit();
