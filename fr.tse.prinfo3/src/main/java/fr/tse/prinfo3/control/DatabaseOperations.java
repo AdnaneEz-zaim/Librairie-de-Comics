@@ -136,6 +136,9 @@ public class DatabaseOperations {
 			e.printStackTrace();
 		}
 	}
+
+
+	
     public void selectAllUser() {
     	try {
     		Statement query = this.myConnection.createStatement();
@@ -160,7 +163,54 @@ public class DatabaseOperations {
 		}
     }
     
-
+    
+    
+    public void insertComment(String comment, String id_user, String id_commics) {
+		try {
+			this.myConnection.setAutoCommit(false);
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire VALUE (0, ?, ?, ?)");
+			
+			 laRequete.setString(1, comment);
+			 laRequete.setString(2, id_user);
+			 laRequete.setString(3, id_commics);
+			 laRequete.execute();
+			 
+			myConnection.commit();
+			laRequete.close();
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+    
+    
+    public ResultSet selectAllComments(String id_commics) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT * from commentaire WHERE id_commics =" + id_commics);
+    		/*while (result.next()) {
+		    	int key = result.getInt(1);
+		    	String  comment = result.getString(2);
+		    	String id_user = result.getString(3);
+		    	System.out.println(key);
+		    	System.out.println(comment);
+		    	System.out.println(id_user);
+		    }*/
+    		
+    		query.close();
+    		return result;
+    		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}			
+    }
+    
+    
+    
     /**
      * Terminate the connection, if any
      */
