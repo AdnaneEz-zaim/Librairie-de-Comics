@@ -55,6 +55,13 @@ public class ComicsController implements Initializable {
 	 protected MainPageController controller = null;
 	 protected CharacterController controllerCharac = null;
 	 
+	 @FXML
+	 private TextField commentText;
+	 
+	 @FXML
+	 /*private ListView<Text> listComment;*/
+	 
+	 private ArrayList<String[]> comicsComments = new ArrayList<String[]>();
 	 
 	 ComicsController(String id){
 		 this.id=id;
@@ -93,7 +100,23 @@ public class ComicsController implements Initializable {
 
 	 }
 	 
-	    
+	 @FXML
+	 void publishComment(MouseEvent event) throws IOException {
+		 
+		 String comment = commentText.getText();
+		 String id_user = "null";	// /!\ Completer pour récuperer l'id user
+
+		 
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComment(comment, this.id, id_user);
+	 }
+	 
+	 
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		
@@ -153,9 +176,29 @@ public class ComicsController implements Initializable {
 		
 		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
         
-        
+		/*ObservableList<Text> comments =FXCollections.observableArrayList ();
+		String hostname = "localhost";
+		String db = "comicunivers";
+		String port = "3306";
+		String username = "root";
+		String password = "";
+		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		
+		comicsComments = dbComic.selectAllComments(this.id);
+		// Attention rajouter le fait de recup le pseudo des comm avec l'id 
+		for (String[] com : comicsComments) {
+        	Text c = new Text(com[0]+":\n"+com[1]);
+			comments.add(c);
+  		}
+  		
+		listComment.setItems(comments);
+		//rajouter le fait que si un commentaire est publié il puisse être affiché directement dans la ListView
+		*/
 	}
+	
+	
+	
+	
 	
 	
 	

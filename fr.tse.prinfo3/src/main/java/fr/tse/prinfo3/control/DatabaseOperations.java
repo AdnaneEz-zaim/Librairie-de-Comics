@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -185,21 +186,19 @@ public class DatabaseOperations {
     
     
     
-    public ResultSet selectAllComments(String id_commics) {
+    public ArrayList<String[]> selectAllComments(String id_commics) {
     	try {
     		Statement query = this.myConnection.createStatement();
     		ResultSet result = query.executeQuery("SELECT * from commentaire WHERE id_commics =" + id_commics);
-    		/*while (result.next()) {
-		    	int key = result.getInt(1);
-		    	String  comment = result.getString(2);
-		    	String id_user = result.getString(3);
-		    	System.out.println(key);
-		    	System.out.println(comment);
-		    	System.out.println(id_user);
-		    }*/
+    		ArrayList<String[]> comicsComments = new ArrayList<String[]>();
+    		
+    		while (result.next()) {
+    			String[] comment = {result.getString(3),result.getString(2)};
+    			comicsComments.add(comment);
+		    }
     		
     		query.close();
-    		return result;
+    		return comicsComments;
     		
 			
 		} catch (SQLException e) {
