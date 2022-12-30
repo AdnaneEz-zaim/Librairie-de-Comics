@@ -159,10 +159,12 @@ public class DatabaseOperations {
 			try {
 			
 				String newBiblio ="";
+				
+				
 				if(biblio.compareTo("")==0){
 					newBiblio = idComics;
 				}else {
-					newBiblio = biblio+","+idComics;
+					newBiblio = biblio+idComics+",";
 				}
 				
 				
@@ -191,8 +193,6 @@ public class DatabaseOperations {
 		String biblio = selectBibliotheque(id);
 
 		String[] Comics = biblio.split(",");
-		System.out.println(Comics);
-		System.out.println(idComics);
 			try {
 				String newBiblio ="";
 				for (String oneComics : Comics) {
@@ -260,11 +260,6 @@ public class DatabaseOperations {
 		    	String password = result.getString(3);
 		    	String username = result.getString(4);
 		    	String bilbio = result.getString(5);
-		    	System.out.println(key);
-		    	System.out.println(email);
-		    	System.out.println(password);
-		    	System.out.println(username);
-		    	System.out.println(bilbio);
 		    }
     		
     		query.close();

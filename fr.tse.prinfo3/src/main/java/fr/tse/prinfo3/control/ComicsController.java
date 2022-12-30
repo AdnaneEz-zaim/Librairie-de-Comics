@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,7 +36,7 @@ public class ComicsController implements Initializable {
 	 private AnchorPane ComicsAnchorPane;
 
 	 @FXML
-	 private TextField descComics;
+	 private TextArea descComics;
 
 	 @FXML
 	 private ListView<String> listCreateur;

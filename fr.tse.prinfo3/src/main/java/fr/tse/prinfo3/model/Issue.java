@@ -13,22 +13,23 @@ public class Issue {
 	
 	private String aliases;
 	private String api_detail_url;
-	private List<String> associated_images;
-	private List<OtherCredits> character_credits;
-	private List<OtherCredits> character_died_in;
-	private List<OtherCredits> concept_credits;
+	private List<String> associated_images =null;
+	private List<OtherCredits> character_credits =null;
+	private List<OtherCredits> character_died_in=null;
+	private List<OtherCredits> concept_credits=null;
 	private String cover_date;
 	private String date_added;
 	private String date_last_updated;
 	private String deck;
 	private String description;
-	private String first_appearance_characters;
-	private String first_appearance_concepts;
-	private String first_appearance_locations;
-	private String first_appearance_objects;
-	private String first_appearance_storyarcs;
-	private String first_appearance_teams;
+	private String first_appearance_characters = null;
+	private String first_appearance_concepts = null;
+	private String first_appearance_locations = null;
+	private String first_appearance_objects = null;
+	private String first_appearance_storyarcs = null;
+	private String first_appearance_teams = null;
 	private String has_staff_review;
+	@JsonProperty(value = "id")
 	private int id;
 	@JsonProperty(value = "image")
 	private ImagePOJO image;
@@ -46,7 +47,24 @@ public class Issue {
 	*/
 	private OtherCredits volume;
 
-   @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+	
+   public List<String> getAssociated_images() {
+		return associated_images;
+	}
+
+	public void setAssociated_images(List<String> associated_images) {
+		this.associated_images = associated_images;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
 	public List<PersonCredits> getPerson_credits() {
 		return person_credits;
 	}
@@ -289,12 +307,7 @@ public class Issue {
 	public void setApi_detail_url(String api_detail_url) {
 		this.api_detail_url = api_detail_url;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getIssue_number() {
 		return issue_number;
 	}
