@@ -18,6 +18,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +54,12 @@ public class MainPageController implements Initializable {
 	protected ComicsController controller = null;
 	
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
+
+    @FXML
+    private TextField researchField;
+    
+    @FXML
+    private Button deleteComics;
 	
 	@FXML
     void handleClickListView(MouseEvent event) throws IOException {
@@ -75,6 +82,39 @@ public class MainPageController implements Initializable {
         rootAnchorPane.getChildren().setAll(comicsView);
 		
 		
+    }
+	
+    @FXML
+    void removeComics(MouseEvent event) {
+
+    	int selectedComics = myListOfComics.getSelectionModel().getSelectedIndex();
+    	
+    	String idComicsToRemove = "";
+    	String nameComics = myListOfComics.getItems().get(selectedComics);
+    	nameComics = nameComics.replace("[", "");
+    	nameComics = nameComics.replace("]", "");
+    	for (Issue res : listOfIssue) {
+        	if(res.getName().compareTo(nameComics)==0) {
+        		idComicsToRemove = ""+res.getId();
+        	}
+  		}
+        
+    	
+        
+        String hostname = "localhost";
+		String db = "comicunivers";
+		String port = "3306";
+		String username = "root";
+		String password = "";
+		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		
+		
+		dbComic.deleteComicsUser(1, idComicsToRemove);
+		
+		dbComic.close();
+		
+
+    	myListOfComics.getItems().remove(selectedComics);
     }
 	
 	
@@ -128,8 +168,9 @@ public class MainPageController implements Initializable {
 		String password = "";
 		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		
+		String bibliotheque = dbComic.selectBibliotheque(1);
 		
-		String bibliotheque = dbComic.selectBibliotheque(0);
+		
 		
 		//dbComic.insertComicsUser(0, "960026");
 		
@@ -178,7 +219,6 @@ public class MainPageController implements Initializable {
 	            @Override
 	            public void updateItem(String name, boolean empty) {
 	            	
-	            	Button btn = new Button("Supprimer");
 	            	
 					
 	            	
@@ -190,43 +230,7 @@ public class MainPageController implements Initializable {
 	                  setText(null);
 	                }
 	                
-	                btn.setOnAction(new EventHandler<ActionEvent>() {
-	                    @Override
-	                    public void handle(ActionEvent event) {
-	                        final int selectedId = myListOfComics.getSelectionModel().getSelectedIndex();
-	                        if (selectedId != -1) {
-	                            String itemToRemove = myListOfComics.getSelectionModel().getSelectedItem();
-	                            String idComicsToRemove= "";
-	                            //myListOfComics.remove(selectedId);
-	                            
-	                            for (Issue res : Issues) {
-	    	                    	if(res.getName().compareTo(itemToRemove)==0) {
-	    	                    		System.out.println(res);
-	    	                    		idComicsToRemove = ""+res.getId();
-	    	                    	}
-	    	              		}
-	                            
-	                            
-	                            String hostname = "localhost";
-	                    		String db = "comicunivers";
-	                    		String port = "3306";
-	                    		String username = "root";
-	                    		String password = "";
-	                    		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-	                    		
-	                    		
-	                    		dbComic.deleteComicsUser(0, idComicsToRemove);
-	                    		
-	                    		dbComic.close();
-	                    		
-	                    		
-	                            System.out.println("selectIdx: " + selectedId);
-	                            System.out.println("item: " + itemToRemove);
-
-	                        }
-	                    }
-					});
-	                
+	               
 	                super.updateItem(name, empty);
 	                if (empty) {
 	                    setText(null);
@@ -240,7 +244,6 @@ public class MainPageController implements Initializable {
 	                    	}
 	              		}
 	                	grid.addRow(0, new Label(name));
-	                	grid.addColumn(1, btn);
 	                	setGraphic(grid);
 	                }
 	            }

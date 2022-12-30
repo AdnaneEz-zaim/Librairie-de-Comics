@@ -201,7 +201,7 @@ public class DatabaseOperations {
 						if(biblio.compareTo("")==0){
 							newBiblio = oneComics;
 						}else {
-							newBiblio = newBiblio+","+oneComics;
+							newBiblio = newBiblio+oneComics+",";
 						}
 					}
 		        }
@@ -287,5 +287,9 @@ public class DatabaseOperations {
 			e.printStackTrace();
 		}
     }
+
+
+
+    
 
 }

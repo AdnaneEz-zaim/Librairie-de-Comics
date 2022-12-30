@@ -39,6 +39,8 @@ public class ComicsController implements Initializable {
 
 	 @FXML
 	 private ListView<String> listCreateur;
+	 
+	 
 
 	 @FXML
 	 private ListView<String> listCharacter;
@@ -69,7 +71,7 @@ public class ComicsController implements Initializable {
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 dbComic.insertComicsUser(0, this.id);
+		 dbComic.insertComicsUser(1, this.id);
 		 dbComic.close();
 	 }
 	    
