@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -33,7 +34,7 @@
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="descComics" alignment="TOP_LEFT" editable="false" layoutX="8.0" layoutY="44.0" prefHeight="181.0" prefWidth="708.0" />
+                  <TextArea fx:id="descComics" editable="false" layoutX="8.0" layoutY="41.0" prefHeight="184.0" prefWidth="699.0" />
                </children>
             </Pane>
             <ImageView fx:id="imgComics" fitHeight="366.0" fitWidth="212.0" layoutX="14.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
@@ -53,6 +54,7 @@
                   <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
                </children>
             </Pane>
+            <Button fx:id="addToBiblio" layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Ajouter à ma bibliothèque" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">

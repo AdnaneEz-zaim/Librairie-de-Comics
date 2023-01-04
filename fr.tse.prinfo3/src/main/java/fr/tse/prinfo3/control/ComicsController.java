@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,10 +36,12 @@ public class ComicsController implements Initializable {
 	 private AnchorPane ComicsAnchorPane;
 
 	 @FXML
-	 private TextField descComics;
+	 private TextArea descComics;
 
 	 @FXML
 	 private ListView<String> listCreateur;
+	 
+	 
 
 	 @FXML
 	 private ListView<String> listCharacter;
@@ -60,6 +63,19 @@ public class ComicsController implements Initializable {
 		 this.id=id;
 	 }
 
+
+	 @FXML
+	 void addComicsToBibliotheque(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsUser(1, this.id);
+		 dbComic.close();
+	 }
+	    
 
 	 @FXML
 	 void handlePersonnage(MouseEvent event) throws IOException {
@@ -98,7 +114,7 @@ public class ComicsController implements Initializable {
 		
 		
 		ComicVineService comicVineService = new ComicVineService();
-		ResultIssue result2 = comicVineService.searchComics(this.id);
+		ResultIssue result2 = comicVineService.searchComics("4000-"+this.id);
         
 		
         Issue comics = result2.getResults();

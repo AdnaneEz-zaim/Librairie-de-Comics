@@ -122,20 +122,134 @@ public class DatabaseOperations {
 	public void insertUser(String email, String password, String username) {
 		try {
 			this.myConnection.setAutoCommit(false);
-			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user VALUE (0, ?, ?, ?)");
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user VALUE (0, ?, ?, ?, ?)");
 			
 			 laRequete.setString(1, email);
 			 laRequete.setString(2, password);
 			 laRequete.setString(3, username);
+			 laRequete.setString(4, "");
 			 laRequete.execute();
 			 
 			myConnection.commit();
 			laRequete.close();
+			
+			
+			
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void insertComicsUser(int id, String idComics) {
+		boolean alreadyInDb = false;
+		String biblio = selectBibliotheque(id);
+
+		String[] Comics = biblio.split(",");
+		for (String oneComics : Comics) {
+			
+			if(oneComics.compareTo(idComics)==0) {
+				alreadyInDb = true;
+			}
+        }
+		
+		if(alreadyInDb) {
+			System.out.println("Deja en bdd");
+		}else {
+			try {
+			
+				String newBiblio ="";
+				
+				
+				if(biblio.compareTo("")==0){
+					newBiblio = idComics;
+				}else {
+					newBiblio = biblio+idComics+",";
+				}
+				
+				
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET bibliotheque=? WHERE id=?");
+				
+				laRequete.setString(1, newBiblio);
+				laRequete.setInt(2, id);
+				laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void deleteComicsUser(int id, String idComics) {
+		
+		String biblio = selectBibliotheque(id);
+
+		String[] Comics = biblio.split(",");
+			try {
+				String newBiblio ="";
+				for (String oneComics : Comics) {
+					
+					if(oneComics.compareTo(idComics)!=0) {
+						if(biblio.compareTo("")==0){
+							newBiblio = oneComics;
+						}else {
+							newBiblio = newBiblio+oneComics+",";
+						}
+					}
+		        }
+			
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET bibliotheque=? WHERE id=?");
+				
+				 laRequete.setString(1, newBiblio);
+				 laRequete.setInt(2, id);
+				 laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	public String selectBibliotheque(int id) {
+
+		String bibliothequeComics = null;
+		
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT bibliotheque from user where id="+id);
+    		
+    		while (result.next()) {
+		    	bibliothequeComics = result.getString(1);
+		    }
+    		
+    		query.close();
+    		
+    		
+	    	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return bibliothequeComics;
+    }
+	
     public void selectAllUser() {
     	try {
     		Statement query = this.myConnection.createStatement();
@@ -145,10 +259,7 @@ public class DatabaseOperations {
 		    	String email = result.getString(2);
 		    	String password = result.getString(3);
 		    	String username = result.getString(4);
-		    	System.out.println(key);
-		    	System.out.println(email);
-		    	System.out.println(password);
-		    	System.out.println(username);
+		    	String bilbio = result.getString(5);
 		    }
     		
     		query.close();
@@ -172,5 +283,9 @@ public class DatabaseOperations {
 			e.printStackTrace();
 		}
     }
+
+
+
+    
 
 }

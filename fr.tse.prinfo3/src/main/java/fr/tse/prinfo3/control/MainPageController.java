@@ -1,23 +1,32 @@
 package fr.tse.prinfo3.control;
 
 import fr.tse.prinfo3.model.Issue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import fr.tse.prinfo3.model.ResultIssue;
 import fr.tse.prinfo3.model.SearchResultDto;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -31,9 +40,20 @@ public class MainPageController implements Initializable {
 	@FXML
     private ListView<String> listOfComics = new ListView<String>();
 	
+
+    @FXML
+    private ListView<String> myListOfComics;
+	
 	protected ComicsController controller = null;
 	
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
+	private ArrayList<Issue> listOfPrivateIssue = new ArrayList<Issue>();
+
+	private Map<Issue, String> issueId = new HashMap<Issue, String>();
+
+    @FXML
+    private TextField researchField;
+    
 	
 	@FXML
     void handleClickListView(MouseEvent event) throws IOException {
@@ -41,9 +61,10 @@ public class MainPageController implements Initializable {
 		
 		Issue comics = listOfIssue.get(listOfComics.getSelectionModel().getSelectedIndex());
 		
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Comics.fxml"));
 
-		String id = "4000-"+comics.getId();
+		String id = ""+comics.getId();
 		this.controller = new ComicsController(id);
 		
 		
@@ -55,7 +76,38 @@ public class MainPageController implements Initializable {
 		
 		
     }
+	@FXML
+	public void handleClickPrivateList(MouseEvent event) throws IOException {
+
+		Issue comics = listOfPrivateIssue.get(myListOfComics.getSelectionModel().getSelectedIndex());
+		String idComic ="";
+		for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
+			if(comics.getName().compareTo(entry.getKey().getName())==0) {
+				idComic = entry.getValue();
+			}
+
+			
+		}
+		
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Comics.fxml"));
+		
+		
+		this.controller = new ComicsController(idComic);
+		
+		
+        loader.setController(this.controller);
+       
+        AnchorPane comicsView;
+		comicsView = loader.load();
+
+        rootAnchorPane.getChildren().setAll(comicsView);
+        
+        
+        
+    }
 	
+    
 	
     
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,8 +149,129 @@ public class MainPageController implements Initializable {
                 }
             }
         });
-      
         
+		String hostname = "localhost";
+		String db = "comicunivers";
+		String port = "3306";
+		String username = "root";
+		String password = "";
+		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		
+		String bibliotheque = dbComic.selectBibliotheque(1);
+		
+		
+		
+		//dbComic.insertComicsUser(0, "960026");
+		
+		dbComic.close();
+		
+		if(bibliotheque.compareTo("")!=0) {
+			
+			
+			
+			String[] allComics = bibliotheque.split(",");
+			
+	       
+			ComicVineService comicVineService2;
+			ResultIssue result2;
+			Issue comics;
+
+			
+			for (String idComics : allComics) {
+				comicVineService2 = new ComicVineService();
+				result2 = comicVineService2.searchComics("4000-"+idComics);
+				comics = result2.getResults();
+
+				issueId.put(comics, idComics);
+	  		}
+			
+			ObservableList<String> comicsName =FXCollections.observableArrayList ();
+			
+			for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
+				comicsName.add(entry.getKey().getName());
+				listOfPrivateIssue.add(entry.getKey());
+				
+			}
+
+			myListOfComics.setItems(comicsName);
+	
+			
+			myListOfComics.setCellFactory(param -> new ListCell<String>() {
+				
+
+            	String idComi = "";
+            	
+            	
+	            @Override
+	            public void updateItem(String name, boolean empty) {
+	            	
+	            	
+	            	Button button;
+
+                	
+	            	final GridPane grid;
+	                {
+	                  setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+	                  grid = new GridPane();
+	                  
+	                  setText(null);
+	                }
+	                
+	                
+	                
+	               
+	                super.updateItem(name, empty);
+	                if (empty) {
+	                    setText(null);
+	                    setGraphic(null);
+	                } else {
+	                	grid.getChildren().clear();
+
+	                	for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
+	                		if(entry.getKey().getName() == name) {
+	                    		
+	    	                	grid.addRow(1,  new ImageView(new Image(entry.getKey().getImage().getIcon_url())));
+	    	                	this.idComi = entry.getValue();
+	                    	}
+	        				
+	        			}
+	                	
+	                	 String id = this.idComi;                           
+	                	 button = new Button("Supprimer");            
+	                	 button.setOnAction(new EventHandler<ActionEvent>() {
+
+	                         @Override
+	                         public void handle(ActionEvent arg0) {
+	                            String hostname = "localhost";
+	                     		String db = "comicunivers";
+	                     		String port = "3306";
+	                     		String username = "root";
+	                     		String password = "";
+	                     		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+	                     		
+	                     		
+	                     		dbComic.deleteComicsUser(1, id);
+	                     		
+	                     		dbComic.close();
+	                     		
+
+	                         	myListOfComics.getItems().remove(getItem());
+
+	                         }
+	                     });   
+	                
+	                	grid.addRow(0, new Label(name));
+	                	grid.addColumn(0, button);
+	                	setGraphic(grid);
+	                }
+	            }
+	            
+	            
+	        });
+			
+		
+      
+		}
        
 
       		
