@@ -162,7 +162,7 @@ public class DatabaseOperations {
 				
 				
 				if(biblio.compareTo("")==0){
-					newBiblio = idComics;
+					newBiblio = idComics+",";
 				}else {
 					newBiblio = biblio+idComics+",";
 				}
@@ -199,7 +199,7 @@ public class DatabaseOperations {
 					
 					if(oneComics.compareTo(idComics)!=0) {
 						if(biblio.compareTo("")==0){
-							newBiblio = oneComics;
+							newBiblio = oneComics+",";
 						}else {
 							newBiblio = newBiblio+oneComics+",";
 						}
