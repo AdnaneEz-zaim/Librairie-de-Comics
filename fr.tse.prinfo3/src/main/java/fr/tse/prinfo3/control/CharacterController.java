@@ -91,8 +91,6 @@ public class CharacterController implements Initializable {
 	     AnchorPane comicsPage = loader.load();
 	        
 	     CharacterAnchorPane.getChildren().setAll(comicsPage);
-
-    	
     }
 	
 	

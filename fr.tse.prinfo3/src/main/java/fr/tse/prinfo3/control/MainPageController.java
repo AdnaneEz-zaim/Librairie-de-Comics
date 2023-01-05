@@ -33,6 +33,8 @@ public class MainPageController implements Initializable {
 	
 	protected ComicsController controller = null;
 	
+	protected ProfileMenuController ControllerProf = null;
+	
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
 	
 	@FXML
@@ -56,6 +58,19 @@ public class MainPageController implements Initializable {
 		
     }
 	
+	@FXML
+    void handleClickProfileImage(MouseEvent event) throws IOException {
+				
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ProfileMenu.fxml"));
+
+		this.ControllerProf = new ProfileMenuController();
+		
+        loader.setController(this.ControllerProf);
+        
+        AnchorPane menuView = loader.load();
+        
+        rootAnchorPane.getChildren().setAll(menuView);	
+    }
 	
     
     public void initialize(URL url, ResourceBundle resourceBundle) {
