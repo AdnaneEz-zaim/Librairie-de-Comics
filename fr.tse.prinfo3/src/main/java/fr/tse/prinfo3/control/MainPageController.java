@@ -33,7 +33,7 @@ public class MainPageController implements Initializable {
 	
 	protected ComicsController controller = null;
 	
-	protected ProfileMenuController ControllerProf = null;
+	protected ProfileMenuController controllerProf = null;
 	
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
 	
@@ -63,13 +63,13 @@ public class MainPageController implements Initializable {
 				
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ProfileMenu.fxml"));
 
-		this.ControllerProf = new ProfileMenuController();
+		this.controllerProf = new ProfileMenuController();
 		
-        loader.setController(this.ControllerProf);
+        loader.setController(this.controllerProf);
         
-        AnchorPane menuView = loader.load();
+        AnchorPane comicsView = loader.load();
         
-        rootAnchorPane.getChildren().setAll(menuView);	
+        rootAnchorPane.getChildren().setAll(comicsView);	
     }
 	
     

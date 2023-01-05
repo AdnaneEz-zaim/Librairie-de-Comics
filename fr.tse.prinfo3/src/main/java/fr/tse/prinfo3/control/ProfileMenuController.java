@@ -23,6 +23,10 @@ public class ProfileMenuController implements Initializable {
 	@FXML
 	private AnchorPane ap;
 	
+	ProfileMenuController(){
+	 }
+
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
