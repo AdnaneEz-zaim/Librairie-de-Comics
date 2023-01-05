@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,7 +57,7 @@ public class ComicsController implements Initializable {
 	 protected CharacterController controllerCharac = null;
 	 
 	 @FXML
-	 private TextField commentText;
+	 private TextArea commentText;
 	 
 	 @FXML
 	 /*private ListView<Text> listComment;*/
@@ -106,14 +107,14 @@ public class ComicsController implements Initializable {
 		 String comment = commentText.getText();
 		 String id_user = "null";	// /!\ Completer pour récuperer l'id user
 
-		 
+		 /*
 		 String hostname = "localhost";
 		 String db = "comicunivers";
 		 String port = "3306";
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 dbComic.insertComment(comment, this.id, id_user);
+		 dbComic.insertComment(comment, this.id, id_user);*/
 	 }
 	 
 	 
