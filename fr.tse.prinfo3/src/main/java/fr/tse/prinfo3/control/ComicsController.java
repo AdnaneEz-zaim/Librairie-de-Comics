@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import org.controlsfx.control.Rating;
+
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.OtherCredits;
 import fr.tse.prinfo3.model.PersonCredits;
@@ -60,9 +62,12 @@ public class ComicsController implements Initializable {
 	 private TextArea commentText;
 	 
 	 @FXML
-	 /*private ListView<Text> listComment;*/
+	 private ListView<Text> listComment;
 	 
 	 private ArrayList<String[]> comicsComments = new ArrayList<String[]>();
+	 
+	 @FXML
+	 private Rating rateComics;
 	 
 	 ComicsController(String id){
 		 this.id=id;
@@ -114,9 +119,21 @@ public class ComicsController implements Initializable {
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 dbComic.insertComment(comment, this.id, id_user);*/
+		 dbComic.insertComment(comment, this.id, dbComic.getUsername(id_user));*/
 	 }
 	 
+	 @FXML
+	 void doRating(MouseEvent event) throws IOException {
+		 double note = rateComics.getRating();
+		 /*
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertNotation(note, this.id, dbComic.getUsername(id_user));*/
+	 }
 	 
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -177,6 +194,7 @@ public class ComicsController implements Initializable {
 		
 		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
         
+		
 		/*ObservableList<Text> comments =FXCollections.observableArrayList ();
 		String hostname = "localhost";
 		String db = "comicunivers";
@@ -186,7 +204,6 @@ public class ComicsController implements Initializable {
 		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		
 		comicsComments = dbComic.selectAllComments(this.id);
-		// Attention rajouter le fait de recup le pseudo des comm avec l'id 
 		for (String[] com : comicsComments) {
         	Text c = new Text(com[0]+":\n"+com[1]);
 			comments.add(c);
@@ -194,7 +211,11 @@ public class ComicsController implements Initializable {
   		
 		listComment.setItems(comments);
 		//rajouter le fait que si un commentaire est publié il puisse être affiché directement dans la ListView
+		
+		rateComics.setRating(dbComic.getNotation(this.id));
 		*/
+		
+		
 	}
 	
 	

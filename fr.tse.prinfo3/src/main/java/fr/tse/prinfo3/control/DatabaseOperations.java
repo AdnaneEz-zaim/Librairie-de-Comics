@@ -164,15 +164,30 @@ public class DatabaseOperations {
 		}
     }
     
+    public String getUsername(String id_user) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT * from user WHERE id_user=" + id_user);
+		    String username = result.getString(4);
+    		query.close();
+	    	
+    		return username; 
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
     
     
-    public void insertComment(String comment, String id_user, String id_commics) {
+    public void insertComment(String comment, String username, String id_commics) {
 		try {
 			this.myConnection.setAutoCommit(false);
 			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire VALUE (0, ?, ?, ?)");
 			
 			 laRequete.setString(1, id_commics);
-			 laRequete.setString(2, id_user);
+			 laRequete.setString(2, username);
 			 laRequete.setString(3, comment);
 			 laRequete.execute();
 			 
@@ -183,7 +198,6 @@ public class DatabaseOperations {
 			e.printStackTrace();
 		}
 	}
-    
     
     
     public ArrayList<String[]> selectAllComments(String id_commics) {
@@ -208,6 +222,58 @@ public class DatabaseOperations {
 		}			
     }
     
+    
+    public void insertNotation(double note,String id_commics,String username) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT * from notation WHERE id_commics =" + id_commics+" AND username =" + username);
+    		if (!result.next()) { // on verifie qu'une note n'a pas déjà été donnée par un user
+    			this.myConnection.setAutoCommit(false);
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO notation VALUE (0, ?, ?, ?)");
+		
+    			laRequete.setString(1, id_commics);
+    			laRequete.setString(2, username);
+    			laRequete.setDouble(3, note);
+    			laRequete.execute();
+		 
+    			myConnection.commit();
+    			laRequete.close();
+    		}
+    		else {
+    			this.myConnection.setAutoCommit(false);
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE  notation SET note=? WHERE username="+username+" AND id_commics =" +id_commics);
+    			laRequete.setDouble(1, note);
+    		}
+    	}catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+    	}
+    }
+    
+    public double getNotation(String id_commics) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT * from notation WHERE id_commics =" + id_commics);
+    		double global_notation = 0;
+    		int i=0;
+    		if (result.next()) {
+    			while (result.next()) {
+    				global_notation= result.getInt(3) + global_notation;
+    				i++;
+    			}
+    			global_notation=global_notation/i;
+    		}
+    		query.close();
+    		return global_notation;
+    		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+    }
+
     
     
     /**
