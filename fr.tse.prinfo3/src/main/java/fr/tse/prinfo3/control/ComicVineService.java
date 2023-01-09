@@ -1,7 +1,10 @@
 package fr.tse.prinfo3.control;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+
 import java.util.Map;
 
 import fr.tse.prinfo3.model.ResultCharacter;
@@ -36,10 +39,14 @@ public class ComicVineService {
 	public SearchResultDto searchLastesComics(int limit,int offset) {
 		RestAssured.baseURI += "/issues";
 		Map<String, String> params = new HashMap<String, String>();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+		LocalDateTime now = LocalDateTime.now();
+		String actualDate = dtf.format(now);
 		
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		
 		params.put("format", "json");
+		params.put("filter", "cover_date:1900-01-01|"+actualDate);
 		params.put("field_list", "id,name,image,description,volume");
 		params.put("sort", "cover_date:desc");
 		
@@ -64,7 +71,7 @@ public class ComicVineService {
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		
 		params.put("format", "json");
-		params.put("field_list", "name,image,description,person_credits,character_credits");
+		params.put("field_list", "id,name,image,description,person_credits,character_credits");
 	
 		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
@@ -84,7 +91,7 @@ public class ComicVineService {
 		
 		params.put("api_key", "f9073eee3658e2a4f39a9f531ad521b935ce87bc");
 		params.put("format", "json");
-		params.put("field_list", "name,image,deck,description,issue_credits");
+		params.put("field_list", "id,name,image,deck,description,issue_credits");
 		
 		String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
 		

@@ -79,11 +79,15 @@ public class MainPageController implements Initializable {
 	@FXML
 	public void handleClickPrivateList(MouseEvent event) throws IOException {
 
+		System.out.println(listOfPrivateIssue.get(myListOfComics.getSelectionModel().getSelectedIndex()));
 		Issue comics = listOfPrivateIssue.get(myListOfComics.getSelectionModel().getSelectedIndex());
+		
 		String idComic ="";
 		for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
-			if(comics.getName().compareTo(entry.getKey().getName())==0) {
-				idComic = entry.getValue();
+			
+			
+			if(entry.getValue()==Integer.toString(comics.getId())) {
+				idComic = ""+comics.getId();
 			}
 
 			
@@ -118,19 +122,21 @@ public class MainPageController implements Initializable {
         ObservableList<String> items =FXCollections.observableArrayList ();
         for (Issue res : result.getResults()) {
         	
-        	if(res.getName() !=null) {
-        		items.add(res.getName());
-        		listOfIssue.add(res);
-        	}
+        	
+        	items.add(Integer.toString(res.getId()));
+        	listOfIssue.add(res);
+        	
         	
   		}		
         
         
         
         listOfComics.setItems(items);
+       
         
         listOfComics.setCellFactory(param -> new ListCell<String>() {
             private ImageView imageView = new ImageView();
+            String titleComics = "";
             @Override
             public void updateItem(String name, boolean empty) {
                 super.updateItem(name, empty);
@@ -139,12 +145,19 @@ public class MainPageController implements Initializable {
                     setGraphic(null);
                 } else {
                 	for (Issue res : result.getResults()) {
-                    	
-                    	if(res.getName() == name) {
+                		
+                    	if(Integer.toString(res.getId()).compareTo(name)==0) {
                     		imageView.setImage(new Image(res.getImage().getIcon_url()));
+                    		if(res.getName() != null) {
+
+                        		titleComics = res.getName();
+                    		}else {
+
+                        		titleComics = "";
+                    		}
                     	}
               		}
-                    setText(name);
+                    setText(titleComics);
                     setGraphic(imageView);
                 }
             }
@@ -188,7 +201,7 @@ public class MainPageController implements Initializable {
 			ObservableList<String> comicsName =FXCollections.observableArrayList ();
 			
 			for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
-				comicsName.add(entry.getKey().getName());
+				comicsName.add(entry.getValue());
 				listOfPrivateIssue.add(entry.getKey());
 				
 			}
@@ -207,6 +220,7 @@ public class MainPageController implements Initializable {
 	            	
 	            	
 	            	Button button;
+	            	String titleComics = "";
 
                 	
 	            	final GridPane grid;
@@ -228,11 +242,19 @@ public class MainPageController implements Initializable {
 	                	grid.getChildren().clear();
 
 	                	for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
-	                		if(entry.getKey().getName() == name) {
-	                    		
+	                		if(entry.getValue().compareTo(name)==0) {
+	                    		 
 	    	                	grid.addRow(1,  new ImageView(new Image(entry.getKey().getImage().getIcon_url())));
 	    	                	this.idComi = entry.getValue();
-	                    	}
+	    	                	if(entry.getKey().getName() != null) {
+
+	                        		titleComics = entry.getKey().getName();
+	                    		}else {
+
+	                        		titleComics = "";
+	                    		}
+	                    	
+	                		}
 	        				
 	        			}
 	                	
@@ -260,7 +282,7 @@ public class MainPageController implements Initializable {
 	                         }
 	                     });   
 	                
-	                	grid.addRow(0, new Label(name));
+	                	grid.addRow(0, new Label(titleComics));
 	                	grid.addColumn(0, button);
 	                	setGraphic(grid);
 	                }
