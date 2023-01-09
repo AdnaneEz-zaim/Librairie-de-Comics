@@ -36,7 +36,7 @@ public class DatabaseOperations {
 		}
     }
 
-   
+  
 	public String getPort() {
 		return port;
 	}
@@ -145,13 +145,19 @@ public class DatabaseOperations {
 		boolean alreadyInDb = false;
 		String biblio = selectBibliotheque(id);
 
-		String[] Comics = biblio.split(",");
-		for (String oneComics : Comics) {
+		if(biblio ==null) {
+			biblio="";
+		}else {
 			
-			if(oneComics.compareTo(idComics)==0) {
-				alreadyInDb = true;
-			}
-        }
+		
+			String[] Comics = biblio.split(",");
+			for (String oneComics : Comics) {
+				
+				if(oneComics.compareTo(idComics)==0) {
+					alreadyInDb = true;
+				}
+	        }
+		}
 		
 		if(alreadyInDb) {
 			System.out.println("Deja en bdd");
@@ -170,6 +176,164 @@ public class DatabaseOperations {
 				
 				this.myConnection.setAutoCommit(false);
 				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET bibliotheque=? WHERE id=?");
+				
+				laRequete.setString(1, newBiblio);
+				laRequete.setInt(2, id);
+				laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	public void insertComicsLu(int id, String idComics) {
+		boolean alreadyInDb = false;
+		String biblio = selectComicsLu(id);
+
+		if(biblio ==null) {
+			biblio="";
+		}else {
+			
+		
+			String[] Comics = biblio.split(",");
+			for (String oneComics : Comics) {
+				
+				if(oneComics.compareTo(idComics)==0) {
+					alreadyInDb = true;
+				}
+	        }
+		}
+		
+		if(alreadyInDb) {
+			System.out.println("Deja en bdd");
+		}else {
+			try {
+			
+				String newBiblio ="";
+				
+				
+				if(biblio.compareTo("")==0){
+					newBiblio = idComics+",";
+				}else {
+					newBiblio = biblio+idComics+",";
+				}
+				
+				
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsLu=? WHERE id=?");
+				
+				laRequete.setString(1, newBiblio);
+				laRequete.setInt(2, id);
+				laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public void insertComicsAlire(int id, String idComics) {
+		boolean alreadyInDb = false;
+		String biblio = selectComicsAlire(id);
+
+		if(biblio ==null) {
+			biblio="";
+		}else {
+			
+		
+			String[] Comics = biblio.split(",");
+			for (String oneComics : Comics) {
+				
+				if(oneComics.compareTo(idComics)==0) {
+					alreadyInDb = true;
+				}
+	        }
+		}
+		
+		if(alreadyInDb) {
+			System.out.println("Deja en bdd");
+		}else {
+			try {
+			
+				String newBiblio ="";
+				
+				
+				if(biblio.compareTo("")==0){
+					newBiblio = idComics+",";
+				}else {
+					newBiblio = biblio+idComics+",";
+				}
+				
+				
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsAlire=? WHERE id=?");
+				
+				laRequete.setString(1, newBiblio);
+				laRequete.setInt(2, id);
+				laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void insertComicsEnCours(int id, String idComics) {
+		boolean alreadyInDb = false;
+		String biblio = selectComicsEnCours(id);
+
+		if(biblio ==null) {
+			biblio="";
+		}else {
+			
+		
+			String[] Comics = biblio.split(",");
+			for (String oneComics : Comics) {
+				
+				if(oneComics.compareTo(idComics)==0) {
+					alreadyInDb = true;
+				}
+	        }
+		}
+		
+		if(alreadyInDb) {
+			System.out.println("Deja en bdd");
+		}else {
+			try {
+			
+				String newBiblio ="";
+				
+				
+				if(biblio.compareTo("")==0){
+					newBiblio = idComics+",";
+				}else {
+					newBiblio = biblio+idComics+",";
+				}
+				
+				
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsEnCours=? WHERE id=?");
 				
 				laRequete.setString(1, newBiblio);
 				laRequete.setInt(2, id);
@@ -225,6 +389,117 @@ public class DatabaseOperations {
 		
 	}
 	
+	public void deleteComicsLu(int id, String idComics) {
+		
+		String biblio = selectComicsLu(id);
+
+		String[] Comics = biblio.split(",");
+			try {
+				String newBiblio ="";
+				for (String oneComics : Comics) {
+					
+					if(oneComics.compareTo(idComics)!=0) {
+						if(biblio.compareTo("")==0){
+							newBiblio = oneComics+",";
+						}else {
+							newBiblio = newBiblio+oneComics+",";
+						}
+					}
+		        }
+			
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsLu=? WHERE id=?");
+				
+				 laRequete.setString(1, newBiblio);
+				 laRequete.setInt(2, id);
+				 laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	public void deleteComicsAlire(int id, String idComics) {
+		
+		String biblio = selectComicsAlire(id);
+
+		String[] Comics = biblio.split(",");
+			try {
+				String newBiblio ="";
+				for (String oneComics : Comics) {
+					
+					if(oneComics.compareTo(idComics)!=0) {
+						if(biblio.compareTo("")==0){
+							newBiblio = oneComics+",";
+						}else {
+							newBiblio = newBiblio+oneComics+",";
+						}
+					}
+		        }
+			
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsAlire=? WHERE id=?");
+				
+				 laRequete.setString(1, newBiblio);
+				 laRequete.setInt(2, id);
+				 laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
+	public void deleteComicsEnCours(int id, String idComics) {
+		
+		String biblio = selectComicsEnCours(id);
+
+		String[] Comics = biblio.split(",");
+			try {
+				String newBiblio ="";
+				for (String oneComics : Comics) {
+					
+					if(oneComics.compareTo(idComics)!=0) {
+						if(biblio.compareTo("")==0){
+							newBiblio = oneComics+",";
+						}else {
+							newBiblio = newBiblio+oneComics+",";
+						}
+					}
+		        }
+			
+				this.myConnection.setAutoCommit(false);
+				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsEnCours=? WHERE id=?");
+				
+				 laRequete.setString(1, newBiblio);
+				 laRequete.setInt(2, id);
+				 laRequete.execute();
+				 
+				myConnection.commit();
+				laRequete.close();
+				
+				
+				
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	
 	public String selectBibliotheque(int id) {
 
 		String bibliothequeComics = null;
@@ -248,6 +523,80 @@ public class DatabaseOperations {
 		}
     	
     	return bibliothequeComics;
+    }
+	
+	public String selectComicsLu(int id) {
+
+		String comicsLu = null;
+		
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT comicsLu from user where id="+id);
+    		
+    		while (result.next()) {
+    			comicsLu = result.getString(1);
+		    }
+    		
+    		query.close();
+    		
+    		
+	    	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return comicsLu;
+    }
+	public String selectComicsAlire(int id) {
+
+		String comicsAlire = null;
+		
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT comicsAlire from user where id="+id);
+    		
+    		while (result.next()) {
+    			comicsAlire = result.getString(1);
+		    }
+    		
+    		query.close();
+    		
+    		
+	    	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return comicsAlire;
+    }
+	
+	public String selectComicsEnCours(int id) {
+
+		String comicsEnCours = null;
+		
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT comicsEnCours from user where id="+id);
+    		
+    		while (result.next()) {
+    			comicsEnCours = result.getString(1);
+		    }
+    		
+    		query.close();
+    		
+    		
+	    	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return comicsEnCours;
     }
 	
     public void selectAllUser() {

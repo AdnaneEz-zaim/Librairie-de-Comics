@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -45,11 +46,12 @@ public class MainPageController implements Initializable {
     private ListView<String> myListOfComics;
 	
 	protected ComicsController controller = null;
+	protected ListPersoController controllerListPerso = null;
 	
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
 	private ArrayList<Issue> listOfPrivateIssue = new ArrayList<Issue>();
 
-	private Map<Issue, String> issueId = new HashMap<Issue, String>();
+	private List<Issue> issues = new ArrayList<Issue>();
 
     @FXML
     private TextField researchField;
@@ -58,7 +60,7 @@ public class MainPageController implements Initializable {
 	@FXML
     void handleClickListView(MouseEvent event) throws IOException {
 		
-		
+	
 		Issue comics = listOfIssue.get(listOfComics.getSelectionModel().getSelectedIndex());
 		
 		
@@ -79,15 +81,14 @@ public class MainPageController implements Initializable {
 	@FXML
 	public void handleClickPrivateList(MouseEvent event) throws IOException {
 
-		System.out.println(listOfPrivateIssue.get(myListOfComics.getSelectionModel().getSelectedIndex()));
 		Issue comics = listOfPrivateIssue.get(myListOfComics.getSelectionModel().getSelectedIndex());
 		
 		String idComic ="";
-		for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
+		for (Issue entry : issues) {
 			
 			
-			if(entry.getValue()==Integer.toString(comics.getId())) {
-				idComic = ""+comics.getId();
+			if(entry.getId() ==comics.getId()) {
+				idComic = Integer.toString(comics.getId());
 			}
 
 			
@@ -111,6 +112,50 @@ public class MainPageController implements Initializable {
         
     }
 	
+	  @FXML
+	  void openComicsAlire(MouseEvent event) throws IOException {
+		  FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/listPerso.fxml"));
+		  ListPersoController controllerListPerso = new ListPersoController(2);
+		  
+		  loader.setController(controllerListPerso);
+	       
+	      AnchorPane comicsView;
+	      comicsView = loader.load();
+
+	      rootAnchorPane.getChildren().setAll(comicsView);
+		  
+	  }
+
+	  @FXML
+	  void openComicsEnCours(MouseEvent event) throws IOException {
+		  
+		  FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/listPerso.fxml"));
+		  ListPersoController controllerListPerso = new ListPersoController(3);
+		  
+		  loader.setController(controllerListPerso);
+	       
+	      AnchorPane comicsView;
+	      comicsView = loader.load();
+
+	      rootAnchorPane.getChildren().setAll(comicsView);
+
+	  }
+
+	  @FXML
+	  void openComicsLu(MouseEvent event) throws IOException {
+		  FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/listPerso.fxml"));
+		  this.controllerListPerso = new ListPersoController(1);
+		  
+		  loader.setController(controllerListPerso);
+	       
+	      AnchorPane comicsView;
+	      comicsView = loader.load();
+
+	      rootAnchorPane.getChildren().setAll(comicsView);
+
+	  }
+
+
     
 	
     
@@ -195,14 +240,14 @@ public class MainPageController implements Initializable {
 				result2 = comicVineService2.searchComics("4000-"+idComics);
 				comics = result2.getResults();
 
-				issueId.put(comics, idComics);
+				issues.add(comics);
 	  		}
 			
 			ObservableList<String> comicsName =FXCollections.observableArrayList ();
 			
-			for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
-				comicsName.add(entry.getValue());
-				listOfPrivateIssue.add(entry.getKey());
+			for (Issue entry : issues) {
+				comicsName.add(entry.getName());
+				listOfPrivateIssue.add(entry);
 				
 			}
 
@@ -241,14 +286,14 @@ public class MainPageController implements Initializable {
 	                } else {
 	                	grid.getChildren().clear();
 
-	                	for (Map.Entry<Issue, String> entry : issueId.entrySet()) {
-	                		if(entry.getValue().compareTo(name)==0) {
+	                	for (Issue entry : issues) {
+	                		if(entry.getName().compareTo(name)==0) {
 	                    		 
-	    	                	grid.addRow(1,  new ImageView(new Image(entry.getKey().getImage().getIcon_url())));
-	    	                	this.idComi = entry.getValue();
-	    	                	if(entry.getKey().getName() != null) {
-
-	                        		titleComics = entry.getKey().getName();
+	    	                	grid.addRow(1,  new ImageView(new Image(entry.getImage().getIcon_url())));
+	    	                	this.idComi = Integer.toString(entry.getId());
+	    	                	
+	    	                	if(entry.getName() != null) {
+	                        		titleComics = entry.getName();
 	                    		}else {
 
 	                        		titleComics = "";
@@ -283,7 +328,7 @@ public class MainPageController implements Initializable {
 	                     });   
 	                
 	                	grid.addRow(0, new Label(titleComics));
-	                	grid.addColumn(0, button);
+	                	grid.addColumn(1, button);
 	                	setGraphic(grid);
 	                }
 	            }

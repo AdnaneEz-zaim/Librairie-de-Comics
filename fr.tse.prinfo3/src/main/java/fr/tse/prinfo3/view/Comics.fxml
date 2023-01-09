@@ -55,6 +55,9 @@
                </children>
             </Pane>
             <Button fx:id="addToBiblio" layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Ajouter à ma bibliothèque" />
+            <Button layoutX="42.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#addComicsToLu" prefHeight="25.0" prefWidth="157.0" text="Comics Lu " />
+            <Button layoutX="42.0" layoutY="643.0" mnemonicParsing="false" onMouseClicked="#addComicsToAlire" prefHeight="25.0" prefWidth="157.0" text="Comics à Lire " />
+            <Button layoutX="42.0" layoutY="687.0" mnemonicParsing="false" onMouseClicked="#addComicsToEnCours" prefHeight="25.0" prefWidth="157.0" text="Comics en Cours" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">

@@ -48,7 +48,7 @@ public class ComicsController implements Initializable {
 	 
 	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
 	 
-	 
+	
 	 @FXML
 	 private Text nameComic;
 	 
@@ -73,6 +73,41 @@ public class ComicsController implements Initializable {
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		 dbComic.insertComicsUser(1, this.id);
+		 dbComic.close();
+	 }
+	 @FXML
+	 void addComicsToEnCours(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsEnCours(1, this.id);
+		 dbComic.close();
+	 }
+
+	 @FXML
+	 void addComicsToLu(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsLu(1, this.id);
+		 dbComic.close();
+	 }
+	 
+	 @FXML
+	 void addComicsToAlire(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsAlire(1, this.id);
 		 dbComic.close();
 	 }
 	    
@@ -167,7 +202,7 @@ public class ComicsController implements Initializable {
             }
         });
 		
-		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
+		imgComics.setImage(new Image(comics.getImage().getMedium_url()));
         
         
 		
