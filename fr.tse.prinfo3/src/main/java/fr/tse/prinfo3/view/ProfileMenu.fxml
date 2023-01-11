@@ -72,9 +72,9 @@
                   </VBox>
                </left>
                <right>
-                  <AnchorPane fx:id="displayAnchorPane" prefHeight="750.0" prefWidth="617.0" style="-fx-background-color: #a42f2f;" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="displayAnchorPane" prefHeight="750.0" prefWidth="617.0" style="-fx-background-color: c44444;" BorderPane.alignment="CENTER">
                      <children>
-                        <Text layoutX="294.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text layoutX="294.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary">
                            <font>
                               <Font size="30.0" />
                            </font>

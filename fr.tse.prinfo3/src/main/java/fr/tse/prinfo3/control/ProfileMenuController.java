@@ -77,7 +77,7 @@ public class ProfileMenuController implements Initializable {
 	private void loadPage(String page) {
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource(page+".fxml"));
+			root = FXMLLoader.load(getClass().getResource("../view/"+page+".fxml"));
 		} catch (IOException e) {
 			Logger.getLogger(ProfileMenuController.class.getName()).log(Level.SEVERE, null, e);
 		}
