@@ -46,6 +46,10 @@ public class MainPageController implements Initializable {
 	private ListView<String> myListOfComics;
 
 	protected ComicsController controller = null;
+	
+	protected ProfileMenuController controllerProf = null;
+	
+
 	protected ListPersoController controllerListPerso = null;
 
 	private ArrayList<Issue> listOfIssue = new ArrayList<Issue>();
@@ -83,7 +87,7 @@ public class MainPageController implements Initializable {
 	public void handleClickPrivateList(MouseEvent event) throws IOException {
 
 		
-		String idComics = myListOfComics.getItems().get(myListOfComics.getSelectionModel().getSelectedIndex());
+	String idComics = myListOfComics.getItems().get(myListOfComics.getSelectionModel().getSelectedIndex());
 		Issue comics = new Issue();
 		for (Issue entry : listOfIssue) {
 			if(Integer.toString(entry.getId()).compareTo(idComics)==0 ) {
@@ -107,7 +111,32 @@ public class MainPageController implements Initializable {
 
 
 
-	}
+	
+		
+        loader.setController(this.controller);
+        
+        AnchorPane comicsView = loader.load();
+        
+        rootAnchorPane.getChildren().setAll(comicsView);
+		
+		
+    }
+	
+	@FXML
+    void handleClickProfileImage(MouseEvent event) throws IOException {
+				
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ProfileMenu.fxml"));
+
+		this.controllerProf = new ProfileMenuController();
+		
+        loader.setController(this.controllerProf);
+        
+        AnchorPane profileAnchorPane = loader.load();
+        
+        rootAnchorPane.getChildren().setAll(profileAnchorPane);	
+    }
+	
+    
 
 	@FXML
 	void openComicsAlire(MouseEvent event) throws IOException {
@@ -151,9 +180,6 @@ public class MainPageController implements Initializable {
 		rootAnchorPane.getChildren().setAll(comicsView);
 
 	}
-
-
-
 
 
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -347,4 +373,5 @@ public class MainPageController implements Initializable {
 
 
 	}
+>>>>>>> fr.tse.prinfo3/src/main/java/fr/tse/prinfo3/control/MainPageController.java
 }

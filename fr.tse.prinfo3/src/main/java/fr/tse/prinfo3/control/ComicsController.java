@@ -64,6 +64,8 @@ public class ComicsController implements Initializable {
 	 
 	 protected MainPageController controller = null;
 	 protected CharacterController controllerCharac = null;
+	 protected ProfileMenuController controllerProf = null;
+
 	 
 	 @FXML
 	 private TextArea commentText;
@@ -152,6 +154,20 @@ public class ComicsController implements Initializable {
 	 }	 
 	 
 
+	 
+	 @FXML
+	    void handleClickProfileImage(MouseEvent event) throws IOException {
+					
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ProfileMenu.fxml"));
+
+			this.controllerProf = new ProfileMenuController();
+			
+	        loader.setController(this.controllerProf);
+	        
+	        AnchorPane comicsView = loader.load();
+	        
+	        ComicsAnchorPane.getChildren().setAll(comicsView);	
+	    }
 	 
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {

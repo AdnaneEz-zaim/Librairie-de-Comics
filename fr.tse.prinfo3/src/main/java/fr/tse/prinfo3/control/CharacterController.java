@@ -50,7 +50,7 @@ public class CharacterController implements Initializable {
     private ListView<String> listComics;
 
     protected ComicsController controller = null;
-    
+	protected ProfileMenuController controllerProf = null;    
 
 	private ArrayList<String> listOfIssue = new ArrayList<String>();
 	
@@ -91,11 +91,23 @@ public class CharacterController implements Initializable {
 	     AnchorPane comicsPage = loader.load();
 	        
 	     CharacterAnchorPane.getChildren().setAll(comicsPage);
-
-    	
     }
 	
-	
+    @FXML
+    void handleClickProfileImage(MouseEvent event) throws IOException {
+				
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ProfileMenu.fxml"));
+
+		this.controllerProf = new ProfileMenuController();
+		
+        loader.setController(this.controllerProf);
+        
+        AnchorPane comicsView = loader.load();
+        
+        CharacterAnchorPane.getChildren().setAll(comicsView);	
+    }
+    
+    
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		ComicVineService comicVineService = new ComicVineService();

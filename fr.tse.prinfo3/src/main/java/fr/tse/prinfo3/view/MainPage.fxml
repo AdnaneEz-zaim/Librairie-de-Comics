@@ -49,7 +49,7 @@
                   <MenuItem mnemonicParsing="false" text="Auteur" />
                </items>
             </MenuButton>
-            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" onMouseClicked="#handleClickProfileImage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/profilePic.png" />
                </image>
