@@ -129,6 +129,8 @@ public class ListPersoController implements Initializable {
 		
 		dbComic.close();
 		
+		System.out.println(bibliotheque);
+		
 		if(bibliotheque != null) {
 			
 		

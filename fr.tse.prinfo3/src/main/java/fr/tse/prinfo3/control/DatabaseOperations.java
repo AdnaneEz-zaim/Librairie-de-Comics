@@ -145,7 +145,7 @@ public class DatabaseOperations {
 		boolean alreadyInDb = false;
 		String biblio = selectBibliotheque(id);
 
-		if(biblio ==null) {
+		if(biblio ==null || biblio =="") {
 			biblio="";
 		}else {
 			
@@ -197,7 +197,7 @@ public class DatabaseOperations {
 		boolean alreadyInDb = false;
 		String biblio = selectComicsLu(id);
 
-		if(biblio ==null) {
+		if(biblio ==null || biblio =="") {
 			biblio="";
 		}else {
 			
@@ -250,7 +250,7 @@ public class DatabaseOperations {
 		boolean alreadyInDb = false;
 		String biblio = selectComicsAlire(id);
 
-		if(biblio ==null) {
+		if(biblio ==null || biblio =="") {
 			biblio="";
 		}else {
 			
@@ -303,7 +303,7 @@ public class DatabaseOperations {
 		boolean alreadyInDb = false;
 		String biblio = selectComicsEnCours(id);
 
-		if(biblio ==null) {
+		if(biblio ==null || biblio =="") {
 			biblio="";
 		}else {
 			
@@ -359,7 +359,7 @@ public class DatabaseOperations {
 
 			String newBiblio ="";
 			
-			if(biblio != null) {
+			if(biblio != null || biblio !="") {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
@@ -401,7 +401,7 @@ public class DatabaseOperations {
 
 			String newBiblio ="";
 			
-			if(biblio != null) {
+			if(biblio != null || biblio !="") {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
@@ -443,7 +443,7 @@ public class DatabaseOperations {
 
 				String newBiblio ="";
 				
-				if(biblio != null) {
+				if(biblio != null || biblio !="") {
 					
 					String[] Comics = biblio.split(",");
 					for (String oneComics : Comics) {
@@ -485,7 +485,7 @@ public class DatabaseOperations {
 
 			String newBiblio ="";
 			
-			if(biblio != null) {
+			if(biblio != null || biblio !="") {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
