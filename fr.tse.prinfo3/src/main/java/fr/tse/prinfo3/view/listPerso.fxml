@@ -16,7 +16,7 @@
    <children>
       <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Label fx:id="titleListe" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="252.0" text="Lst" underline="true" wrapText="true">
+            <Label fx:id="titleListe" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="393.0" text="Lst" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>

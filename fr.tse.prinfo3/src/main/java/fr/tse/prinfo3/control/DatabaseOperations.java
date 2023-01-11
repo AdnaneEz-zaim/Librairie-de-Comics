@@ -354,12 +354,12 @@ public class DatabaseOperations {
 	
 	public void deleteComicsUser(int id, String idComics) {
 		
-		String biblio = selectComicsAlire(id);
+		String biblio = selectBibliotheque(id);
 		try {
 
 			String newBiblio ="";
 			
-			if(biblio != null || biblio !="") {
+			if(biblio != null && (biblio.compareTo("")!=0)) {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
@@ -396,12 +396,12 @@ public class DatabaseOperations {
 	
 	public void deleteComicsLu(int id, String idComics) {
 		
-		String biblio = selectComicsAlire(id);
+		String biblio = selectComicsLu(id);
 		try {
 
 			String newBiblio ="";
 			
-			if(biblio != null || biblio !="") {
+			if(biblio != null && (biblio.compareTo("")!=0)) {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
@@ -443,7 +443,7 @@ public class DatabaseOperations {
 
 				String newBiblio ="";
 				
-				if(biblio != null || biblio !="") {
+				if(biblio != null && (biblio.compareTo("")!=0)) {
 					
 					String[] Comics = biblio.split(",");
 					for (String oneComics : Comics) {
@@ -480,12 +480,12 @@ public class DatabaseOperations {
 	
 	public void deleteComicsEnCours(int id, String idComics) {
 		
-		String biblio = selectComicsAlire(id);
+		String biblio = selectComicsEnCours(id);
 		try {
 
 			String newBiblio ="";
 			
-			if(biblio != null || biblio !="") {
+			if(biblio != null && (biblio.compareTo("")!=0)) {
 				
 				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
