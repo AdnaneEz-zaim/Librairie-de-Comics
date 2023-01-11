@@ -354,11 +354,14 @@ public class DatabaseOperations {
 	
 	public void deleteComicsUser(int id, String idComics) {
 		
-		String biblio = selectBibliotheque(id);
+		String biblio = selectComicsAlire(id);
+		try {
 
-		String[] Comics = biblio.split(",");
-			try {
-				String newBiblio ="";
+			String newBiblio ="";
+			
+			if(biblio != null) {
+				
+				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
 					
 					if(oneComics.compareTo(idComics)!=0) {
@@ -370,6 +373,8 @@ public class DatabaseOperations {
 					}
 		        }
 			
+			
+		
 				this.myConnection.setAutoCommit(false);
 				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET bibliotheque=? WHERE id=?");
 				
@@ -379,23 +384,26 @@ public class DatabaseOperations {
 				 
 				myConnection.commit();
 				laRequete.close();
-				
-				
-				
-			}catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		
+			
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	
 	public void deleteComicsLu(int id, String idComics) {
 		
-		String biblio = selectComicsLu(id);
+		String biblio = selectComicsAlire(id);
+		try {
 
-		String[] Comics = biblio.split(",");
-			try {
-				String newBiblio ="";
+			String newBiblio ="";
+			
+			if(biblio != null) {
+				
+				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
 					
 					if(oneComics.compareTo(idComics)!=0) {
@@ -407,6 +415,8 @@ public class DatabaseOperations {
 					}
 		        }
 			
+			
+		
 				this.myConnection.setAutoCommit(false);
 				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsLu=? WHERE id=?");
 				
@@ -416,44 +426,49 @@ public class DatabaseOperations {
 				 
 				myConnection.commit();
 				laRequete.close();
-				
-				
-				
-			}catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		
+			
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	
 	public void deleteComicsAlire(int id, String idComics) {
 		
 		String biblio = selectComicsAlire(id);
-
-		String[] Comics = biblio.split(",");
 			try {
+
 				String newBiblio ="";
-				for (String oneComics : Comics) {
+				
+				if(biblio != null) {
 					
-					if(oneComics.compareTo(idComics)!=0) {
-						if(biblio.compareTo("")==0){
-							newBiblio = oneComics+",";
-						}else {
-							newBiblio = newBiblio+oneComics+",";
+					String[] Comics = biblio.split(",");
+					for (String oneComics : Comics) {
+						
+						if(oneComics.compareTo(idComics)!=0) {
+							if(biblio.compareTo("")==0){
+								newBiblio = oneComics+",";
+							}else {
+								newBiblio = newBiblio+oneComics+",";
+							}
 						}
-					}
-		        }
+			        }
+				
+				
 			
-				this.myConnection.setAutoCommit(false);
-				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsAlire=? WHERE id=?");
-				
-				 laRequete.setString(1, newBiblio);
-				 laRequete.setInt(2, id);
-				 laRequete.execute();
-				 
-				myConnection.commit();
-				laRequete.close();
-				
+					this.myConnection.setAutoCommit(false);
+					PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsAlire=? WHERE id=?");
+					
+					 laRequete.setString(1, newBiblio);
+					 laRequete.setInt(2, id);
+					 laRequete.execute();
+					 
+					myConnection.commit();
+					laRequete.close();
+				}
 				
 				
 			}catch (SQLException e) {
@@ -465,11 +480,14 @@ public class DatabaseOperations {
 	
 	public void deleteComicsEnCours(int id, String idComics) {
 		
-		String biblio = selectComicsEnCours(id);
+		String biblio = selectComicsAlire(id);
+		try {
 
-		String[] Comics = biblio.split(",");
-			try {
-				String newBiblio ="";
+			String newBiblio ="";
+			
+			if(biblio != null) {
+				
+				String[] Comics = biblio.split(",");
 				for (String oneComics : Comics) {
 					
 					if(oneComics.compareTo(idComics)!=0) {
@@ -481,6 +499,8 @@ public class DatabaseOperations {
 					}
 		        }
 			
+			
+		
 				this.myConnection.setAutoCommit(false);
 				PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE user SET comicsEnCours=? WHERE id=?");
 				
@@ -490,14 +510,14 @@ public class DatabaseOperations {
 				 
 				myConnection.commit();
 				laRequete.close();
-				
-				
-				
-			}catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		
+			
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	
 	public String selectBibliotheque(int id) {

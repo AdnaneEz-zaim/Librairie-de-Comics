@@ -287,19 +287,20 @@ public class MainPageController implements Initializable {
 	                	grid.getChildren().clear();
 
 	                	for (Issue entry : issues) {
-	                		if(entry.getName().compareTo(name)==0) {
-	                    		 
-	    	                	grid.addRow(1,  new ImageView(new Image(entry.getImage().getIcon_url())));
-	    	                	this.idComi = Integer.toString(entry.getId());
-	    	                	
-	    	                	if(entry.getName() != null) {
-	                        		titleComics = entry.getName();
-	                    		}else {
-
-	                        		titleComics = "";
-	                    		}
-	                    	
+	                		if (entry.getName() == null) {
+	                			titleComics = "";
+	                		  }else {
+	                			 
+	                			if(entry.getName() == name) {
+		                    		 
+		    	                	grid.addRow(1,  new ImageView(new Image(entry.getImage().getIcon_url())));
+		    	                	this.idComi = Integer.toString(entry.getId());
+		                        	titleComics = entry.getName();
+		                    		
+		                    	
+		                		}
 	                		}
+	                		
 	        				
 	        			}
 	                	
