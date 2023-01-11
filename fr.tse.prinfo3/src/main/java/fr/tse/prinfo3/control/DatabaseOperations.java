@@ -689,7 +689,6 @@ public class DatabaseOperations {
     public ArrayList<List<String>> selectAllComments(String id_commics) {
     	ArrayList<List<String>> comicsComments = new ArrayList<List<String>>();
     	try {
-    		System.out.println(id_commics);
     		Statement query = this.myConnection.createStatement();
     		ResultSet result = query.executeQuery("SELECT username, comment from commentaire WHERE id_comics=\""+id_commics+"\"");
     		
@@ -752,7 +751,6 @@ public class DatabaseOperations {
     	try {
     		Statement query = this.myConnection.createStatement();
     		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\"");
-    		System.out.println(id_commics);
     		double global_notation = 0;
     		int i=0;
     		while (result.next()) {

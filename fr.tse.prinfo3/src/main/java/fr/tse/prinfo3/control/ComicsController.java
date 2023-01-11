@@ -44,9 +44,7 @@ public class ComicsController implements Initializable {
 	 
 	 @FXML
 	 private ListView<String> listCreateur;
-	 
-	 @FXML
-	 private TextArea commentText;
+
 	 
 	 @FXML
 	 private TextArea descComics;
@@ -56,15 +54,7 @@ public class ComicsController implements Initializable {
 	 
 	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
 	 
-	 @FXML
-	 private ListView<?> listComment;
-	 
-	 @FXML
-	 private Button publishButton;
 
-	 @FXML
-	 private Rating rateComics;
-	 
 	
 	 @FXML
 	 private Text nameComic;
@@ -138,34 +128,30 @@ public class ComicsController implements Initializable {
 		 dbComic.close();
 	 }
 	 
-	 @FXML
-	 void doRating(MouseEvent event) {
-
-	 }
+	 
 	    
 
 	 @FXML
 	 void handlePersonnage(MouseEvent event) throws IOException {
 		 
-		 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
+		 if(listCharacter.getSelectionModel().getSelectedIndex()>=0) {
 		 
-		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Character.fxml"));
-		 
-		 
-		 this.controllerCharac = new CharacterController(id, this.id);
-		 
-		 loader.setController(this.controllerCharac);
-	      
-	     AnchorPane CharacterAnchorPane = loader.load();
-	        
-	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
+			 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
+			 
+			 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Character.fxml"));
+			 
+			 
+			 this.controllerCharac = new CharacterController(id, this.id);
+			 
+			 loader.setController(this.controllerCharac);
+		      
+		     AnchorPane CharacterAnchorPane = loader.load();
+		        
+		     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
+		 }
 	 }	 
 	 
 
-	 @FXML
-	 void publishComment(MouseEvent event) {
-
-	 }
 	 
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
@@ -212,7 +198,6 @@ public class ComicsController implements Initializable {
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		 dbComic.insertNotation(note, this.id, dbComic.getUsernameId(id_user));
-		 System.out.println(note);
 	 }
 	 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -250,6 +235,27 @@ public class ComicsController implements Initializable {
   		}	
         
 		listCharacter.setItems(characters);
+		
+		listCharacter.setCellFactory(param -> new ListCell<String>() {
+            private Text namePerson = new Text();
+            @Override
+            public void updateItem(String name, boolean empty) {
+                super.updateItem(name, empty);
+                if (empty) {
+                    setText(null);
+                    setText(null);
+                } else {
+                	for (OtherCredits personne : comics.getCharacter_credits()) {
+                    	
+                    	if(personne.getName() == name) {
+                    		namePerson.setText(name);
+                    	}
+              		}
+                    setText(namePerson.getText());
+                }
+            }
+        });
+		
 		listCreateur.setItems(items);
         
 		listCreateur.setCellFactory(param -> new ListCell<String>() {

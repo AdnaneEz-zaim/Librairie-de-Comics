@@ -55,7 +55,7 @@
                   <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="74.0" prefWidth="708.0" />
                </children>
             </Pane>
-            <Button fx:id="addToBiblio" layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Add to my library" />
+            <Button layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Add to my library" />
             <Button layoutX="58.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#addComicsToLu" prefHeight="25.0" prefWidth="157.0" text="Redead" />
             <Button layoutX="58.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#addComicsToAlire" prefHeight="25.0" prefWidth="157.0" text="Comics to Read" />
             <Button layoutX="58.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#addComicsToEnCours" prefHeight="25.0" prefWidth="157.0" text="Comics in Progress" />
@@ -77,7 +77,7 @@
                      </font>
                   </Text>
                   <TextArea fx:id="commentText" layoutX="9.0" layoutY="33.0" prefHeight="106.0" prefWidth="225.0" />
-                  <Button fx:id="publishButton" layoutX="92.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#publishComment" text="Publish" />
+                  <Button layoutX="92.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#publishComment" text="Publish" />
                </children>
             </Pane>
             <Rating fx:id="rateComics" layoutX="234.0" layoutY="71.0" onMouseClicked="#doRating" orientation="VERTICAL" partialRating="true" prefHeight="32.0" prefWidth="169.0" updateOnHover="false" />

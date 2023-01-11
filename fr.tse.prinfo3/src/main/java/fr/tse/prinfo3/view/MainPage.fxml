@@ -16,22 +16,22 @@
    <children>
       <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Label layoutX="563.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="DERNIÈRE SORTIE" underline="true" wrapText="true">
+            <Label layoutX="563.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="LAST EXIT" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
             <ListView fx:id="listOfComics" layoutX="563.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="629.0" prefWidth="428.0" style="-fx-fixed-cell-size: 100;" />
-            <Label layoutX="171.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="MA BIBLIOTHEQUE" underline="true" wrapText="true">
+            <Label layoutX="171.0" layoutY="21.0" prefHeight="31.0" prefWidth="252.0" text="MY LIBRARY" underline="true" wrapText="true">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
             <ListView fx:id="myListOfComics" layoutX="171.0" layoutY="101.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickPrivateList" prefHeight="597.0" prefWidth="344.0" />
             <TextField fx:id="researchField" layoutX="171.0" layoutY="69.0" prefHeight="26.0" prefWidth="322.0" />
-            <Button layoutX="7.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#openComicsLu" prefHeight="25.0" prefWidth="157.0" text="Liste des Comics Lu " />
-            <Button layoutX="7.0" layoutY="165.0" mnemonicParsing="false" onMouseClicked="#openComicsAlire" prefHeight="25.0" prefWidth="157.0" text="Liste des Comics à Lire " />
-            <Button layoutX="7.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#openComicsEnCours" prefHeight="25.0" prefWidth="157.0" text="Liste des Comics en Cours " />
+            <Button layoutX="7.0" layoutY="120.0" mnemonicParsing="false" onMouseClicked="#openComicsLu" prefHeight="25.0" prefWidth="157.0" text="List of readed comics" />
+            <Button layoutX="7.0" layoutY="165.0" mnemonicParsing="false" onMouseClicked="#openComicsAlire" prefHeight="25.0" prefWidth="157.0" text="List of comics to read" />
+            <Button layoutX="7.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#openComicsEnCours" prefHeight="25.0" prefWidth="157.0" text="List of current comics" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">

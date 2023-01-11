@@ -112,15 +112,15 @@ public class ListPersoController implements Initializable {
 
 		case 1:
 			bibliotheque = dbComic.selectComicsLu(1);
-			titleListe.setText("Liste des comics lu");
+			titleListe.setText("List of readed comics");
 			break;
 		case 2:
 			bibliotheque = dbComic.selectComicsAlire(1);
-			titleListe.setText("Liste des comics à lire");
+			titleListe.setText("List of comics to read");
 			break;
 		case 3:
 			bibliotheque = dbComic.selectComicsEnCours(1);
-			titleListe.setText("Liste des comics en cours");
+			titleListe.setText("List of current comics");
 			break;
 		}
 
