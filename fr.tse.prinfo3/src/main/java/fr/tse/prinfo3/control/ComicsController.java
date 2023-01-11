@@ -1,5 +1,6 @@
 package fr.tse.prinfo3.control;
 
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,17 +40,32 @@ public class ComicsController implements Initializable {
 	 private AnchorPane ComicsAnchorPane;
 
 	 @FXML
-	 private TextField descComics;
-
+	 private Button addToBiblio;
+	 
 	 @FXML
 	 private ListView<String> listCreateur;
+	 
+	 @FXML
+	 private TextArea commentText;
+	 
+	 @FXML
+	 private TextArea descComics;
 
 	 @FXML
 	 private ListView<String> listCharacter;
 	 
 	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
 	 
+	 @FXML
+	 private ListView<?> listComment;
 	 
+	 @FXML
+	 private Button publishButton;
+
+	 @FXML
+	 private Rating rateComics;
+	 
+	
 	 @FXML
 	 private Text nameComic;
 	 
@@ -76,6 +92,59 @@ public class ComicsController implements Initializable {
 
 
 	 @FXML
+	 void addComicsToBibliotheque(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsUser(1, this.id);
+		 dbComic.close();
+	 }
+	 @FXML
+	 void addComicsToEnCours(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsEnCours(1, this.id);
+		 dbComic.close();
+	 }
+
+	 @FXML
+	 void addComicsToLu(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsLu(1, this.id);
+		 dbComic.close();
+	 }
+	 
+	 @FXML
+	 void addComicsToAlire(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsAlire(1, this.id);
+		 dbComic.close();
+	 }
+	 
+	 @FXML
+	 void doRating(MouseEvent event) {
+
+	 }
+	    
+
+	 @FXML
 	 void handlePersonnage(MouseEvent event) throws IOException {
 		 
 		 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
@@ -91,6 +160,12 @@ public class ComicsController implements Initializable {
 	        
 	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
 	 }	 
+	 
+
+	 @FXML
+	 void publishComment(MouseEvent event) {
+
+	 }
 	 
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
@@ -144,7 +219,7 @@ public class ComicsController implements Initializable {
 		
 		
 		ComicVineService comicVineService = new ComicVineService();
-		ResultIssue result2 = comicVineService.searchComics(this.id);
+		ResultIssue result2 = comicVineService.searchComics("4000-"+this.id);
         
 		
         Issue comics = result2.getResults();
@@ -197,7 +272,7 @@ public class ComicsController implements Initializable {
             }
         });
 		
-		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
+		imgComics.setImage(new Image(comics.getImage().getMedium_url()));
         
 		
 		ObservableList<Text> comments =FXCollections.observableArrayList ();
