@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,48 +12,75 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane fx:id="ComicsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutY="74.0" prefHeight="753.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Pane layoutX="273.0" layoutY="315.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+            <Pane layoutX="273.0" layoutY="213.0" prefHeight="148.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
-                  <Text fx:id="nameComic111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créateurs" textAlignment="CENTER" underline="true">
+                  <Text fx:id="nameComic111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creators" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="listCreateur" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
+                  <ListView fx:id="listCreateur" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="74.0" prefWidth="708.0" />
                </children>
             </Pane>
-            <Pane layoutX="273.0" layoutY="53.0" prefHeight="233.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+            <Pane layoutX="273.0" layoutY="53.0" prefHeight="148.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
                   <Text fx:id="nameComic11" fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="descComics" alignment="TOP_LEFT" editable="false" layoutX="8.0" layoutY="44.0" prefHeight="181.0" prefWidth="708.0" />
+                  <TextArea fx:id="descComics" editable="false" layoutX="8.0" layoutY="41.0" prefHeight="85.0" prefWidth="699.0" />
                </children>
             </Pane>
-            <ImageView fx:id="imgComics" fitHeight="366.0" fitWidth="212.0" layoutX="14.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgComics" fitHeight="293.0" fitWidth="212.0" layoutX="14.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="nameComic" fontSmoothingType="LCD" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMIC" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="returnButton" layoutX="898.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Retour" />
-            <Pane layoutX="273.0" layoutY="543.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+            <Button fx:id="returnButton" layoutX="898.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Return" />
+            <Pane layoutX="273.0" layoutY="377.0" prefHeight="148.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
-                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnages" textAlignment="CENTER" underline="true">
+                  <Text fx:id="nameComic1111" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characters" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="Comic Sans MS" size="20.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="148.0" prefWidth="708.0" />
+                  <ListView fx:id="listCharacter" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" onMouseClicked="#handlePersonnage" orientation="HORIZONTAL" prefHeight="74.0" prefWidth="708.0" />
                </children>
             </Pane>
+            <Button layoutX="550.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#addComicsToBibliotheque" prefHeight="25.0" prefWidth="171.0" text="Add to my library" />
+            <Button layoutX="58.0" layoutY="402.0" mnemonicParsing="false" onMouseClicked="#addComicsToLu" prefHeight="25.0" prefWidth="157.0" text="Redead" />
+            <Button layoutX="58.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#addComicsToAlire" prefHeight="25.0" prefWidth="157.0" text="Comics to Read" />
+            <Button layoutX="58.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#addComicsToEnCours" prefHeight="25.0" prefWidth="157.0" text="Comics in Progress" />
+            <Pane layoutX="273.0" layoutY="536.0" prefHeight="184.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" layoutX="4.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="listComment" layoutX="9.0" layoutY="33.0" prefHeight="132.0" prefWidth="699.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="525.0" prefHeight="193.0" prefWidth="244.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" layoutX="4.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leave a comment" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="commentText" layoutX="9.0" layoutY="33.0" prefHeight="106.0" prefWidth="225.0" />
+                  <Button layoutX="92.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#publishComment" text="Publish" />
+               </children>
+            </Pane>
+            <Rating fx:id="rateComics" layoutX="234.0" layoutY="71.0" onMouseClicked="#doRating" orientation="VERTICAL" partialRating="true" prefHeight="32.0" prefWidth="169.0" updateOnHover="false" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
@@ -63,11 +91,11 @@
                </image>
             </ImageView>
             <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
-            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domain">
                <items>
                   <MenuItem mnemonicParsing="false" text="Comics" />
-                  <MenuItem mnemonicParsing="false" text="Personnage" />
-                  <MenuItem mnemonicParsing="false" text="Auteur" />
+                  <MenuItem mnemonicParsing="false" text="Characters" />
+                  <MenuItem mnemonicParsing="false" text="Creators" />
                </items>
             </MenuButton>
             <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">

@@ -1,12 +1,16 @@
 package fr.tse.prinfo3.control;
 
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import org.controlsfx.control.Rating;
 
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.OtherCredits;
@@ -18,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,17 +40,22 @@ public class ComicsController implements Initializable {
 	 private AnchorPane ComicsAnchorPane;
 
 	 @FXML
-	 private TextField descComics;
-
+	 private Button addToBiblio;
+	 
 	 @FXML
 	 private ListView<String> listCreateur;
+
+	 
+	 @FXML
+	 private TextArea descComics;
 
 	 @FXML
 	 private ListView<String> listCharacter;
 	 
 	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
 	 
-	 
+
+	
 	 @FXML
 	 private Text nameComic;
 	 
@@ -57,6 +67,16 @@ public class ComicsController implements Initializable {
 	 protected ProfileMenuController controllerProf = null;
 
 	 
+	 @FXML
+	 private TextArea commentText;
+	 
+	 @FXML
+	 private ListView<Text> listComment;
+	 
+	 private ArrayList<List<String>> comicsComments = new ArrayList<List<String>>();
+	 
+	 @FXML
+	 private Rating rateComics;
 	 
 	 ComicsController(String id){
 		 this.id=id;
@@ -64,21 +84,76 @@ public class ComicsController implements Initializable {
 
 
 	 @FXML
+	 void addComicsToBibliotheque(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsUser(1, this.id);
+		 dbComic.close();
+	 }
+	 @FXML
+	 void addComicsToEnCours(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsEnCours(1, this.id);
+		 dbComic.close();
+	 }
+
+	 @FXML
+	 void addComicsToLu(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsLu(1, this.id);
+		 dbComic.close();
+	 }
+	 
+	 @FXML
+	 void addComicsToAlire(MouseEvent event) {
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertComicsAlire(1, this.id);
+		 dbComic.close();
+	 }
+	 
+	 
+	    
+
+	 @FXML
 	 void handlePersonnage(MouseEvent event) throws IOException {
 		 
-		 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
+		 if(listCharacter.getSelectionModel().getSelectedIndex()>=0) {
 		 
-		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Character.fxml"));
-		 
-		 
-		 this.controllerCharac = new CharacterController(id, this.id);
-		 
-		 loader.setController(this.controllerCharac);
-	      
-	     AnchorPane CharacterAnchorPane = loader.load();
-	        
-	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
+			 String id = "4005-"+listOfCharacters.get(listCharacter.getSelectionModel().getSelectedIndex());
+			 
+			 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Character.fxml"));
+			 
+			 
+			 this.controllerCharac = new CharacterController(id, this.id);
+			 
+			 loader.setController(this.controllerCharac);
+		      
+		     AnchorPane CharacterAnchorPane = loader.load();
+		        
+		     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
+		 }
 	 }	 
+	 
+
 	 
 	 @FXML
 	    void handleClickProfileImage(MouseEvent event) throws IOException {
@@ -109,12 +184,43 @@ public class ComicsController implements Initializable {
 
 	 }
 	 
-	    
+	 @FXML
+	 void publishComment(MouseEvent event) throws IOException {
+		 
+		 String comment = commentText.getText();
+		 String id_user = "1";	
+
+		 
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 
+		 dbComic.insertComment(comment, this.id, dbComic.getUsernameId(id_user));
+		 dbComic.close();
+	 }
+	 
+	 @FXML
+	 void doRating(MouseEvent event) throws IOException {
+		 double note = rateComics.getRating();
+		 String id_user = "1";
+		 
+		 String hostname = "localhost";
+		 String db = "comicunivers";
+		 String port = "3306";
+		 String username = "root";
+		 String password = "";
+		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		 dbComic.insertNotation(note, this.id, dbComic.getUsernameId(id_user));
+	 }
+	 
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		
 		ComicVineService comicVineService = new ComicVineService();
-		ResultIssue result2 = comicVineService.searchComics(this.id);
+		ResultIssue result2 = comicVineService.searchComics("4000-"+this.id);
         
 		
         Issue comics = result2.getResults();
@@ -145,6 +251,27 @@ public class ComicsController implements Initializable {
   		}	
         
 		listCharacter.setItems(characters);
+		
+		listCharacter.setCellFactory(param -> new ListCell<String>() {
+            private Text namePerson = new Text();
+            @Override
+            public void updateItem(String name, boolean empty) {
+                super.updateItem(name, empty);
+                if (empty) {
+                    setText(null);
+                    setText(null);
+                } else {
+                	for (OtherCredits personne : comics.getCharacter_credits()) {
+                    	
+                    	if(personne.getName() == name) {
+                    		namePerson.setText(name);
+                    	}
+              		}
+                    setText(namePerson.getText());
+                }
+            }
+        });
+		
 		listCreateur.setItems(items);
         
 		listCreateur.setCellFactory(param -> new ListCell<String>() {
@@ -167,11 +294,37 @@ public class ComicsController implements Initializable {
             }
         });
 		
-		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
-        
+		imgComics.setImage(new Image(comics.getImage().getMedium_url()));
         
 		
+		ObservableList<Text> comments =FXCollections.observableArrayList ();
+		String hostname = "localhost";
+		String db = "comicunivers";
+		String port = "3306";
+		String username = "root";
+		String password = "";
+		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
+		
+		comicsComments = dbComic.selectAllComments(this.id);
+		for (List<String> com : comicsComments) {
+				Text c = new Text(com.get(0)+":\n"+com.get(1));
+				comments.add(c);
+			
+	        	
+  		}
+
+		listComment.setItems(comments);
+		//rajouter le fait que si un commentaire est publié il puisse être affiché directement dans la ListView
+		
+		rateComics.setRating(dbComic.getNotation(this.id));
+		
+		
+		
 	}
+	
+	
+	
+	
 	
 	
 	
