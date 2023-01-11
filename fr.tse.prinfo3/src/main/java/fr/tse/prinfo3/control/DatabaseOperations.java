@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -640,7 +644,140 @@ public class DatabaseOperations {
 		}
     }
     
+    public String getUsernameId(String id_user) {
+    	String username = "";
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT username from user where id="+id_user);
+    		
+    		while (result.next()) {
+    			username = result.getString(1);
+		    }
 
+    		query.close();
+	    	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+		return username; 
+    }
+    
+    
+    public void insertComment(String comment, String id_commics, String username) {
+		try {
+			this.myConnection.setAutoCommit(false);
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire (id_comics, username, comment) VALUES (?, ?, ?)");
+			
+			 laRequete.setString(1, id_commics);
+			 laRequete.setString(2, username);
+			 laRequete.setString(3, comment);
+			 laRequete.execute();
+			 
+			myConnection.commit();
+			laRequete.close();
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+    
+    public ArrayList<List<String>> selectAllComments(String id_commics) {
+    	ArrayList<List<String>> comicsComments = new ArrayList<List<String>>();
+    	try {
+    		System.out.println(id_commics);
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT username, comment from commentaire WHERE id_comics=\""+id_commics+"\"");
+    		
+    		while (result.next()) {
+    			List<String> comment = new ArrayList<String>();
+    			comment.add(result.getString(1));
+    			comment.add(result.getString(2));
+
+    			comicsComments.add(comment);
+    			
+		    }
+    		
+    		
+    		query.close();
+    		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}		
+
+		return comicsComments;
+    }
+    
+    
+    public void insertNotation(double note,String id_commics,String username) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\" AND username=\"" + username+"\"");
+    		if (!result.next()) { // on verifie qu'une note n'a pas déjà été donnée par un user
+    			this.myConnection.setAutoCommit(false);
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO notation (id_comics, username, note) VALUES (?, ?, ?)");
+		
+    			laRequete.setString(1, id_commics);
+    			laRequete.setString(2, username);
+    			laRequete.setDouble(3, note);
+    			laRequete.execute();
+		 
+    			myConnection.commit();
+    			laRequete.close();
+    		}
+    		else {
+    			this.myConnection.setAutoCommit(false);
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE notation SET note=? WHERE username=\""+username+"\" AND id_comics=\"" +id_commics+"\"");
+    			
+    			laRequete.setDouble(1, note);
+    			
+    			laRequete.execute();
+    			myConnection.commit();
+    			laRequete.close();
+    		}
+    	}catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+    	}
+    }
+    
+    public double getNotation(String id_commics) {
+    	try {
+    		Statement query = this.myConnection.createStatement();
+    		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\"");
+    		System.out.println(id_commics);
+    		double global_notation = 0;
+    		int i=0;
+    		while (result.next()) {
+    			global_notation= result.getDouble(1) + global_notation;
+
+    			i++;
+    		}
+    		if(i>0) {
+        		global_notation=global_notation/i;
+    		}
+    		
+    		
+    		query.close();
+    		return global_notation;
+    		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+    }
+
+    
+    
     /**
      * Terminate the connection, if any
      */

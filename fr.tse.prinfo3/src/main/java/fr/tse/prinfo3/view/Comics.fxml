@@ -91,11 +91,11 @@
                </image>
             </ImageView>
             <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
-            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domain">
                <items>
                   <MenuItem mnemonicParsing="false" text="Comics" />
-                  <MenuItem mnemonicParsing="false" text="Personnage" />
-                  <MenuItem mnemonicParsing="false" text="Auteur" />
+                  <MenuItem mnemonicParsing="false" text="Characters" />
+                  <MenuItem mnemonicParsing="false" text="Creators" />
                </items>
             </MenuButton>
             <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
