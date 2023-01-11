@@ -211,7 +211,7 @@ public class ListPersoController implements Initializable {
 
 
 						String idCom = this.idComi;                           
-						button = new Button("Supprimer");            
+						button = new Button("Remove");            
 						button.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override

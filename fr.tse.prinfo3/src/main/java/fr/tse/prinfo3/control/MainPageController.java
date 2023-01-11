@@ -109,15 +109,6 @@ public class MainPageController implements Initializable {
 
 		rootAnchorPane.getChildren().setAll(comicsView);
 
-
-
-	
-		
-        loader.setController(this.controller);
-        
-        AnchorPane comicsView = loader.load();
-        
-        rootAnchorPane.getChildren().setAll(comicsView);
 		
 		
     }
@@ -334,7 +325,7 @@ public class MainPageController implements Initializable {
 						}
 
 						String idCom = this.idComi;                           
-						button = new Button("Supprimer");            
+						button = new Button("Remove");            
 						button.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override
@@ -373,5 +364,5 @@ public class MainPageController implements Initializable {
 
 
 	}
->>>>>>> fr.tse.prinfo3/src/main/java/fr/tse/prinfo3/control/MainPageController.java
+
 }
