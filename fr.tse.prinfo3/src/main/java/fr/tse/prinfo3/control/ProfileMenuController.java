@@ -15,13 +15,18 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class ProfileMenuController implements Initializable {
 	@FXML
-	private BorderPane bp;
-	
+	private BorderPane menuBorderPane;
 	@FXML
-	private AnchorPane ap;
+	private AnchorPane profileAnchorPane;
+	@FXML
+	private AnchorPane displayAnchorPane;
+	
+	
+	protected MainPageController controller = null;
 	
 	ProfileMenuController(){
 	 }
@@ -35,7 +40,7 @@ public class ProfileMenuController implements Initializable {
 
 	@FXML
 	private void summary(MouseEvent event) {
-		bp.setCenter(ap);
+		menuBorderPane.setCenter(displayAnchorPane);
 	}
 	
 	@FXML
@@ -54,6 +59,21 @@ public class ProfileMenuController implements Initializable {
 		
 	}
 	
+	 @FXML
+	 void returnHandler(MouseEvent event) throws IOException {
+		 
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MainPage.fxml"));
+		 
+		 this.controller = new MainPageController();
+			
+	     loader.setController(this.controller);
+	      
+	     AnchorPane mainPage = loader.load();
+	        
+	     this.profileAnchorPane.getChildren().setAll(mainPage);
+
+	 }
+	 
 	private void loadPage(String page) {
 		Parent root = null;
 		try {
@@ -61,6 +81,6 @@ public class ProfileMenuController implements Initializable {
 		} catch (IOException e) {
 			Logger.getLogger(ProfileMenuController.class.getName()).log(Level.SEVERE, null, e);
 		}
-		bp.setCenter(root);
+		menuBorderPane.setCenter(root);
 	}
 }

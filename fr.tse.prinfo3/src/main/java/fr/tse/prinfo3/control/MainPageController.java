@@ -67,9 +67,9 @@ public class MainPageController implements Initializable {
 		
         loader.setController(this.controllerProf);
         
-        AnchorPane comicsView = loader.load();
+        AnchorPane profileAnchorPane = loader.load();
         
-        rootAnchorPane.getChildren().setAll(comicsView);	
+        rootAnchorPane.getChildren().setAll(profileAnchorPane);	
     }
 	
     
