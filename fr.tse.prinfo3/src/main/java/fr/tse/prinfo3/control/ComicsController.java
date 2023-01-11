@@ -1,5 +1,6 @@
 package fr.tse.prinfo3.control;
 
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import org.controlsfx.control.Rating;
 
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.OtherCredits;
@@ -36,17 +39,30 @@ public class ComicsController implements Initializable {
 	 private AnchorPane ComicsAnchorPane;
 
 	 @FXML
-	 private TextArea descComics;
-
+	 private Button addToBiblio;
+	 
 	 @FXML
 	 private ListView<String> listCreateur;
 	 
+	 @FXML
+	 private TextArea commentText;
 	 
+	 @FXML
+	 private TextArea descComics;
 
 	 @FXML
 	 private ListView<String> listCharacter;
 	 
 	 private ArrayList<String> listOfCharacters = new ArrayList<String>();
+	 
+	 @FXML
+	 private ListView<?> listComment;
+	 
+	 @FXML
+	 private Button publishButton;
+
+	 @FXML
+	 private Rating rateComics;
 	 
 	
 	 @FXML
@@ -110,6 +126,11 @@ public class ComicsController implements Initializable {
 		 dbComic.insertComicsAlire(1, this.id);
 		 dbComic.close();
 	 }
+	 
+	 @FXML
+	 void doRating(MouseEvent event) {
+
+	 }
 	    
 
 	 @FXML
@@ -128,6 +149,12 @@ public class ComicsController implements Initializable {
 	        
 	     ComicsAnchorPane.getChildren().setAll(CharacterAnchorPane);
 	 }	 
+	 
+
+	 @FXML
+	 void publishComment(MouseEvent event) {
+
+	 }
 	 
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
