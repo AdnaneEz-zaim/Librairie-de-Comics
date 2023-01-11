@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -64,7 +65,7 @@ public class ComicsController implements Initializable {
 	 @FXML
 	 private ListView<Text> listComment;
 	 
-	 private ArrayList<String[]> comicsComments = new ArrayList<String[]>();
+	 private ArrayList<List<String>> comicsComments = new ArrayList<List<String>>();
 	 
 	 @FXML
 	 private Rating rateComics;
@@ -110,29 +111,33 @@ public class ComicsController implements Initializable {
 	 void publishComment(MouseEvent event) throws IOException {
 		 
 		 String comment = commentText.getText();
-		 String id_user = "null";	// /!\ Completer pour récuperer l'id user
+		 String id_user = "1";	
 
-		 /*
+		 
 		 String hostname = "localhost";
 		 String db = "comicunivers";
 		 String port = "3306";
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 dbComic.insertComment(comment, this.id, dbComic.getUsername(id_user));*/
+		 
+		 dbComic.insertComment(comment, this.id, dbComic.getUsernameId(id_user));
+		 dbComic.close();
 	 }
 	 
 	 @FXML
 	 void doRating(MouseEvent event) throws IOException {
 		 double note = rateComics.getRating();
-		 /*
+		 String id_user = "1";
+		 
 		 String hostname = "localhost";
 		 String db = "comicunivers";
 		 String port = "3306";
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 dbComic.insertNotation(note, this.id, dbComic.getUsername(id_user));*/
+		 dbComic.insertNotation(note, this.id, dbComic.getUsernameId(id_user));
+		 System.out.println(note);
 	 }
 	 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -195,7 +200,7 @@ public class ComicsController implements Initializable {
 		imgComics.setImage(new Image(comics.getImage().getIcon_url()));
         
 		
-		/*ObservableList<Text> comments =FXCollections.observableArrayList ();
+		ObservableList<Text> comments =FXCollections.observableArrayList ();
 		String hostname = "localhost";
 		String db = "comicunivers";
 		String port = "3306";
@@ -204,16 +209,18 @@ public class ComicsController implements Initializable {
 		DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		
 		comicsComments = dbComic.selectAllComments(this.id);
-		for (String[] com : comicsComments) {
-        	Text c = new Text(com[0]+":\n"+com[1]);
-			comments.add(c);
+		for (List<String> com : comicsComments) {
+				Text c = new Text(com.get(0)+":\n"+com.get(1));
+				comments.add(c);
+			
+	        	
   		}
-  		
+
 		listComment.setItems(comments);
 		//rajouter le fait que si un commentaire est publié il puisse être affiché directement dans la ListView
 		
 		rateComics.setRating(dbComic.getNotation(this.id));
-		*/
+		
 		
 		
 	}

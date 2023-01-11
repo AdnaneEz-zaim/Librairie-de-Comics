@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -123,6 +126,7 @@ public class DatabaseOperations {
 	public void insertUser(String email, String password, String username) {
 		try {
 			this.myConnection.setAutoCommit(false);
+			
 			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user VALUE (0, ?, ?, ?)");
 			
 			 laRequete.setString(1, email);
@@ -164,27 +168,33 @@ public class DatabaseOperations {
 		}
     }
     
-    public String getUsername(String id_user) {
+    public String getUsernameId(String id_user) {
+    	String username = "";
     	try {
     		Statement query = this.myConnection.createStatement();
-    		ResultSet result = query.executeQuery("SELECT * from user WHERE id_user=" + id_user);
-		    String username = result.getString(4);
+    		ResultSet result = query.executeQuery("SELECT username from user where id="+id_user);
+    		
+    		while (result.next()) {
+    			username = result.getString(1);
+		    }
+
     		query.close();
 	    	
-    		return username; 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+
+		return username; 
     }
     
     
-    public void insertComment(String comment, String username, String id_commics) {
+    public void insertComment(String comment, String id_commics, String username) {
 		try {
 			this.myConnection.setAutoCommit(false);
-			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire VALUE (0, ?, ?, ?)");
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO commentaire (id_comics, username, comment) VALUES (?, ?, ?)");
 			
 			 laRequete.setString(1, id_commics);
 			 laRequete.setString(2, username);
@@ -200,36 +210,43 @@ public class DatabaseOperations {
 	}
     
     
-    public ArrayList<String[]> selectAllComments(String id_commics) {
+    public ArrayList<List<String>> selectAllComments(String id_commics) {
+    	ArrayList<List<String>> comicsComments = new ArrayList<List<String>>();
     	try {
+    		System.out.println(id_commics);
     		Statement query = this.myConnection.createStatement();
-    		ResultSet result = query.executeQuery("SELECT * from commentaire WHERE id_commics =" + id_commics);
-    		ArrayList<String[]> comicsComments = new ArrayList<String[]>();
+    		ResultSet result = query.executeQuery("SELECT username, comment from commentaire WHERE id_comics=\""+id_commics+"\"");
     		
     		while (result.next()) {
-    			String[] comment = {result.getString(3),result.getString(2)};
+    			List<String> comment = new ArrayList<String>();
+    			comment.add(result.getString(1));
+    			comment.add(result.getString(2));
+
     			comicsComments.add(comment);
+    			
 		    }
     		
+    		
     		query.close();
-    		return comicsComments;
     		
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		}			
+		}		
+
+		return comicsComments;
     }
     
     
     public void insertNotation(double note,String id_commics,String username) {
     	try {
     		Statement query = this.myConnection.createStatement();
-    		ResultSet result = query.executeQuery("SELECT * from notation WHERE id_commics =" + id_commics+" AND username =" + username);
+    		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\" AND username=\"" + username+"\"");
     		if (!result.next()) { // on verifie qu'une note n'a pas déjà été donnée par un user
     			this.myConnection.setAutoCommit(false);
-    			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO notation VALUE (0, ?, ?, ?)");
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO notation (id_comics, username, note) VALUES (?, ?, ?)");
 		
     			laRequete.setString(1, id_commics);
     			laRequete.setString(2, username);
@@ -241,8 +258,13 @@ public class DatabaseOperations {
     		}
     		else {
     			this.myConnection.setAutoCommit(false);
-    			PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE  notation SET note=? WHERE username="+username+" AND id_commics =" +id_commics);
+    			PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE notation SET note=? WHERE username=\""+username+"\" AND id_comics=\"" +id_commics+"\"");
+    			
     			laRequete.setDouble(1, note);
+    			
+    			laRequete.execute();
+    			myConnection.commit();
+    			laRequete.close();
     		}
     	}catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -253,16 +275,20 @@ public class DatabaseOperations {
     public double getNotation(String id_commics) {
     	try {
     		Statement query = this.myConnection.createStatement();
-    		ResultSet result = query.executeQuery("SELECT * from notation WHERE id_commics =" + id_commics);
+    		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\"");
+    		System.out.println(id_commics);
     		double global_notation = 0;
     		int i=0;
-    		if (result.next()) {
-    			while (result.next()) {
-    				global_notation= result.getInt(3) + global_notation;
-    				i++;
-    			}
-    			global_notation=global_notation/i;
+    		while (result.next()) {
+    			global_notation= result.getDouble(1) + global_notation;
+
+    			i++;
     		}
+    		if(i>0) {
+        		global_notation=global_notation/i;
+    		}
+    		
+    		
     		query.close();
     		return global_notation;
     		

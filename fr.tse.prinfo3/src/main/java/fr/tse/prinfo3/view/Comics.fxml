@@ -76,7 +76,7 @@
                   <ListView fx:id="listComment" layoutX="9.0" layoutY="33.0" prefHeight="261.0" prefWidth="221.0" />
                </children>
             </Pane>
-            <Rating fx:id="rateComics" layoutX="237.0" layoutY="53.0" onMouseClicked="#doRating" orientation="VERTICAL" partialRating="true" prefHeight="32.0" prefWidth="169.0" updateOnHover="true" />
+            <Rating fx:id="rateComics" layoutX="237.0" layoutY="53.0" onMouseClicked="#doRating" orientation="VERTICAL" partialRating="true" prefHeight="32.0" prefWidth="169.0" updateOnHover="false" />
          </children>
       </Pane>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
