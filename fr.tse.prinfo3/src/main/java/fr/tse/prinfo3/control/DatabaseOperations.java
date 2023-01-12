@@ -718,6 +718,7 @@ public class DatabaseOperations {
     public void insertNotation(double note,String id_commics,String username) {
     	try {
     		Statement query = this.myConnection.createStatement();
+    		
     		ResultSet result = query.executeQuery("SELECT note from notation WHERE id_comics=\"" + id_commics+"\" AND username=\"" + username+"\"");
     		if (!result.next()) { // on verifie qu'une note n'a pas déjà été donnée par un user
     			this.myConnection.setAutoCommit(false);
@@ -732,6 +733,7 @@ public class DatabaseOperations {
     			laRequete.close();
     		}
     		else {
+    			
     			this.myConnection.setAutoCommit(false);
     			PreparedStatement laRequete = this.myConnection.prepareStatement("UPDATE notation SET note=? WHERE username=\""+username+"\" AND id_comics=\"" +id_commics+"\"");
     			

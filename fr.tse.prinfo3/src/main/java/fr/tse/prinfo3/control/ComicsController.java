@@ -197,9 +197,24 @@ public class ComicsController implements Initializable {
 		 String username = "root";
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
-		 
+
+		ObservableList<Text> comments =FXCollections.observableArrayList ();
 		 dbComic.insertComment(comment, this.id, dbComic.getUsernameId(id_user));
+		 comicsComments = dbComic.selectAllComments(this.id);
+			for (List<String> com : comicsComments) {
+					Text c = new Text(com.get(0)+":\n"+com.get(1));
+					comments.add(c);
+				
+		        	
+	  		}
+			
+
+			listComment.setItems(comments);
 		 dbComic.close();
+		 
+		 
+
+		 
 	 }
 	 
 	 @FXML
@@ -214,6 +229,9 @@ public class ComicsController implements Initializable {
 		 String password = "";
 		 DatabaseOperations dbComic = new DatabaseOperations(hostname, db, port, username, password);
 		 dbComic.insertNotation(note, this.id, dbComic.getUsernameId(id_user));
+		 dbComic.close();
+		 
+		 ComicsAnchorPane.getScene().getWindow().setWidth(ComicsAnchorPane.getScene().getWidth() + 0.001);
 	 }
 	 
 	public void initialize(URL location, ResourceBundle resources) {

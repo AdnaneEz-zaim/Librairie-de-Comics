@@ -119,7 +119,7 @@ public class CharacterController implements Initializable {
 
 		textDescription.setText(character.getDescription());
 		textOrigine.setText(character.getDeck());
-		imgCharacter.setImage(new Image(character.getImage().getIcon_url()));
+		imgCharacter.setImage(new Image(character.getImage().getMedium_url()));
 		
 		
 		ObservableList<String> items =FXCollections.observableArrayList ();
