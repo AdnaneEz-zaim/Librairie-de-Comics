@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import org.controlsfx.control.Rating?>
+<AnchorPane fx:id="ComicsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.Controllers.ComicsController">
+   <children>
+      <Pane layoutY="74.0" prefHeight="753.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+         <children>
+            <Pane layoutX="273.0" layoutY="212.0" prefHeight="140.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creators" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="listOfAuthors" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="85.0" prefWidth="708.0"  onMouseClicked="#AuthorClicked"/>
+               </children>
+            </Pane>
+            <Pane layoutX="273.0" layoutY="53.0" prefHeight="140.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <ScrollPane layoutX="8.0" layoutY="41.0" prefHeight="85.0" prefWidth="699.0">
+                     <content>
+                        <Label fx:id="descComic" layoutX="8.0" layoutY="41.0" maxHeight="80.0" maxWidth="695.0" textAlignment="JUSTIFY" wrapText="true" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
+            <ImageView fx:id="imgComic" fitHeight="293.0" fitWidth="212.0" layoutX="14.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="nameComic" fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMIC" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="returnButton" layoutX="915.0" layoutY="14.0" onMouseClicked="#returnHandler" prefHeight="28.0" prefWidth="82.0" text="Return">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font></Button>
+            <Pane layoutX="273.0" layoutY="370.0" prefHeight="140.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characters" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="listOfCharacters" layoutX="6.0" layoutY="44.0" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="85.0" prefWidth="708.0"  onMouseClicked="#CharacterClicked"/>
+               </children>
+            </Pane>
+            <Button layoutX="14.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#addComicsToLibrary" prefHeight="27.0" prefWidth="201.0" text="Add to my library">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font></Button>
+            <Pane layoutX="273.0" layoutY="525.0" prefHeight="204.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="listOfComments" layoutX="13.0" layoutY="48.0" prefHeight="132.0" prefWidth="699.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="525.0" prefHeight="204.0" prefWidth="244.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
+               <children>
+                  <Text fill="WHITE" layoutX="16.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leave a comment" underline="true">
+                     <font>
+                        <Font name="Comic Sans MS" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="commentArea" layoutX="9.0" layoutY="33.0" prefHeight="123.0" prefWidth="225.0" />
+                  <Button layoutX="95.0" layoutY="165.0" mnemonicParsing="false" onMouseClicked="#publishComment" text="send" />
+               </children>
+            </Pane>
+            <Rating fx:id="rateComics" layoutX="234.0" layoutY="53.0" onMouseClicked="#doRating" orientation="VERTICAL" partialRating="true" prefHeight="32.0" prefWidth="169.0" updateOnHover="false" />
+            <Text fx:id="averageRating" fill="WHITE" layoutX="14.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating : " underline="true">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
+         <children>
+            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/tseUniverse.png" />
+               </image>
+            </ImageView>
+            <TextField id="Zone_recherche" layoutX="315.0" layoutY="25.0" prefHeight="26.0" prefWidth="266.0" />
+            <MenuButton id="select_search" layoutX="763.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Comics" />
+                  <MenuItem mnemonicParsing="false" text="Personnage" />
+                  <MenuItem mnemonicParsing="false" text="Auteur" />
+               </items>
+            </MenuButton>
+            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" onMouseClicked="#handleClickProfileImage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/profilePic.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="581.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Search">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

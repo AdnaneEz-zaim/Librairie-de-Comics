@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="com.example.develop.Controllers.RegisterController">
+   <left>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="361.0" style="-fx-background-color: #1a323e;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="58.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ComicsRead" wrappingWidth="240.311767578125">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="48.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explorez le vaste monde de la bande dessinée !" textAlignment="CENTER" wrappingWidth="281.30859375">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="600.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="#1a323e" layoutX="202.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'inscrire" wrappingWidth="133.44864654541016">
+               <font>
+                  <Font name="Wingdings 3" size="33.0" />
+               </font>
+            </Text>
+            <TextField fx:id="firstName" layoutX="144.0" layoutY="116.0" prefHeight="40.0" prefWidth="250.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="lastName" layoutX="144.0" layoutY="165.0" prefHeight="40.0" prefWidth="250.0" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="username" layoutX="144.0" layoutY="214.0" prefHeight="40.0" prefWidth="250.0" promptText="Pseudo" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="email" accessibleRole="DATE_PICKER" layoutX="144.0" layoutY="260.0" prefHeight="40.0" prefWidth="250.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="password" layoutX="144.0" layoutY="313.0" prefHeight="40.0" prefWidth="250.0" promptText="mot de passe" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="confirmPassword" layoutX="144.0" layoutY="361.0" prefHeight="40.0" prefWidth="250.0" promptText="Confirmer le mot de passe" style="-fx-background-color: transparent; -fx-border-color: #1a323e; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="registerButton" layoutX="220.0" layoutY="431.0" onMouseClicked="#register" mnemonicParsing="false" prefHeight="40.0" prefWidth="97.0" style="-fx-background-color: #1a323e; -fx-background-radius: 0px;" text="s'inscrire" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Text fill="#1a323e" layoutX="150.0" layoutY="513.0" onMouseClicked="#showLoginStage" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez déjà un compte? Connexion">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

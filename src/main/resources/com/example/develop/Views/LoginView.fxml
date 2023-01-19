@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.Controllers.LoginController">
+   <left>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="361.0" style="-fx-background-color: #d01e00;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="58.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ComicsRead" wrappingWidth="240.311767578125">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="48.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explorez le vaste monde de la bande dessinée !" textAlignment="CENTER" wrappingWidth="281.30859375">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="600.0" prefWidth="522.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="username" layoutX="117.0" layoutY="180.0" prefHeight="42.0" prefWidth="302.0" promptText="Pseudo ou Email" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="password" layoutX="121.0" layoutY="245.0" prefHeight="47.0" prefWidth="296.0" promptText="mot de passe" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+            <Button fx:id="loginButton" layoutX="223.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="42.0" prefWidth="91.0" style="-fx-background-color: #d01e00; -fx-background-radius: 0px;" text="s'identifier" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Text fill="#d01e00" layoutX="209.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'identifier" wrappingWidth="157.24869537353516">
+               <font>
+                  <Font name="Wingdings 3" size="33.0" />
+               </font>
+            </Text>
+            <Text fill="#d01e00" layoutX="147.0" layoutY="403.0" onMouseClicked="#showRegisterStage" strokeType="OUTSIDE" strokeWidth="0.0" text="vous n'avez pas un compte ? S'inscrire" wrappingWidth="242.30853271484375">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

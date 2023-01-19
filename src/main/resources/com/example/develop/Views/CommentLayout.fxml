@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<Pane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="708.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="46.799995803833006" minWidth="10.0" prefWidth="46.799995803833006" />
+            <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="518.3999328613281" minWidth="0.0" prefWidth="393.5999755859375" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.19998779296873" minWidth="0.0" prefWidth="159.2000244140625" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <Label fx:id="publishDate" text="Label" GridPane.columnIndex="2" />
+            <Label fx:id="username" prefHeight="18.0" prefWidth="169.0" text="Label" GridPane.columnIndex="1" />
+            <ImageView id="Profil_Image">
+                <image>
+                    <Image url="@../assets/icons8-user-30.png" />
+                </image>
+            </ImageView>    </children>
+    </GridPane>
+   <ScrollPane layoutY="31.0" prefHeight="60.0" prefWidth="708.0">
+      <content>
+            <Label fx:id="comment" maxHeight="700" text="Label" textAlignment="JUSTIFY" wrapText="true" />
+      </content>
+   </ScrollPane>
+
+</Pane>
