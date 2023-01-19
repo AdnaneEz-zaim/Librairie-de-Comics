@@ -44,8 +44,6 @@ public class MainPageController implements Initializable {
 	@FXML
 	private ListView<Comic> myListOfComics = new ListView<Comic>();;
 	@FXML
-	private TextField researchField;
-	@FXML
 	private ChoiceBox stateList;
 	ObservableList<Comic> items;
 
