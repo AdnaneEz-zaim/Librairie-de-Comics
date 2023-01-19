@@ -5,7 +5,7 @@ package fr.tse.prinfo3;
 
 
 
-import fr.tse.prinfo3.control.DatabaseOperations;
+import fr.tse.prinfo3.model.DatabaseOperations;
 import fr.tse.prinfo3.view.openMenuFXML;
 import javafx.application.Application;
 

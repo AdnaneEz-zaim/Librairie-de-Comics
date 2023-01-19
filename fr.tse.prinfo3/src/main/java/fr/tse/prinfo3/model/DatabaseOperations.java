@@ -1,4 +1,4 @@
-package fr.tse.prinfo3.control;
+package fr.tse.prinfo3.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

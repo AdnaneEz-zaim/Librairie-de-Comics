@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.controlsfx.control.Rating;
 
+import fr.tse.prinfo3.model.DatabaseOperations;
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.OtherCredits;
 import fr.tse.prinfo3.model.PersonCredits;

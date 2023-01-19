@@ -1,5 +1,6 @@
 package fr.tse.prinfo3.control;
 
+import fr.tse.prinfo3.model.DatabaseOperations;
 import fr.tse.prinfo3.model.Issue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

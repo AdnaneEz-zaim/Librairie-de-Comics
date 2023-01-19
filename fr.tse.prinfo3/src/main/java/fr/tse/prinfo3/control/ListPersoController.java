@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import fr.tse.prinfo3.model.DatabaseOperations;
 import fr.tse.prinfo3.model.Issue;
 import fr.tse.prinfo3.model.ResultIssue;
 import javafx.collections.FXCollections;
