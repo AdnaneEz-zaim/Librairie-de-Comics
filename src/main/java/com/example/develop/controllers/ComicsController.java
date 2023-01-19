@@ -1,4 +1,4 @@
-package com.example.develop.Controllers;
+package com.example.develop.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,8 +8,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
 import com.example.develop.ComicApplication;
-import com.example.develop.Helper.AlertHelper;
-import com.example.develop.Service.ComicVineService;
+import com.example.develop.helper.AlertHelper;
+import com.example.develop.service.ComicVineService;
 import com.example.develop.model.*;
 import com.example.develop.model.Character;
 import com.fasterxml.jackson.core.JsonProcessingException;

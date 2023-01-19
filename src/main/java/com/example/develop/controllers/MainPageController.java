@@ -1,8 +1,8 @@
-package com.example.develop.Controllers;
+package com.example.develop.controllers;
 
 import com.example.develop.ComicApplication;
-import com.example.develop.Helper.AlertHelper;
-import com.example.develop.Service.ComicVineService;
+import com.example.develop.helper.AlertHelper;
+import com.example.develop.service.ComicVineService;
 import com.example.develop.model.Comic;
 import com.example.develop.model.ObjectClicked;
 import com.example.develop.model.UserModel;
@@ -21,7 +21,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 

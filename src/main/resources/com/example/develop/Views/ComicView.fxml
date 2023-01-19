@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import org.controlsfx.control.Rating?>
-<AnchorPane fx:id="ComicsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.Controllers.ComicsController">
+<AnchorPane fx:id="ComicsAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.ComicsController">
    <children>
       <Pane layoutY="74.0" prefHeight="753.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>

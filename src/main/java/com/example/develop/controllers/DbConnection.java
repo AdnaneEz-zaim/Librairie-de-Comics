@@ -1,4 +1,4 @@
-package com.example.develop.Controllers;
+package com.example.develop.controllers;
 
 import java.io.FileInputStream;
 import java.sql.*;

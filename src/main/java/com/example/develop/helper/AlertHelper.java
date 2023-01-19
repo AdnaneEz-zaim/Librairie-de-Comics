@@ -1,4 +1,4 @@
-package com.example.develop.Helper;
+package com.example.develop.helper;
 
 import javafx.scene.control.Alert;
 import javafx.stage.Window;

@@ -16,10 +16,10 @@ module com.example.comicsapp {
 
     opens com.example.develop to javafx.fxml;
     exports com.example.develop;
-    opens com.example.develop.Controllers to javafx.fxml;
-    exports com.example.develop.Controllers;
+    opens com.example.develop.controllers to javafx.fxml;
+    exports com.example.develop.controllers;
     opens com.example.develop.model to javafx.fxml;
     exports com.example.develop.model;
-    opens com.example.develop.Service to javafx.fxml;
-    exports com.example.develop.Service;
+    opens com.example.develop.service to javafx.fxml;
+    exports com.example.develop.service;
 }

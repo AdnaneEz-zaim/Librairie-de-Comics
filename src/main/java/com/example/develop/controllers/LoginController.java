@@ -1,7 +1,7 @@
-package com.example.develop.Controllers;
+package com.example.develop.controllers;
 
 import com.example.develop.ComicApplication;
-import com.example.develop.Helper.AlertHelper;
+import com.example.develop.helper.AlertHelper;
 import com.example.develop.model.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

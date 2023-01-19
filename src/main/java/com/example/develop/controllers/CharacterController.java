@@ -1,7 +1,12 @@
-package com.example.develop.Controllers;
+package com.example.develop.controllers;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 
 import com.example.develop.ComicApplication;
-import com.example.develop.Service.ComicVineService;
+import com.example.develop.service.ComicVineService;
 import com.example.develop.model.Character;
 import com.example.develop.model.Comic;
 import com.example.develop.model.ObjectClicked;
@@ -21,53 +26,53 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.concurrent.CompletableFuture;
 
-public class AuthorController  implements Initializable {
+public class CharacterController implements Initializable {
     @FXML
-    private Label descAuthor;
+    private Label descCharacter;
     @FXML
-    private ListView<Comic> listOfIssue = new ListView<>();
+    private Text nameCharacter;
     @FXML
-    private ListView<Character> listOfCharacters = new ListView<>();
+    private Text date_added;
     @FXML
-    private Text nameAuthor;
+    private Text countOfAppearances;
     @FXML
-    private ImageView imgAuthor;
-    @FXML
-    private Text dateOfBirth;
-    @FXML
-    private Text country;
+    private ImageView imgCharacter;
     @FXML
     private Button returnButton;
-    private CompletableFuture<JsonNode> future = null;
-    private final String authorId = ObjectClicked.getObjectClicked().getId();
+    private CompletableFuture<JsonNode> future ;
+    private final String characterId = ObjectClicked.getObjectClicked().getId();
+    @FXML
+    private ListView<Comic> listOfIssues = new ListView<>();
+    @FXML
+    private ListView<Character> listOfCFriends = new ListView<>();
+    @FXML
+    private ListView<Character> listOfCEnemies = new ListView<>();
 
-    public void initAuthor() throws IOException {
+
+    public void initCharacter() throws IOException {
         ComicVineService comicVineService = new ComicVineService();
-        future = comicVineService.searchAuthor(authorId);
-        future.thenAccept(author -> Platform.runLater(()->{
-            imgAuthor.setImage(new Image(author.get("image").get("thumb_url").textValue()));
-            nameAuthor.setText(author.get("name").textValue());
-            dateOfBirth.setText("Date of Birth : "+author.get("birth").textValue());
-            country.setText("country : "+author.get("country").textValue());
-            if(author.get("description").textValue() == null)
-                descAuthor.setText("No Description found");
-            else
-                descAuthor.setText(author.get("description").textValue().replaceAll("<[^>]*>", ""));
-        }));
+        future = comicVineService.searchCharacter(characterId);
+        future.thenAccept(character -> Platform.runLater(()-> {
 
+            imgCharacter.setImage(new Image(character.get("image").get("thumb_url").textValue()));
+            nameCharacter.setText(character.get("name").textValue());
+            date_added.setText("date added : " + character.get("date_added").textValue());
+            countOfAppearances.setText("count of appearances : " + character.get("count_of_issue_appearances").textValue());
+
+            if (character.get("description").textValue() == null)
+                descCharacter.setText("No Description found");
+            else
+                descCharacter.setText(character.get("description").textValue().replaceAll("<[^>]*>", ""));
+        }));
     }
     public void initIssues(){
-        future.thenAccept(author -> Platform.runLater(()-> {
+        future.thenAccept(character -> Platform.runLater(()-> {
 
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode issues = null;
             try {
-                issues = objectMapper.readTree(author.get("issues").toString());
+                issues = objectMapper.readTree(character.get("issue_credits").toString());
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
@@ -81,8 +86,8 @@ public class AuthorController  implements Initializable {
                     items.add(comic);
                 }
             }
-            listOfIssue.setItems(items);
-            listOfIssue.setCellFactory(param -> new ListCell<Comic>() {
+            listOfIssues.setItems(items);
+            listOfIssues.setCellFactory(param -> new ListCell<Comic>() {
                 @Override
                 public void updateItem(Comic comic, boolean empty) {
                     super.updateItem(comic, empty);
@@ -96,28 +101,28 @@ public class AuthorController  implements Initializable {
             });
         }));
     }
-    public void initCharacters(){
-        future.thenAccept(author -> Platform.runLater(()-> {
+    public void initCEnemies_Friends(ListView l,String field){
+        future.thenAccept(character -> Platform.runLater(()-> {
 
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode characters = null;
+            JsonNode issues = null;
             try {
-                characters = objectMapper.readTree(author.get("created_characters").toString());
+                issues = objectMapper.readTree(character.get(field).toString());
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
 
             ObservableList<Character> items = FXCollections.observableArrayList();
-            for (JsonNode item : characters) {
+            for (JsonNode item : issues) {
                 if (item.get("name").textValue() != null) {
-                    Character character = new Character();
-                    character.setId(String.valueOf(item.get("id")));
-                    character.setName(item.get("name").textValue());
-                    items.add(character);
+                    Character c = new Character();
+                    c.setId(String.valueOf(item.get("id")));
+                    c.setName(item.get("name").textValue());
+                    items.add(c);
                 }
             }
-            listOfCharacters.setItems(items);
-            listOfCharacters.setCellFactory(param -> new ListCell<Character>() {
+            l.setItems(items);
+            l.setCellFactory(param -> new ListCell<Character>() {
                 @Override
                 public void updateItem(Character character, boolean empty) {
                     super.updateItem(character, empty);
@@ -132,20 +137,20 @@ public class AuthorController  implements Initializable {
         }));
     }
 
+
     @FXML
-    void CharacterClicked(MouseEvent event) throws IOException {
+    void issueClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
-        if(	listOfCharacters.getSelectionModel().getSelectedItem() != null){
+        if(	listOfIssues.getSelectionModel().getSelectedItem() != null){
             ObjectClicked objectClicked = ObjectClicked.getObjectClicked();
-            System.out.println(listOfCharacters.getSelectionModel().getSelectedItem().getId());
-            objectClicked.setId(listOfCharacters.getSelectionModel().getSelectedItem().getId());
+            objectClicked.setId(listOfIssues.getSelectionModel().getSelectedItem().getId());
         }
         else empty = true;
 
         if(!empty){
-            Stage stage = (Stage) listOfCharacters.getScene().getWindow();
+            Stage stage = (Stage) listOfIssues.getScene().getWindow();
             stage.close();
-            FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/CharacterView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/ComicView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("TSE ComicVine!");
             stage.setScene(scene);
@@ -153,18 +158,21 @@ public class AuthorController  implements Initializable {
         }
     }
     @FXML
-    void issueClicked(MouseEvent event) throws IOException {
+    void characterClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
-        if(	listOfIssue.getSelectionModel().getSelectedItem() != null){
+        if(	listOfCEnemies.getSelectionModel().getSelectedItem() != null){
             ObjectClicked objectClicked = ObjectClicked.getObjectClicked();
-            objectClicked.setId(listOfIssue.getSelectionModel().getSelectedItem().getId());
-        }
-        else empty = true;
+            objectClicked.setId(listOfCEnemies.getSelectionModel().getSelectedItem().getId());
+        } else if (listOfCFriends.getSelectionModel().getSelectedItem() != null) {
+            ObjectClicked objectClicked = ObjectClicked.getObjectClicked();
+            objectClicked.setId(listOfCFriends.getSelectionModel().getSelectedItem().getId());
+        } else empty = true;
 
         if(!empty){
-            Stage stage = (Stage) listOfIssue.getScene().getWindow();
+            Stage stage = (Stage) listOfCFriends.getScene().getWindow();
             stage.close();
-            FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/ComicView.fxml"));
+
+            FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/CharacterView.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("TSE ComicVine!");
             stage.setScene(scene);
@@ -174,10 +182,13 @@ public class AuthorController  implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(characterId);
+
         try {
-            initAuthor();
+            initCharacter();
             initIssues();
-            initCharacters();
+            initCEnemies_Friends(listOfCEnemies,"character_enemies");
+            initCEnemies_Friends(listOfCFriends,"character_friends");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -194,5 +205,9 @@ public class AuthorController  implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+        
+    
+		
+
 
 }
