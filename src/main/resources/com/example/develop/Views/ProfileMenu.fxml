@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="profileAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.ProfileMenuController">
+<AnchorPane fx:id="profileAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.ProfileMenuController">
    <children>
       <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
          <children>
-            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/tseUniverse.png" />
                </image>
@@ -41,48 +33,47 @@
       </Pane>
       <Pane layoutY="75.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <BorderPane fx:id="menuBorderPane" prefHeight="755.0" prefWidth="1007.0">
-               <left>
-                  <VBox prefHeight="436.0" prefWidth="354.0" style="-fx-background-color: #a42f2f;" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.18411552346570395" orientation="VERTICAL" prefHeight="611.0" prefWidth="1007.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="1006.0" style="-fx-background-color: c44444;">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#summary" prefHeight="106.0" prefWidth="390.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Summary" textFill="WHITE">
+                        <Button layoutX="352.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#profileManagement" prefHeight="110.0" prefWidth="347.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Profile Management" textFill="WHITE">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="Comic Sans MS" size="24.0" />
                            </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#profileManagement" prefHeight="106.0" prefWidth="390.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Profile Management" textFill="WHITE">
+                        <Button layoutX="-1.0" layoutY="2.0" mnemonicParsing="false"  prefHeight="110.0" prefWidth="325.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 2px 2px 2px;" text="Library" textFill="WHITE">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="Comic Sans MS" size="24.0" />
                            </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#settings" prefHeight="106.0" prefWidth="390.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Settings" textFill="WHITE">
+                        <Button layoutX="709.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="110.0" prefWidth="318.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 2px 2px 2px;" text="Logout" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="Comic Sans MS" size="24.0" />
                            </font>
-                        </Button>
-                        <Button  mnemonicParsing="false" onMouseClicked="#logout" prefHeight="106.0" prefWidth="390.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Logout" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </Button>
                      </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </VBox>
-               </left>
-               <right>
-                  <AnchorPane fx:id="displayAnchorPane" prefHeight="750.0" prefWidth="617.0" style="-fx-background-color: c44444;" BorderPane.alignment="CENTER">
+                  </AnchorPane>
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="1006.0" style="-fx-background-color: c44444;">
                      <children>
-                        <Text layoutX="294.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary">
+                        <Text layoutX="441.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Text>
                      </children>
                   </AnchorPane>
-               </right>
-            </BorderPane>
+              </items>
+            </SplitPane>
          </children>
       </Pane>
    </children>

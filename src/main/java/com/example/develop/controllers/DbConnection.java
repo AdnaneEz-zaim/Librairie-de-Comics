@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DbConnection {
-	private Connection con;
+	private static Connection con;
 	private static DbConnection dbc;
 	private DbConnection() {
 		try {
@@ -30,6 +30,10 @@ public class DbConnection {
 
 	public Connection getConnection() {
 		return con;
+	}
+	public static void closeConnecton() throws SQLException {
+		con.close();
+		dbc = null;
 	}
 
 	public static void main(String[] args) {

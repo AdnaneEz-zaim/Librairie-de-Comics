@@ -2,6 +2,7 @@ package com.example.develop.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,11 +21,7 @@ import javafx.stage.Stage;
 
 public class ProfileMenuController implements Initializable {
 	@FXML
-	private BorderPane menuBorderPane;
-	@FXML
-	private AnchorPane displayAnchorPane;
-
-
+	private AnchorPane anchorPane;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,22 +29,15 @@ public class ProfileMenuController implements Initializable {
 		
 	}
 	@FXML
-	private void summary(MouseEvent event) {
-		menuBorderPane.setCenter(displayAnchorPane);
-	}
-	@FXML
 	private void profileManagement(MouseEvent event) {
 		loadPage("ProfileManagement");
 	}
 	@FXML
-	private void settings(MouseEvent event) {
-		loadPage("Settings");
-
-	}
-	@FXML
-	private void logout(MouseEvent event) throws IOException {
+	private void logout(MouseEvent event) throws IOException, SQLException {
 		UserModel.logout();
-		Stage stage = (Stage) menuBorderPane.getScene().getWindow();
+		DbConnection.getDatabaseConnection().closeConnecton();
+
+		Stage stage = (Stage) anchorPane.getScene().getWindow();
 		stage.close();
 
 		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/RegisterView.fxml"));
@@ -58,7 +48,7 @@ public class ProfileMenuController implements Initializable {
 	}
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
-		 Stage stage = (Stage) menuBorderPane.getScene().getWindow();
+		 Stage stage = (Stage) anchorPane.getScene().getWindow();
 		 stage.close();
 
 		 FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
@@ -77,6 +67,5 @@ public class ProfileMenuController implements Initializable {
 		} catch (IOException e) {
 			Logger.getLogger(ProfileMenuController.class.getName()).log(Level.SEVERE, null, e);
 		}
-		menuBorderPane.setCenter(root);
 	}
 }
