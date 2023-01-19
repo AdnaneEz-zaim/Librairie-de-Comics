@@ -11,23 +11,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.MainPageController">
+<AnchorPane fx:id="rootAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.SearchComicsController">
    <children>
       <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
-            <Label layoutX="648.0" layoutY="22.0" prefHeight="35.0" prefWidth="165.0" text="Latest Comics" textAlignment="CENTER" textFill="#f7f2f2" underline="true" wrapText="true">
+            <Label layoutX="400.0" layoutY="26.0" prefHeight="35.0" prefWidth="208.0" text="Research output" textAlignment="CENTER" textFill="#f7f2f2" underline="true" wrapText="true">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listOfComics" layoutX="520.0" layoutY="61.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#ComicClicked" prefHeight="630.0" prefWidth="420.0" style="-fx-fixed-cell-size: 100;" />
-            <Label layoutX="215.0" layoutY="22.0" prefHeight="35.0" prefWidth="127.0" text="My Library" textAlignment="CENTER" textFill="WHITE" underline="true" wrapText="true">
-               <font>
-                  <Font name="Comic Sans MS" size="24.0" />
-               </font>
-            </Label>
-            <ListView fx:id="myListOfComics" layoutX="68.0" layoutY="61.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#ComicClicked" prefHeight="630.0" prefWidth="420.0" />
-            <ChoiceBox fx:id="stateList" layoutX="386.0" layoutY="27.0" onAction="#stateSelected" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" />
+            <ListView fx:id="listOfResearch" layoutX="59.0" layoutY="61.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#ComicClicked" prefHeight="630.0" prefWidth="881.0" style="-fx-fixed-cell-size: 100;" />
+            <Button layoutX="868.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="75.0" text="Return" />
 
          </children>
       </Pane>

@@ -2,6 +2,8 @@ package com.example.develop.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -57,10 +59,16 @@ public class ComicVineService {
 	}
 	public CompletableFuture<JsonNode> searchLatestComics(int limit,int offset) {
 		RestAssured.baseURI += "/issues";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		String actualDate = dtf.format(now);
+
+
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("api_key", (String) p.get("Api_Key"));
 		params.put("format", "json");
 		params.put("field_list", "id,name,image,volume,issue_number");
+		params.put("filter", "cover_date:1900-01-01|"+actualDate);
 		params.put("sort", "cover_date:desc");
 		params.put("limit", Integer.toString(limit));
 		params.put("offset", Integer.toString(offset));
@@ -119,24 +127,33 @@ public class ComicVineService {
 	}
 
 
-	public JsonNode search(String keyword, int limit, int offset) throws JsonProcessingException {
+	public CompletableFuture<JsonNode> search(String domain, String keyword, int limit,int offset) {
+		RestAssured.baseURI += "/"+domain+"/";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("api_key", (String) p.get("Api_Key"));
-		params.put("resources","issue");
 		params.put("format", "json");
-		params.put("query", keyword);
+		params.put("filter", "name:"+keyword);
 		params.put("limit", Integer.toString(limit));
 		params.put("offset", Integer.toString(offset));
-		JsonNode result = given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
-				.body("status_code", equalTo(1)).when().get("/search").as(JsonNode.class);
-		ObjectMapper objectMapper = new ObjectMapper();
 
-		return objectMapper.readTree(result.get("results").toString());
+		System.out.print(domain);
+
+
+		return CompletableFuture.supplyAsync(() -> {
+			JsonNode result =  given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
+					.body("status_code", equalTo(1)).when().get().as(JsonNode.class);
+			try {
+				return objectMapper.readTree(result.get("results").toString());
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
 	}
 
 	public static void main(String[] args) throws IOException {
 		ComicVineService comicVineService = new ComicVineService();
-		System.out.println(comicVineService.GetComicById("14582"));
+		System.out.println(comicVineService.search("issues", "United", 60, 0).toString());
 	}
 
 }
