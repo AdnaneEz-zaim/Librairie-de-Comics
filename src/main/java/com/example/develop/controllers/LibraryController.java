@@ -163,7 +163,7 @@ public class LibraryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished");
+            ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished","all");
             stateList.setItems(observableList);
             initLibrary();
         } catch (SQLException e) {
