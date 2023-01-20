@@ -2,6 +2,7 @@ package com.example.develop.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,34 +21,27 @@ import javafx.stage.Stage;
 
 public class ProfileMenuController implements Initializable {
 	@FXML
-	private BorderPane menuBorderPane;
-	@FXML
-	private AnchorPane displayAnchorPane;
-
-
+	private AnchorPane anchorPane;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		loadPage("LibraryView");
 	}
-	@FXML
-	private void summary(MouseEvent event) {
-		menuBorderPane.setCenter(displayAnchorPane);
-	}
+
 	@FXML
 	private void profileManagement(MouseEvent event) {
 		loadPage("ProfileManagement");
 	}
 	@FXML
-	private void settings(MouseEvent event) {
-		loadPage("Settings");
-
+	private void Library(MouseEvent event){
+		loadPage("LibraryView");
 	}
 	@FXML
-	private void logout(MouseEvent event) throws IOException {
+	private void logout(MouseEvent event) throws IOException, SQLException {
 		UserModel.logout();
-		Stage stage = (Stage) menuBorderPane.getScene().getWindow();
+		DbConnection.getDatabaseConnection().closeConnection();
+
+		Stage stage = (Stage) anchorPane.getScene().getWindow();
 		stage.close();
 
 		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/RegisterView.fxml"));
@@ -58,7 +52,7 @@ public class ProfileMenuController implements Initializable {
 	}
 	 @FXML
 	 void returnHandler(MouseEvent event) throws IOException {
-		 Stage stage = (Stage) menuBorderPane.getScene().getWindow();
+		 Stage stage = (Stage) anchorPane.getScene().getWindow();
 		 stage.close();
 
 		 FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
@@ -70,13 +64,14 @@ public class ProfileMenuController implements Initializable {
 	 }
 
 	private void loadPage(String page) {
-		Parent root = null;
 		try {
-            System.out.println(ComicApplication.class.getResource("Views/"+page+".fxml"));
-			root = FXMLLoader.load(ComicApplication.class.getResource("Views/"+page+".fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ComicApplication.class.getResource("Views/"+page+".fxml"));
+			Parent root = (Parent) loader.load();
+			anchorPane.getChildren().add(root);
+
 		} catch (IOException e) {
-			Logger.getLogger(ProfileMenuController.class.getName()).log(Level.SEVERE, null, e);
+			e.printStackTrace();
 		}
-		menuBorderPane.setCenter(root);
 	}
 }
