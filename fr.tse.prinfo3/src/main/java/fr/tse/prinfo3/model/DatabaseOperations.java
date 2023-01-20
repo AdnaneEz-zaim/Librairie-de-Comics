@@ -57,10 +57,20 @@ public class DatabaseOperations {
 
 
 	public void setMyConnection(Connection myConnection) {
+		
 		this.myConnection = myConnection;
 	}
 
-
+	public void setMyConnection_test() {
+		
+		try {
+			 this.myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/comicunivers_test", "root", "");
+       } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public String getHostname() {
 		return hostname;
 	}
@@ -126,12 +136,12 @@ public class DatabaseOperations {
 	public void insertUser(String email, String password, String username) {
 		try {
 			this.myConnection.setAutoCommit(false);
-			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user VALUE (0, ?, ?, ?, ?)");
+			PreparedStatement laRequete = this.myConnection.prepareStatement("INSERT INTO user (email, password, username) VALUES (?, ?, ?)");
 			
 			 laRequete.setString(1, email);
 			 laRequete.setString(2, password);
 			 laRequete.setString(3, username);
-			 laRequete.setString(4, "");
+			 //laRequete.setString(4, "");
 			 laRequete.execute();
 			 
 			myConnection.commit();
