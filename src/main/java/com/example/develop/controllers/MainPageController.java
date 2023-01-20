@@ -5,6 +5,7 @@ import com.example.develop.helper.AlertHelper;
 import com.example.develop.service.ComicVineService;
 import com.example.develop.model.Comic;
 import com.example.develop.model.ObjectClicked;
+import com.example.develop.model.ObjectSearch;
 import com.example.develop.model.UserModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -44,13 +45,16 @@ public class MainPageController implements Initializable {
 	private ListView<Comic> listOfComics = new ListView<Comic>();
 	@FXML
 	private ListView<Comic> myListOfComics = new ListView<Comic>();;
-	@FXML
-	private TextField researchField;
+
 	@FXML
 	private ChoiceBox stateList;
 	@FXML
-	private AnchorPane rootAnchorPane;
+	private ChoiceBox domainList;
 
+	@FXML
+	private Label errorResearch;
+	@FXML
+	private TextField searchInput;
 	ObservableList<Comic> items;
 
 	public MainPageController() {
@@ -60,7 +64,7 @@ public class MainPageController implements Initializable {
 
 	public CompletableFuture<JsonNode> getLatestComics() throws IOException {
 		ComicVineService comicVineService = new ComicVineService();
-		return comicVineService.searchLatestComics(15, 0)
+		return comicVineService.searchLatestComics(10, 0)
 				.thenApply(result -> {
 					for (int i = 0; i < result.size(); i++) {
 						JsonNode element = result.get(i);
@@ -211,7 +215,8 @@ public class MainPageController implements Initializable {
 		try {
 			ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished","all");
 			stateList.setItems(observableList);
-
+			ObservableList<String> observableList2 = FXCollections.observableArrayList("Comics", "Characters", "Creators");
+			domainList.setItems(observableList2);
 			initLibrary();
 			initLatestComics();
 		} catch (SQLException | IOException e) {
@@ -219,6 +224,41 @@ public class MainPageController implements Initializable {
 		}
 	}
 
+
+	@FXML
+	void searchButtonHandler(MouseEvent event) throws IOException {
+		if(domainList.getValue() == null){
+			System.out.print("No Value");
+			errorResearch.setText("Please Enter a domain research !");
+		}else{
+			if(searchInput.getText().compareTo("")==0){
+				errorResearch.setText("No input");
+			}else{
+				errorResearch.setText("");
+				Stage stage = (Stage) listOfComics.getScene().getWindow();
+				stage.close();
+				String domain = "";
+				if(domainList.getValue() == "Comics"){
+					domain = "issues";
+				} else if (domainList.getValue() == "Creators") {
+					domain = "people";
+				} else{
+					domain = ((String)domainList.getValue()).toLowerCase();
+				}
+				ObjectSearch objectSearch = ObjectSearch.getObjectSearch();
+				objectSearch.setDomain(domain);
+				objectSearch.setSearch(searchInput.getText());
+
+				FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/SearchComics.fxml"));
+				Scene scene = new Scene(fxmlLoader.load());
+				stage.setTitle("TSE ComicVine!");
+				stage.setScene(scene);
+				stage.show();
+
+			}
+
+		}
+	}
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
