@@ -25,17 +25,21 @@ public class ProfileMenuController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		loadPage("LibraryView");
 	}
+
 	@FXML
 	private void profileManagement(MouseEvent event) {
 		loadPage("ProfileManagement");
 	}
 	@FXML
+	private void Library(MouseEvent event){
+		loadPage("LibraryView");
+	}
+	@FXML
 	private void logout(MouseEvent event) throws IOException, SQLException {
 		UserModel.logout();
-		DbConnection.getDatabaseConnection().closeConnecton();
+		DbConnection.getDatabaseConnection().closeConnection();
 
 		Stage stage = (Stage) anchorPane.getScene().getWindow();
 		stage.close();
@@ -60,12 +64,14 @@ public class ProfileMenuController implements Initializable {
 	 }
 
 	private void loadPage(String page) {
-		Parent root = null;
 		try {
-            System.out.println(ComicApplication.class.getResource("Views/"+page+".fxml"));
-			root = FXMLLoader.load(ComicApplication.class.getResource("Views/"+page+".fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ComicApplication.class.getResource("Views/"+page+".fxml"));
+			Parent root = (Parent) loader.load();
+			anchorPane.getChildren().add(root);
+
 		} catch (IOException e) {
-			Logger.getLogger(ProfileMenuController.class.getName()).log(Level.SEVERE, null, e);
+			e.printStackTrace();
 		}
 	}
 }

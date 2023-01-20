@@ -119,10 +119,10 @@ public class LoginController implements Initializable {
     private void SaveUser(ResultSet rs) throws SQLException {
         UserModel userModel = UserModel.getUserModel();
         userModel.setUserid(rs.getInt(1));
-        userModel.setUsername(rs.getString(2));
-        userModel.setFirstname(rs.getString(3));
-        userModel.setLastname(rs.getString(4));
-        userModel.setEmail(rs.getString(5));
-        userModel.setPassword(rs.getString(6));
+        userModel.setEmail(rs.getString(2));
+        userModel.setPassword(rs.getString(3));
+        userModel.setUsername(rs.getString(4));
+        userModel.setFirstname(rs.getString(5));
+        userModel.setLastname(rs.getString(6));
     }
 }

@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.ChoiceBox?>
+
 <AnchorPane fx:id="rootAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.MainPageController">
    <children>
-      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+      <Pane layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
          <children>
             <Label layoutX="648.0" layoutY="22.0" prefHeight="35.0" prefWidth="165.0" text="Latest Comics" textAlignment="CENTER" textFill="#f7f2f2" underline="true" wrapText="true">
                <font>
