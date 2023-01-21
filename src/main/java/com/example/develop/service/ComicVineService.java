@@ -1,6 +1,5 @@
 package com.example.develop.service;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -62,6 +61,60 @@ public class ComicVineService {
 			return null;
 		});
 	}
+
+	public CompletableFuture<JsonNode> GetComicByConcept(String concept, int limit) throws JsonProcessingException {
+		RestAssured.baseURI += "/search/";
+		Map<String, String> params = new HashMap<String, String>();
+
+		params.put("api_key", apiKey);
+		params.put("format", "json");
+		params.put("field_list", "id,name,image,volume,issue_number");
+		params.put("query",concept);
+		params.put("resources","issue");
+		params.put("limit", Integer.toString(limit));
+		// Make request asynchronously
+		return CompletableFuture.supplyAsync(() -> {
+			JsonNode response = given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
+					.body("status_code", equalTo(1)).when().get().as(JsonNode.class);
+			RestAssured.baseURI = (String) p.get("Base_Uri");
+			try {
+				return objectMapper.readTree(response.get("results").toString());
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
+	}
+	public CompletableFuture<JsonNode> GetComicByAuthor(String author, int limit) throws JsonProcessingException {
+		RestAssured.baseURI += "/search/";
+		Map<String, String> params = new HashMap<String, String>();
+
+		params.put("api_key", apiKey);
+		params.put("format", "json");
+		params.put("field_list", "id,name,image,volume,issue_number");
+		params.put("query",author);
+		params.put("resources","issue");
+		params.put("limit", Integer.toString(limit));
+
+
+
+		// Make request asynchronously
+		return CompletableFuture.supplyAsync(() -> {
+			JsonNode response = given().params(params).header("User-Agent", userAgent).expect().statusCode(200)
+							.body("status_code", equalTo(1)).when().get().as(JsonNode.class);
+			RestAssured.baseURI = (String) p.get("Base_Uri");
+			try {
+					return objectMapper.readTree(response.get("results").toString());
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
+	}
+
+
 	public CompletableFuture<JsonNode> searchLatestComics(int limit,int offset) {
 		RestAssured.baseURI += "/issues";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -156,9 +209,13 @@ public class ComicVineService {
 		});
 	}
 
-	public static void main(String[] args) throws IOException {
+	/*public static void main(String[] args) throws IOException {
 		ComicVineService comicVineService = new ComicVineService();
-		System.out.println(comicVineService.search("issues", "United", 60, 0).toString());
-	}
+		JsonNode future = comicVineService.GetComicByAuthor("Bill Finger",2);
+		JsonNode future2 = comicVineService.GetComicByConcept("Time Travel",2);
+
+		System.out.println(future.toPrettyString());
+		System.out.println(future2.toPrettyString());
+	}*/
 
 }

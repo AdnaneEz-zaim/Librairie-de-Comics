@@ -297,8 +297,20 @@ public class MainPageController implements Initializable {
 	}
 
 	@FXML
+	void recommendationHandler(MouseEvent event) throws IOException {
+		Stage stage = (Stage) listOfComics.getScene().getWindow();
+		stage.close();
+
+		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/recommendationView.fxml"));
+		Scene scene = new Scene(fxmlLoader.load());
+		stage.setTitle("TSE ComicVine!");
+		stage.setScene(scene);
+		stage.show();
+
+	}
+
+	@FXML
 	void handleClickProfileImage(MouseEvent event) throws IOException {
-		 //TODO
 		Stage stage = (Stage) listOfComics.getScene().getWindow();
 		stage.close();
 

@@ -3,6 +3,8 @@ package com.example.develop.controllers;
 import com.example.develop.ComicApplication;
 import com.example.develop.helper.AlertHelper;
 import com.example.develop.model.UserModel;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.databind.JsonNode;
 import javafx.scene.control.Alert;
 
 import java.io.FileInputStream;
@@ -10,6 +12,7 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -132,9 +135,42 @@ public class DbConnection {
 		statement.executeUpdate();
 		statement.close();
 	}
-
-	public static void main(String[] args) {
+	public static ArrayList<String> getPrefAuthors() throws SQLException {
+		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
+		statement.setInt(1,UserModel.getUserModel().getUserid());
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> authors = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("authorName");
+			authors.add(value);
+		}
+		return authors;
+	}
+	public static ArrayList<String> getPrefConcepts() throws SQLException {
+		PreparedStatement statement = con.prepareStatement("SELECT concept from conceptPref where userid = ?");
+		statement.setInt(1,UserModel.getUserModel().getUserid());
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> concepts = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("concept");
+			concepts.add(value);
+		}
+		return concepts;
+	}
+	public static void main(String[] args) throws SQLException {
 		new DbConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
+		statement.setInt(1,4);
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> authors = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("authorName");
+			authors.add(value);
+		}
+		for(String c:authors)
+			System.out.println(c);
+
+
 	}
 
 }
