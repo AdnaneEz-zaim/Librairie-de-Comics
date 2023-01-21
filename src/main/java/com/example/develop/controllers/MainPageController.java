@@ -148,8 +148,6 @@ public class MainPageController implements Initializable {
 
 		myListOfComics.setItems(items);
 		myListOfComics.setCellFactory(param -> new ListCell<Comic>() {
-			private ImageView imageView = new ImageView();
-			Button removeButton = new Button("Remove");
 			@Override
 			public void updateItem(Comic comic, boolean empty) {
 				super.updateItem(comic, empty);
@@ -184,9 +182,12 @@ public class MainPageController implements Initializable {
 											String comicId = selectedcomic.getId();
 											try {
 												DbConnection.removeComicFromLibraryById(comicId);
+												DbConnection.removeAuthorsAsPref(comicId);
+												DbConnection.removeConceptsAsPref(comicId);
 												myListOfComics.getItems().remove(selectedcomic);
 											} catch (SQLException e) {
 												AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
+												System.out.println(e);
 											}
 										}
 									});
@@ -196,6 +197,7 @@ public class MainPageController implements Initializable {
 											DbConnection.changeComicState(getItem().getId(), idUser,selectedItem);
 										} catch (SQLException ex) {
 											AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
+											System.out.println(ex);
 										}
 									});
 								}

@@ -2,6 +2,7 @@ package com.example.develop.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+import com.example.develop.ComicApplication;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.RestAssured;
 
@@ -25,6 +27,7 @@ import okhttp3.OkHttpClient;
 
 public class ComicVineService {
 	private Properties p = new Properties ();
+	private String apiKey;
 	private String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0";
 	private final OkHttpClient httpClient = new OkHttpClient.Builder()
 			.connectionPool(new ConnectionPool(5, 5, TimeUnit.MINUTES))
@@ -32,18 +35,20 @@ public class ComicVineService {
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	public ComicVineService() throws IOException {
-		RestAssured.baseURI = "https://comicvine.gamespot.com/api";
-		RestAssured.port = 443;
-		FileInputStream fis=new FileInputStream("src\\main\\java\\com\\example\\develop\\API.prop");
-		p.load(fis);
+		InputStream input = ComicApplication.class.getResourceAsStream("prop/API.prop");
+		p.load(input);
+
+		RestAssured.baseURI = (String) p.get("Base_Uri");
+		RestAssured.port = Integer.parseInt((String) p.get("Port"));
+		apiKey= (String) p.get("Api_Key");
 	}
 	public CompletableFuture<JsonNode> GetComicById(String idComic) {
 		RestAssured.baseURI += "/issue/4000-"+idComic;
 		Map<String, String> params = new HashMap<String, String>();
 
-		params.put("api_key", (String) p.get("Api_Key"));
+		params.put("api_key", apiKey);
 		params.put("format", "json");
-		params.put("field_list", "name,image,description,person_credits,character_credits,volume,issue_number");
+		params.put("field_list", "name,image,description,person_credits,character_credits,volume,issue_number,concept_credits");
 
 		// Make request asynchronously
 		return CompletableFuture.supplyAsync(() -> {
@@ -65,7 +70,7 @@ public class ComicVineService {
 
 
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("api_key", (String) p.get("Api_Key"));
+		params.put("api_key", apiKey);
 		params.put("format", "json");
 		params.put("field_list", "id,name,image,volume,issue_number");
 		params.put("filter", "cover_date:1900-01-01|"+actualDate);
@@ -88,7 +93,7 @@ public class ComicVineService {
 	public CompletableFuture<JsonNode> searchAuthor(String idAuthor) {
 		RestAssured.baseURI += "/person/4040-"+idAuthor;
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("api_key", (String) p.get("Api_Key"));
+		params.put("api_key", apiKey);
 		params.put("format", "json");
 		params.put("field_list", "id,name,image,deck,description,issues,created_characters,birth,country");
 
@@ -109,7 +114,7 @@ public class ComicVineService {
 		RestAssured.baseURI += "/character/4005-"+idCharacter;
 		Map<String, String> params = new HashMap<String, String>();
 
-		params.put("api_key", (String) p.get("Api_Key"));
+		params.put("api_key", apiKey);
 		params.put("format", "json");
 		params.put("field_list", "id,name,image,deck,description,issue_credits,character_friends,character_enemies,date_added,count_of_issue_appearances");
 
@@ -130,7 +135,7 @@ public class ComicVineService {
 	public CompletableFuture<JsonNode> search(String domain, String keyword, int limit,int offset) {
 		RestAssured.baseURI += "/"+domain+"/";
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("api_key", (String) p.get("Api_Key"));
+		params.put("api_key", apiKey);
 		params.put("format", "json");
 		params.put("filter", "name:"+keyword);
 		params.put("limit", Integer.toString(limit));

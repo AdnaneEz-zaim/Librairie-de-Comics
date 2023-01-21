@@ -102,6 +102,8 @@ public class LibraryController implements Initializable {
                                             String comicId = selectedcomic.getId();
                                             try {
                                                 DbConnection.removeComicFromLibraryById(comicId);
+                                                DbConnection.removeAuthorsAsPref(comicId);
+                                                DbConnection.removeConceptsAsPref(comicId);
                                                 myListOfComics.getItems().remove(selectedcomic);
                                             } catch (SQLException e) {
                                                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
