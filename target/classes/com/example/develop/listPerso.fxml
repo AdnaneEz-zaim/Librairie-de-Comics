@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootAnchorPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="826.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="ListPane" layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
+         <children>
+            <Label fx:id="titleListe" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="393.0" text="Lst" underline="true" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listPerso" layoutX="18.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleClickListView" prefHeight="629.0" prefWidth="973.0" style="-fx-fixed-cell-size: 100;" />
+            <Button fx:id="returnButton" layoutX="898.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Return" />
+         </children>
+      </Pane>
+      <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
+         <children>
+            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/tseUniverse.png" />
+               </image>
+            </ImageView>
+            <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
+            <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Comics" />
+                  <MenuItem mnemonicParsing="false" text="Personnage" />
+                  <MenuItem mnemonicParsing="false" text="Auteur" />
+               </items>
+            </MenuButton>
+            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/profilePic.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
