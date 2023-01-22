@@ -37,6 +37,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class MainPageController implements Initializable {
+	public static Boolean isInMainPage = true;
 	private final Connection con;
 	private final int idUser = UserModel.getUserModel().getUserid();
 	int resultSize;
@@ -48,13 +49,6 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	private ChoiceBox stateList;
-	@FXML
-	private ChoiceBox domainList;
-
-	@FXML
-	private Label errorResearch;
-	@FXML
-	private TextField searchInput;
 	ObservableList<Comic> items;
 
 	public MainPageController() {
@@ -217,8 +211,7 @@ public class MainPageController implements Initializable {
 		try {
 			ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished","all");
 			stateList.setItems(observableList);
-			ObservableList<String> observableList2 = FXCollections.observableArrayList("Comics", "Characters", "Creators");
-			domainList.setItems(observableList2);
+
 			initLibrary();
 			initLatestComics();
 		} catch (SQLException | IOException e) {
@@ -226,41 +219,6 @@ public class MainPageController implements Initializable {
 		}
 	}
 
-
-	@FXML
-	void searchButtonHandler(MouseEvent event) throws IOException {
-		if(domainList.getValue() == null){
-			System.out.print("No Value");
-			errorResearch.setText("Please Enter a domain research !");
-		}else{
-			if(searchInput.getText().compareTo("")==0){
-				errorResearch.setText("No input");
-			}else{
-				errorResearch.setText("");
-				Stage stage = (Stage) listOfComics.getScene().getWindow();
-				stage.close();
-				String domain = "";
-				if(domainList.getValue() == "Comics"){
-					domain = "issues";
-				} else if (domainList.getValue() == "Creators") {
-					domain = "people";
-				} else{
-					domain = ((String)domainList.getValue()).toLowerCase();
-				}
-				ObjectSearch objectSearch = ObjectSearch.getObjectSearch();
-				objectSearch.setDomain(domain);
-				objectSearch.setSearch(searchInput.getText());
-
-				FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/SearchComics.fxml"));
-				Scene scene = new Scene(fxmlLoader.load());
-				stage.setTitle("TSE ComicVine!");
-				stage.setScene(scene);
-				stage.show();
-
-			}
-
-		}
-	}
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -275,6 +233,7 @@ public class MainPageController implements Initializable {
 		else empty = true;
 
 		if(!empty){
+			isInMainPage = false;
 			Stage stage = (Stage) listOfComics.getScene().getWindow();
 			stage.close();
 
@@ -296,28 +255,4 @@ public class MainPageController implements Initializable {
 		}
 	}
 
-	@FXML
-	void recommendationHandler(MouseEvent event) throws IOException {
-		Stage stage = (Stage) listOfComics.getScene().getWindow();
-		stage.close();
-
-		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/recommendationView.fxml"));
-		Scene scene = new Scene(fxmlLoader.load());
-		stage.setTitle("TSE ComicVine!");
-		stage.setScene(scene);
-		stage.show();
-
-	}
-
-	@FXML
-	void handleClickProfileImage(MouseEvent event) throws IOException {
-		Stage stage = (Stage) listOfComics.getScene().getWindow();
-		stage.close();
-
-		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/ProfileMenu.fxml"));
-		Scene scene = new Scene(fxmlLoader.load());
-		stage.setTitle("TSE ComicVine!");
-		stage.setScene(scene);
-		stage.show();
-	}
 }

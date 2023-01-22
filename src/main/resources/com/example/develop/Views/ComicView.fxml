@@ -50,10 +50,6 @@
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="returnButton" layoutX="915.0" layoutY="14.0" onMouseClicked="#returnHandler" prefHeight="28.0" prefWidth="82.0" text="Return">
-               <font>
-                  <Font name="Comic Sans MS" size="13.0" />
-               </font></Button>
             <Pane layoutX="273.0" layoutY="370.0" prefHeight="140.0" prefWidth="724.0" style="-fx-background-color: #a42f2f; -fx-border-color: black;">
                <children>
                   <Text fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characters" textAlignment="CENTER" underline="true">
@@ -97,31 +93,6 @@
             </Text>
          </children>
       </Pane>
-      <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
-         <children>
-            <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/tseUniverse.png" />
-               </image>
-            </ImageView>
-            <TextField id="Zone_recherche" layoutX="315.0" layoutY="25.0" prefHeight="26.0" prefWidth="266.0" />
-            <MenuButton id="select_search" layoutX="763.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Comics" />
-                  <MenuItem mnemonicParsing="false" text="Personnage" />
-                  <MenuItem mnemonicParsing="false" text="Auteur" />
-               </items>
-            </MenuButton>
-            <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" onMouseClicked="#handleClickProfileImage" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/profilePic.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="581.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Search">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></Button>
-         </children>
-      </Pane>
+      <fx:include source="HeaderLayout.fxml"/>
    </children>
 </AnchorPane>

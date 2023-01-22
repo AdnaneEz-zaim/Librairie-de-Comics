@@ -41,8 +41,6 @@ public class AuthorController  implements Initializable {
     private Text dateOfBirth;
     @FXML
     private Text country;
-    @FXML
-    private Button returnButton;
     private CompletableFuture<JsonNode> future = null;
     private final String authorId = ObjectClicked.getObjectClicked().getId();
 
@@ -183,16 +181,5 @@ public class AuthorController  implements Initializable {
         }
     }
 
-    @FXML
-    void returnHandler(MouseEvent event) throws IOException {
-        Stage stage = (Stage) returnButton.getScene().getWindow();
-        stage.close();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-    }
 
 }

@@ -320,18 +320,6 @@ public class ComicsController implements Initializable {
 	}
 
 	@FXML
-	void returnHandler(MouseEvent event) throws IOException {
-	 Stage stage = (Stage) rateComics.getScene().getWindow();
-	 stage.close();
-
-	 FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
-	 Scene scene = new Scene(fxmlLoader.load());
-	 stage.setTitle("TSE ComicVine!");
-	 stage.setScene(scene);
-	 stage.show();
-
-	}
-	@FXML
 	void publishComment(MouseEvent event) throws IOException {
 		try {
 			Statement stmt;
@@ -431,10 +419,6 @@ public class ComicsController implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 		}
-	}
-	@FXML
-	void handleClickProfileImage(MouseEvent event) throws IOException {
-		//TODO
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {

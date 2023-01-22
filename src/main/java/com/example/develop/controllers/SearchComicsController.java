@@ -30,60 +30,6 @@ public class SearchComicsController implements Initializable {
 
 	@FXML
 	private ListView<Research> listOfResearch = new ListView<Research>();
-	@FXML
-	private ChoiceBox domainList;
-	@FXML
-	private Label errorResearch;
-	@FXML
-	private TextField searchInput;
-
-
-	@FXML
-	void searchButtonHandler(MouseEvent event) throws IOException {
-		if(domainList.getValue() == null){
-			System.out.print("No Value");
-			errorResearch.setText("Please Enter a domain research !");
-		}else{
-			if(searchInput.getText().compareTo("")==0){
-				errorResearch.setText("No input");
-			}else{
-				errorResearch.setText("");
-				Stage stage = (Stage) listOfResearch.getScene().getWindow();
-				stage.close();
-				String domain = "";
-				if(domainList.getValue() == "Comics"){
-					domain = "issues";
-				} else if (domainList.getValue() == "Creators") {
-					domain = "people";
-				} else{
-					domain = ((String)domainList.getValue()).toLowerCase();
-				}
-				ObjectSearch objectSearch = ObjectSearch.getObjectSearch();
-				objectSearch.setDomain(domain);
-				objectSearch.setSearch(searchInput.getText());
-
-				FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/SearchComics.fxml"));
-				Scene scene = new Scene(fxmlLoader.load());
-				stage.setTitle("TSE ComicVine!");
-				stage.setScene(scene);
-				stage.show();
-
-			}
-
-		}
-	}
-
-	@FXML
-	void returnHandler(MouseEvent event) throws IOException {
-		Stage stage = (Stage) listOfResearch.getScene().getWindow();
-		stage.close();
-
-		FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
-		Scene scene = new Scene(fxmlLoader.load());
-		stage.setTitle("TSE ComicVine!");
-		stage.setScene(scene);
-		stage.show();
-	}
 
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
@@ -180,23 +126,12 @@ public class SearchComicsController implements Initializable {
 
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			ObservableList<String> observableList2 = FXCollections.observableArrayList("Comics", "Characters", "Creators");
-			domainList.setItems(observableList2);
 			initSearch();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	@FXML
-	void handleClickProfileImage(MouseEvent event) throws IOException {
-		//TODO
-		/*FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../../../resources/com/example/develop/ProfileMenu.fxml"));
-		this.controllerProf = new ProfileMenuController();
-		loader.setController(this.controllerProf);
-		AnchorPane profileAnchorPane = loader.load();
-		rootAnchorPane.getChildren().setAll(profileAnchorPane);*/
-	}
 
 
 

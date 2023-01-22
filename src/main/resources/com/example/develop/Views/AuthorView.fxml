@@ -60,7 +60,6 @@
                         <Font name="Comic Sans MS" size="20.0" />
                     </font>
                 </Text>
-                <Button fx:id="returnButton" layoutX="898.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#returnHandler" prefHeight="25.0" prefWidth="69.0" text="Retour" />
             <Text fx:id="dateOfBirth" fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth : " textAlignment="CENTER" underline="false" wrappingWidth="247.5120849609375">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
@@ -73,27 +72,6 @@
             </Text>
             </children>
         </Pane>
-        <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
-            <children>
-                <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="8.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/tseUniverse.png" />
-                    </image>
-                </ImageView>
-                <TextField id="Zone_recherche" layoutX="348.0" layoutY="23.0" prefHeight="25.0" prefWidth="266.0" />
-                <MenuButton id="select_search" layoutX="686.0" layoutY="23.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" text="Domaine">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Comics" />
-                        <MenuItem mnemonicParsing="false" text="Personnage" />
-                        <MenuItem mnemonicParsing="false" text="Auteur" />
-                    </items>
-                </MenuButton>
-                <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/profilePic.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
+        <fx:include source="HeaderLayout.fxml"/>
     </children>
 </AnchorPane>
