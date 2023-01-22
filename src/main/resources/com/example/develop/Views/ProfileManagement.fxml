@@ -8,6 +8,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1006.0" style="-fx-background-color: A42F2FFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.profileManagementController">
    <children>
       <TextField fx:id="usernameInput" layoutX="374.0" layoutY="156.0" prefHeight="25.0" prefWidth="245.0" />
@@ -70,7 +71,7 @@
             </DropShadow>
          </effect>
       </Label>
-      <TextField fx:id="changePasswordInput" layoutX="374.0" layoutY="387.0" prefHeight="25.0" prefWidth="245.0" />
+      <PasswordField fx:id="changePasswordInput" accessibleRole="PASSWORD_FIELD" layoutX="374.0" layoutY="387.0" prefHeight="25.0" prefWidth="245.0" />
       <Label layoutX="148.0" layoutY="387.0" text="Change Password" textFill="#fffefe">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
@@ -83,7 +84,7 @@
             </DropShadow>
          </effect>
       </Label>
-      <TextField fx:id="confirmPasswordInput" layoutX="374.0" layoutY="432.0" prefHeight="25.0" prefWidth="245.0" />
+      <PasswordField fx:id="confirmPasswordInput" accessibleRole="PASSWORD_FIELD" layoutX="374.0" layoutY="432.0" prefHeight="25.0" prefWidth="245.0" />
       <Label layoutX="148.0" layoutY="432.0" text="confirm password" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
@@ -108,7 +109,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <TextField fx:id="passwordInput" layoutX="374.0" layoutY="343.0" prefHeight="25.0" prefWidth="245.0" />
+      <PasswordField fx:id="passwordInput" accessibleRole="PASSWORD_FIELD" layoutX="374.0" layoutY="343.0" prefHeight="25.0" prefWidth="245.0" />
       <Label layoutX="148.0" layoutY="343.0" text="Password" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />

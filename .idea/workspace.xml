@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab9849e-d55f-4987-b40f-d0d508673acd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/recommendationView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/DbConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/AuthorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/AuthorView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/LoginView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileManagement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileManagement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/RegisterView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/RegisterView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/recommendationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/recommendationView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +136,7 @@
       <updated>1674164905170</updated>
       <workItem from="1674164908512" duration="1907000" />
       <workItem from="1674240320930" duration="8812000" />
-      <workItem from="1674249187221" duration="19022000" />
+      <workItem from="1674249187221" duration="21855000" />
     </task>
     <servers />
   </component>

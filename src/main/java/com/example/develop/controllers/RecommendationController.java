@@ -1,6 +1,8 @@
 package com.example.develop.controllers;
 
+import com.example.develop.ComicApplication;
 import com.example.develop.model.Comic;
+import com.example.develop.model.ObjectClicked;
 import com.example.develop.service.ComicVineService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,11 +11,15 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -87,6 +93,40 @@ public class RecommendationController implements Initializable {
                 comic.setImage(res.get("image").get("icon_url").textValue());
                 items.add(comic);
             }
+        }
+    }
+
+    @FXML
+    void returnHandler(MouseEvent event) throws IOException {
+        Stage stage = (Stage) listOfRecommendations.getScene().getWindow();
+        stage.close();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("TSE ComicVine!");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    void ComicClicked(MouseEvent event) throws IOException {
+        Boolean empty = false;
+        if(	listOfRecommendations.getSelectionModel().getSelectedItem() != null){
+            ObjectClicked objectClicked = ObjectClicked.getObjectClicked();
+            objectClicked.setId(listOfRecommendations.getSelectionModel().getSelectedItem().getId());
+        }
+        else empty = true;
+
+        if(!empty){
+            Stage stage = (Stage) listOfRecommendations.getScene().getWindow();
+            stage.close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/ComicView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("TSE ComicVine!");
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

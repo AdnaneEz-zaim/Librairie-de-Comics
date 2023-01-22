@@ -16,7 +16,7 @@
     <children>
         <Pane layoutY="71.0" prefHeight="755.0" prefWidth="1007.0" style="-fx-background-color: #a42f2f;">
             <children>
-                <ListView fx:id="listOfRecommendations" layoutX="79.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="630.0" prefWidth="850.0" style="-fx-fixed-cell-size: 100;" />
+                <ListView fx:id="listOfRecommendations" onMouseClicked="#ComicClicked" layoutX="79.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="630.0" prefWidth="850.0" style="-fx-fixed-cell-size: 100;" />
                 <Label alignment="CENTER" layoutX="371.0" layoutY="14.0" prefHeight="35.0" prefWidth="266.0" text="My Recommendations" textAlignment="CENTER" textFill="WHITE" underline="true" wrapText="true">
                     <font>
                         <Font name="Comic Sans MS" size="24.0" />
@@ -25,6 +25,14 @@
                   <DropShadow />
                </effect>
                 </Label>
+            <Button onMouseClicked="#returnHandler" layoutX="867.0" layoutY="16.0" mnemonicParsing="false" style="-fx-background-radius: 10; -fx-background-color: #58b15d;" text="return" textFill="#fffcfc">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
 
             </children>
         </Pane>
@@ -41,7 +49,7 @@
                         <Image url="@../assets/profilePic.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="searchButton" layoutX="696.0" layoutY="25.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="57.0" text="Search">
+                <Button fx:id="searchButton" layoutX="696.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Search">
                     <font>
                         <Font name="Comic Sans MS" size="12.0" />
                     </font></Button>

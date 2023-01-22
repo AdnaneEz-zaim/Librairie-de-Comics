@@ -5,6 +5,7 @@ import com.example.develop.model.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 
@@ -23,11 +24,11 @@ public class profileManagementController implements Initializable {
     @FXML
     private TextField emailInput;
     @FXML
-    private TextField passwordInput;
+    private PasswordField passwordInput;
     @FXML
-    private TextField changePasswordInput;
+    private PasswordField changePasswordInput;
     @FXML
-    private TextField confirmPasswordInput;
+    private PasswordField confirmPasswordInput;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
