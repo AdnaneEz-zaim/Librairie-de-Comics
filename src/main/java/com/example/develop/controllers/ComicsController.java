@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
@@ -55,6 +56,9 @@ public class ComicsController implements Initializable {
 	 private Rating rateComics;
 	 @FXML
 	 private Text averageRating;
+
+ 	private ArrayList<String> authorsList = new ArrayList<>();
+	private ArrayList<String> conceptsList = new ArrayList<>();
 
 	public ComicsController() throws IOException {
 		DbConnection dbc = DbConnection.getDatabaseConnection();
@@ -108,18 +112,19 @@ public class ComicsController implements Initializable {
 				throw new RuntimeException(e);
 			}
 
-			ObservableList<Author> items = FXCollections.observableArrayList ();
+			ObservableList<Author> itemsAuth = FXCollections.observableArrayList ();
 			for (JsonNode item : authors) {
 				if(item.get("name").textValue() != null){
+					authorsList.add(item.get("name").textValue());
 					Author author = new Author();
 					author.setName(item.get("name").textValue() );
 					author.setId(String.valueOf(item.get("id")));
 					author.setImage("");
-					items.add(author);
+					itemsAuth.add(author);
 				}
 			}
 
-			listOfAuthors.setItems(items);
+			listOfAuthors.setItems(itemsAuth);
 			listOfAuthors.setCellFactory(param -> new ListCell<Author>() {
 				@Override
 				protected void updateItem(Author author, boolean empty) {
@@ -139,8 +144,22 @@ public class ComicsController implements Initializable {
 		ComicVineService comicVineService = new ComicVineService();
 		future = comicVineService.GetComicById(comicId);
 		future.thenAccept(comic -> Platform.runLater(() -> {
+
+			ObjectMapper objectMapper = new ObjectMapper();
+			JsonNode concepts = null;
+			try {
+				concepts = objectMapper.readTree(comic.get("concept_credits").toString());
+			} catch (JsonProcessingException e) {
+				throw new RuntimeException(e);
+			}
+			for (JsonNode concept:concepts) {
+				if(!concept.get("name").textValue().isBlank())
+					conceptsList.add(concept.get("name").textValue());
+			}
+
 			imgComic.setImage(new Image(comic.get("image").get("thumb_url").textValue()));
 			nameComic.setText(comic.get("name").textValue());
+
 			if (comic.get("description").textValue() == null)
 				descComic.setText("this is issue #" + comic.get("issue_number").textValue() + " of" + comic.get("volume").get("name").textValue() + " volume");
 			else
@@ -270,14 +289,11 @@ public class ComicsController implements Initializable {
 
 
 	}
-
 	@FXML
 	void addComicsToLibrary(MouseEvent event) {
 		future.thenAccept(comic -> {
 			try {
-				Statement stmt;
 				PreparedStatement ps;
-				stmt = con.createStatement();
 				String query = "insert into library (idUser,idComic,imageComic,nameComic)values (?,?,?,?)";
 				ps = con.prepareStatement(query);
 				ps.setInt(1, userId);
@@ -289,6 +305,8 @@ public class ComicsController implements Initializable {
 				if (ps.executeUpdate() > 0) {
 				 AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
 						 "Comic added successfuly to your library");
+					DbConnection.addAuthorsAsPref(authorsList,comicId);
+					DbConnection.addConceptsAsPref(conceptsList,comicId);
 				} else {
 				 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
 						 "Something went wrong.");
@@ -296,9 +314,11 @@ public class ComicsController implements Initializable {
 			}catch (SQLException ex) {
 			 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
 					 "Something went wrong.");
+				System.out.println(ex);
 			}
 		});
 	}
+
 	@FXML
 	void returnHandler(MouseEvent event) throws IOException {
 	 Stage stage = (Stage) rateComics.getScene().getWindow();
@@ -373,7 +393,6 @@ public class ComicsController implements Initializable {
 					"Something went wrong.");
 		}
 	}
-
 	@FXML
 	void CharacterClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -413,6 +432,10 @@ public class ComicsController implements Initializable {
 			stage.show();
 		}
 	}
+	@FXML
+	void handleClickProfileImage(MouseEvent event) throws IOException {
+		//TODO
+	}
 
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
@@ -425,11 +448,5 @@ public class ComicsController implements Initializable {
 		}
 
 	}
-
-	@FXML
-	void handleClickProfileImage(MouseEvent event) throws IOException {
-		//TODO
-	}
-
 	
 }

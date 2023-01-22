@@ -1,12 +1,18 @@
 package com.example.develop.controllers;
 
+import com.example.develop.ComicApplication;
 import com.example.develop.helper.AlertHelper;
 import com.example.develop.model.UserModel;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.databind.JsonNode;
 import javafx.scene.control.Alert;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,9 +22,9 @@ public class DbConnection {
 	private DbConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			FileInputStream fis=new FileInputStream("src\\main\\java\\com\\example\\develop\\Connection.prop");
 			Properties p = new Properties ();
-			p.load(fis);
+			InputStream input = ComicApplication.class.getResourceAsStream("prop/Connection.prop");
+			p.load(input);
 			con = DriverManager.getConnection((String)p.get("url"),(String)p.get("username"),(String)p.get("password"));
 		} catch (Exception ex) {
 			Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
@@ -32,6 +38,7 @@ public class DbConnection {
 		return dbc;
 	}
 
+	// open/close Connection
 	public Connection getConnection() {
 		return con;
 	}
@@ -39,6 +46,8 @@ public class DbConnection {
 		con.close();
 		dbc = null;
 	}
+
+	//for profile configuration
 	public static Boolean changeUserInfo() throws SQLException {
 		Statement stmt;
 		PreparedStatement ps;
@@ -59,6 +68,8 @@ public class DbConnection {
 			return false;
 		}
 	}
+
+	//for library
 	public static void removeComicFromLibraryById(String idComic) throws SQLException {
 			PreparedStatement statement = con.prepareStatement("DELETE FROM library WHERE idComic = ? and idUser = ?");
 			statement.setString(1, idComic);
@@ -85,11 +96,81 @@ public class DbConnection {
 		statement.setString(2, idComic);
 		statement.setInt(3,idUser);
 		statement.executeUpdate();
+		statement.close();
 
 	}
 
-	public static void main(String[] args) {
+	//for configuring preferences
+	public static void addAuthorsAsPref(ArrayList<String> authors,String comicId) throws SQLException {
+		PreparedStatement stmt = con.prepareStatement("INSERT INTO authorPref (userid,comicid,authorName) VALUES (?,?,?)");
+		for (String author : authors) {
+			stmt.setInt(1,UserModel.getUserModel().getUserid());
+			stmt.setString(2,comicId);
+			stmt.setString(3, author);
+			stmt.executeUpdate();
+		}
+		stmt.close();
+	}
+	public static void addConceptsAsPref(ArrayList<String> concepts,String comicId) throws SQLException {
+		PreparedStatement stmt = con.prepareStatement("INSERT INTO conceptPref (userid,comicid,concept) VALUES (?,?,?)");
+		for (String concept : concepts) {
+			stmt.setInt(1,UserModel.getUserModel().getUserid());
+			stmt.setString(2,comicId);
+			stmt.setString(3, concept);
+			stmt.executeUpdate();
+		}
+		stmt.close();
+	}
+	public static void removeAuthorsAsPref(String comicId) throws SQLException {
+		PreparedStatement statement = con.prepareStatement("DELETE FROM authorPref WHERE comicid = ? and userid = ?");
+		statement.setString(1, comicId);
+		statement.setInt(2, UserModel.getUserModel().getUserid());
+		statement.executeUpdate();
+		statement.close();
+	}
+	public static void removeConceptsAsPref(String comicId) throws SQLException {
+		PreparedStatement statement = con.prepareStatement("DELETE FROM conceptPref WHERE comicid = ? and userid = ?");
+		statement.setString(1, comicId);
+		statement.setInt(2, UserModel.getUserModel().getUserid());
+		statement.executeUpdate();
+		statement.close();
+	}
+	public static ArrayList<String> getPrefAuthors() throws SQLException {
+		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
+		statement.setInt(1,UserModel.getUserModel().getUserid());
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> authors = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("authorName");
+			authors.add(value);
+		}
+		return authors;
+	}
+	public static ArrayList<String> getPrefConcepts() throws SQLException {
+		PreparedStatement statement = con.prepareStatement("SELECT concept from conceptPref where userid = ?");
+		statement.setInt(1,UserModel.getUserModel().getUserid());
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> concepts = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("concept");
+			concepts.add(value);
+		}
+		return concepts;
+	}
+	public static void main(String[] args) throws SQLException {
 		new DbConnection();
+		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
+		statement.setInt(1,4);
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> authors = new ArrayList<>();
+		while (rs.next()) {
+			String value = rs.getString("authorName");
+			authors.add(value);
+		}
+		for(String c:authors)
+			System.out.println(c);
+
+
 	}
 
 }
