@@ -34,7 +34,7 @@
             <DropShadow />
          </effect></Button>
         <Label fx:id="errorResearch" layoutX="467.0" layoutY="52.0" prefHeight="17.0" prefWidth="201.0" />
-        <ChoiceBox fx:id="domainList" layoutX="743.0" layoutY="26.0" prefHeight="25.0" prefWidth="92.0" style="*: *;">
+        <ChoiceBox fx:id="domainList" layoutX="743.0" layoutY="26.0" prefHeight="25.0" prefWidth="92.0" >
          <effect>
             <DropShadow />
          </effect></ChoiceBox>
