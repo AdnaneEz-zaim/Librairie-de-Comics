@@ -25,42 +25,8 @@
                   <DropShadow />
                </effect>
                 </Label>
-            <Button onMouseClicked="#returnHandler" layoutX="867.0" layoutY="16.0" mnemonicParsing="false" style="-fx-background-radius: 10; -fx-background-color: #58b15d;" text="return" textFill="#fffcfc">
-               <font>
-                  <Font name="Comic Sans MS" size="14.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-
             </children>
         </Pane>
-        <Pane prefHeight="74.0" prefWidth="1007.0" style="-fx-background-color: c44444;">
-            <children>
-                <ImageView id="Logo" fitHeight="65.0" fitWidth="217.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/tseUniverse.png" />
-                    </image>
-                </ImageView>
-                <TextField id="Zone_recherche" fx:id="searchInput" layoutX="430.0" layoutY="25.0" prefHeight="26.0" prefWidth="266.0" />
-                <ImageView id="Profil_Image" fitHeight="51.0" fitWidth="44.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/profilePic.png" />
-                    </image>
-                </ImageView>
-                <Button fx:id="searchButton" layoutX="696.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Search">
-                    <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                    </font></Button>
-                <Label fx:id="errorResearch" layoutX="359.0" layoutY="52.0" prefHeight="17.0" prefWidth="201.0" />
-                <ChoiceBox fx:id="domainList" layoutX="795.0" layoutY="26.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" />
-                <Button layoutX="249.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #fedb0e; -fx-background-radius: 10;" text="See Recommandations" textFill="#033f63">
-                    <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                    </font>
-                </Button>
-            </children>
-        </Pane>
+        <fx:include source="HeaderLayout.fxml"/>
     </children>
 </AnchorPane>

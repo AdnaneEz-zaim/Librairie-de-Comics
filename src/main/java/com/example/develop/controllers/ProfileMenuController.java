@@ -50,18 +50,6 @@ public class ProfileMenuController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	 @FXML
-	 void returnHandler(MouseEvent event) throws IOException {
-		 Stage stage = (Stage) anchorPane.getScene().getWindow();
-		 stage.close();
-
-		 FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
-		 Scene scene = new Scene(fxmlLoader.load());
-		 stage.setTitle("Hello!");
-		 stage.setScene(scene);
-		 stage.show();
-
-	 }
 
 	private void loadPage(String page) {
 		try {

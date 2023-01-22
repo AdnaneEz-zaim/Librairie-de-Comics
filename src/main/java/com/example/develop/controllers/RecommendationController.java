@@ -97,19 +97,6 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    void returnHandler(MouseEvent event) throws IOException {
-        Stage stage = (Stage) listOfRecommendations.getScene().getWindow();
-        stage.close();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(ComicApplication.class.getResource("Views/MainPage.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("TSE ComicVine!");
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
-    @FXML
     void ComicClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
         if(	listOfRecommendations.getSelectionModel().getSelectedItem() != null){

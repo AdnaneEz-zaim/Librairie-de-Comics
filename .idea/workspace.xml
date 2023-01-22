@@ -6,12 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="fab9849e-d55f-4987-b40f-d0d508673acd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/AuthorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/AuthorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/CharacterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/CharacterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ProfileMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/SearchComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/SearchComicsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/AuthorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/AuthorView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileManagement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileManagement.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/RegisterView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/RegisterView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/CharacterView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/CharacterView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ComicView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ComicView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/HeaderLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/HeaderLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/ProfileMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/SearchComics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/SearchComics.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/Settings.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/recommendationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/develop/Views/recommendationView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,15 +58,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pb\Desktop\git Info3\src\main\resources\com\example\develop\prop" />
