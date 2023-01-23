@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fab9849e-d55f-4987-b40f-d0d508673acd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/service/DbConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ProfileMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +131,7 @@
       <workItem from="1674164908512" duration="1907000" />
       <workItem from="1674240320930" duration="8812000" />
       <workItem from="1674249187221" duration="21855000" />
+      <workItem from="1674433077996" duration="2300000" />
     </task>
     <servers />
   </component>
