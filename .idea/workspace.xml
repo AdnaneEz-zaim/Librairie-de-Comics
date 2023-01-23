@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab9849e-d55f-4987-b40f-d0d508673acd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/AuthorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/AuthorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/CharacterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/CharacterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/ComicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RecommendationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/SearchComicsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/SearchComicsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/controllers/profileManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +188,8 @@
       <workItem from="1674481736653" duration="5168000" />
       <workItem from="1674486955776" duration="64000" />
       <workItem from="1674500202488" duration="8175000" />
-      <workItem from="1674511413150" duration="1849000" />
+      <workItem from="1674511413150" duration="2097000" />
+      <workItem from="1674513558387" duration="249000" />
     </task>
     <servers />
   </component>

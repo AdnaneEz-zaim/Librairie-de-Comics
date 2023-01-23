@@ -1,0 +1,6 @@
+module:com.example.comicsapp
+com.example.develop
+com.example.develop.controllers
+com.example.develop.helper
+com.example.develop.model
+com.example.develop.service
