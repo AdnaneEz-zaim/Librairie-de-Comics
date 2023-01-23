@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class DbConnection {
 	private static Connection con;
 	private static DbConnection dbc;
-	private DbConnection() {
+	public DbConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Properties p = new Properties ();
@@ -23,6 +23,17 @@ public class DbConnection {
 			con = DriverManager.getConnection((String)p.get("url"),(String)p.get("username"),(String)p.get("password"));
 		} catch (Exception ex) {
 			Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+
+	public void setMyConnection_test() {
+
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/comicunivers_test", "root", "");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -291,6 +302,18 @@ public class DbConnection {
 			ps.close();
 		}
 		ps.close();
+	}
+
+	/**
+	 * Terminate the connection, if any
+	 */
+	public void close() {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

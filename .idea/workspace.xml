@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab9849e-d55f-4987-b40f-d0d508673acd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/develop/service/ComicVineServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/develop/service/DbConnectionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/service/ComicVineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/develop/service/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/develop/service/DbConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +21,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -43,80 +47,125 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "E:/FISE2/testIntell/Info3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pb\Desktop\git Info3\src\main\resources\com\example\develop\prop" />
       <recent name="C:\Users\pb\Desktop\git Info3\src\main\resources\com\example\develop\Views" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.develop.service" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.ComicApplication">
-    <configuration name="ComicApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.develop.ComicApplication" />
-      <module name="ComicsApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.develop.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ComicVineService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.ComicVineService" />
-      <module name="ComicsApp" />
+  <component name="RunManager" selected="JUnit.ComicVineServiceTest.search">
+    <configuration name="ComicVineServiceTest.getComicById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Info3" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.develop.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.develop.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.ComicVineServiceTest" />
+      <option name="METHOD_NAME" value="getComicById" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DbConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.DbConnection" />
-      <module name="ComicsApp" />
+    <configuration name="ComicVineServiceTest.search" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Info3" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.develop.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.develop.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.ComicVineServiceTest" />
+      <option name="METHOD_NAME" value="search" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecommendationController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.develop.controllers.RecommendationController" />
-      <module name="ComicsApp" />
+    <configuration name="ComicVineServiceTest.searchLatestComics" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Info3" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.develop.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.develop.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.ComicVineServiceTest" />
+      <option name="METHOD_NAME" value="searchLatestComics" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DbConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Info3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.develop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.develop.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.DbConnectionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DbConnectionTest.getRating" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Info3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.develop.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.develop.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.develop.service.DbConnectionTest" />
+      <option name="METHOD_NAME" value="getRating" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ComicApplication" />
-        <item itemvalue="Application.ComicVineService" />
-        <item itemvalue="Application.RecommendationController" />
-        <item itemvalue="Application.DbConnection" />
+        <item itemvalue="JUnit.ComicVineServiceTest.search" />
+        <item itemvalue="JUnit.ComicVineServiceTest.getComicById" />
+        <item itemvalue="JUnit.ComicVineServiceTest.searchLatestComics" />
+        <item itemvalue="JUnit.DbConnectionTest" />
+        <item itemvalue="JUnit.DbConnectionTest.getRating" />
       </list>
     </recent_temporary>
   </component>
@@ -132,6 +181,7 @@
       <workItem from="1674240320930" duration="8812000" />
       <workItem from="1674249187221" duration="21855000" />
       <workItem from="1674433077996" duration="2300000" />
+      <workItem from="1674481736653" duration="5168000" />
     </task>
     <servers />
   </component>
