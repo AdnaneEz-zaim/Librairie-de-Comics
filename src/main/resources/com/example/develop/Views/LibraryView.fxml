@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="614.0" prefWidth="1006.0" style="-fx-background-color: A42F2FFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.develop.controllers.LibraryController">
+    <ListView fx:id="myListOfComics" layoutX="135.0" layoutY="69.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#ComicClicked" prefHeight="538.0" prefWidth="782.0" />
+    <ChoiceBox fx:id="stateList" layoutX="814.0" layoutY="27.0" onAction="#stateSelected" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #FFFFFF;" />
+   <Label layoutX="411.0" layoutY="14.0" text="My Library" textFill="#f2efef" underline="true">
+      <font>
+         <Font name="Comic Sans MS" size="36.0" />
+      </font>
+      <effect>
+         <DropShadow />
+      </effect>
+   </Label>
+
+</AnchorPane>
