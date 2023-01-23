@@ -3,6 +3,7 @@ package com.example.develop.controllers;
 import com.example.develop.ComicApplication;
 import com.example.develop.helper.AlertHelper;
 import com.example.develop.model.UserModel;
+import com.example.develop.service.DbConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,17 +47,10 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login() throws Exception {
-
         if (this.isValidated()) {
-            PreparedStatement ps;
             ResultSet rs;
-
-            String query = "select * from users WHERE username = ? and password = ?";
             try {
-                ps = con.prepareStatement(query);
-                ps.setString(1, username.getText());
-                ps.setString(2, password.getText());
-                rs = ps.executeQuery();
+                rs = DbConnection.login(username.getText(),password.getText());
 
                 if (rs.next()) {
                     SaveUser(rs);
@@ -74,6 +68,7 @@ public class LoginController implements Initializable {
                             "Invalid username and password.");
                     username.requestFocus();
                 }
+                rs.close();
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
