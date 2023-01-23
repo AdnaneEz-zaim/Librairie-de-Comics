@@ -1,18 +1,13 @@
-package com.example.develop.controllers;
+package com.example.develop.service;
 
 import com.example.develop.ComicApplication;
-import com.example.develop.helper.AlertHelper;
 import com.example.develop.model.UserModel;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
-import javafx.scene.control.Alert;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,9 +44,7 @@ public class DbConnection {
 
 	//for profile configuration
 	public static Boolean changeUserInfo() throws SQLException {
-		Statement stmt;
 		PreparedStatement ps;
-		stmt = con.createStatement();
 		String query = "UPDATE users set firstname = ?,lastname = ?,email = ?,username = ?,password = ? where userid = ?";
 		ps = con.prepareStatement(query);
 		ps.setString(1, UserModel.getUserModel().getFirstname());
@@ -67,6 +60,60 @@ public class DbConnection {
 			ps.close();
 			return false;
 		}
+	}
+	public static ResultSet getUserById(int userId){
+		ResultSet rs = null;
+		try {
+			PreparedStatement ps;
+			String query = "select username from users where userid =  ?";
+			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			ps.setInt(1, userId);
+			rs = ps.executeQuery();
+		} catch (SQLException ex) {
+			System.out.println(ex);
+		}
+		return rs;
+	}
+	public static int SignUp(String firstName,String lastName,String email,String username,String password) throws SQLException {
+		PreparedStatement ps;
+		String query = "insert into users (firstname,lastname,email,username,password)values (?,?,?,?,?)";
+		ps = con.prepareStatement(query);
+		ps.setString(1, firstName);
+		ps.setString(2, lastName);
+		ps.setString(3, email);
+		ps.setString(4, username);
+		ps.setString(5, password);
+		int r = ps.executeUpdate();
+		return r;
+	}
+
+	public static ResultSet login(String username, String password) throws SQLException {
+		PreparedStatement ps;
+		String query = "select * from users WHERE username = ? and password = ?";
+		ps = con.prepareStatement(query);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		return ps.executeQuery();
+	}
+
+	public static boolean isAlreadyRegistered(String username) {
+		PreparedStatement ps;
+		ResultSet rs;
+		boolean usernameExist = false;
+
+		String query = "select * from users WHERE username = ?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				usernameExist = true;
+			}
+		} catch (SQLException ex) {
+			System.out.println(ex);
+		}
+		return usernameExist;
 	}
 
 	//for library
@@ -98,6 +145,18 @@ public class DbConnection {
 		statement.executeUpdate();
 		statement.close();
 
+	}
+	public static int addComicToLibrary(JsonNode comic, String comicId) throws SQLException {
+		PreparedStatement ps;
+		String query = "insert into library (idUser,idComic,imageComic,nameComic)values (?,?,?,?)";
+		ps = con.prepareStatement(query);
+		ps.setInt(1, UserModel.getUserModel().getUserid());
+		ps.setString(2, comicId);
+		ps.setString(3, comic.get("image").get("thumb_url").textValue());
+		ps.setString(4,comic.get("name").textValue());
+		int r = ps.executeUpdate();
+		ps.close();
+		return r;
 	}
 
 	//for configuring preferences
@@ -157,20 +216,83 @@ public class DbConnection {
 		}
 		return concepts;
 	}
-	public static void main(String[] args) throws SQLException {
-		new DbConnection();
-		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
-		statement.setInt(1,4);
-		ResultSet rs = statement.executeQuery();
-		ArrayList<String> authors = new ArrayList<>();
-		while (rs.next()) {
-			String value = rs.getString("authorName");
-			authors.add(value);
+
+	//comments
+	public static ResultSet getComments(String comicId){
+		ResultSet rs = null;
+		try {
+			PreparedStatement ps;
+			String query = "select * from comments where idComic =  ?";
+
+			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			ps.setString(1, comicId);
+			rs = ps.executeQuery();
+		} catch (SQLException ex) {
+			System.out.println(ex);
 		}
-		for(String c:authors)
-			System.out.println(c);
-
-
+		return rs;
 	}
+	public static int addComment(String comicId, String comment) throws SQLException {
+		PreparedStatement ps;
+		String query = "insert into comments (userid,idComic,commentContent)values (?,?,?)";
+		ps = con.prepareStatement(query);
+		ps.setInt(1, UserModel.getUserModel().getUserid());
+		ps.setString(2, comicId);
+		ps.setString(3, comment);
+		int r = ps.executeUpdate();
+		return r;
+	}
+
+
+	//Rating
+	public static ResultSet getRating(String comicId) throws SQLException {
+		PreparedStatement ps;
+		String query = "select * from rating where idUser =  ? and idComic = ?";
+		ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_UPDATABLE);
+		ps.setInt(1, UserModel.getUserModel().getUserid());
+		ps.setString(2,comicId);
+		ResultSet rs = ps.executeQuery();
+		return rs;
+	}
+	public static ResultSet getAverageRating(String comicId) throws SQLException {
+		PreparedStatement ps;
+		String query = "SELECT AVG(rating) FROM Rating where idComic = ?";
+		ps = con.prepareStatement(query);
+		ps.setString(1,comicId);
+		return ps.executeQuery();
+	}
+	public static void addRating(String comicId, Double note) throws SQLException {
+		ResultSet rs = null;
+		PreparedStatement ps;
+		String query = "select * from rating where idUser =  ? and idComic = ?";
+		ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_UPDATABLE);
+		ps.setInt(1, UserModel.getUserModel().getUserid());
+		ps.setString(2,comicId);
+		rs = ps.executeQuery();
+		if(rs.next()){
+			String query1 = "UPDATE Rating SET rating = ? WHERE idUser = ? and idComic = ?";
+			ps = con.prepareStatement(query1);
+			ps.setDouble(1,note);
+			ps.setInt(2,UserModel.getUserModel().getUserid());
+			ps.setString(3,comicId);
+			ps.executeUpdate();
+			ps.close();
+		}
+		else{
+			String query2 = "insert into Rating (rating,idUser,idComic)values (?,?,?)";
+			ps = con.prepareStatement(query2);
+			ps.setDouble(1,note);
+			ps.setInt(2,UserModel.getUserModel().getUserid());
+			ps.setString(3,comicId);
+			ps.executeUpdate();
+			ps.close();
+		}
+		ps.close();
+	}
+
+
 
 }

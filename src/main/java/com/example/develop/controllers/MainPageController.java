@@ -5,8 +5,8 @@ import com.example.develop.helper.AlertHelper;
 import com.example.develop.service.ComicVineService;
 import com.example.develop.model.Comic;
 import com.example.develop.model.ObjectClicked;
-import com.example.develop.model.ObjectSearch;
 import com.example.develop.model.UserModel;
+import com.example.develop.service.DbConnection;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import javafx.application.Platform;
@@ -22,14 +22,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -187,6 +185,7 @@ public class MainPageController implements Initializable {
 									});
 									comicState.setOnAction(event -> {
 										try {
+											System.out.println("hi");
 											String selectedItem = (String) comicState.getSelectionModel().getSelectedItem();
 											DbConnection.changeComicState(getItem().getId(), idUser,selectedItem);
 										} catch (SQLException ex) {
@@ -206,19 +205,6 @@ public class MainPageController implements Initializable {
 			}
 		});
 	}
-
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		try {
-			ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished","all");
-			stateList.setItems(observableList);
-
-			initLibrary();
-			initLatestComics();
-		} catch (SQLException | IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -254,5 +240,17 @@ public class MainPageController implements Initializable {
 			myListOfComics.setItems(items.filtered(comic -> comic.getState().equals(selectedState)));
 		}
 	}
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		try {
+			ObservableList<String> observableList = FXCollections.observableArrayList("To read", "current", "finished","all");
+			stateList.setItems(observableList);
+
+			initLibrary();
+			initLatestComics();
+		} catch (SQLException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 }

@@ -13,6 +13,7 @@ import com.example.develop.helper.AlertHelper;
 import com.example.develop.service.ComicVineService;
 import com.example.develop.model.*;
 import com.example.develop.model.Character;
+import com.example.develop.service.DbConnection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -168,42 +169,14 @@ public class ComicsController implements Initializable {
 		initCreators();
 		initCharacters();
 	}
-	public ResultSet getComments(){
-		ResultSet rs = null;
-		try {
-			PreparedStatement ps;
-			String query = "select * from comments where idComic =  ?";
 
-			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			ps.setString(1, comicId);
-			rs = ps.executeQuery();
-		} catch (SQLException ex) {
-			System.out.println(ex);
-		}
-		return rs;
-	}
-	public ResultSet getUserById(int userId){
-		ResultSet rs = null;
-		try {
-			PreparedStatement ps;
-			String query = "select username from users where userid =  ?";
-			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			ps.setInt(1, userId);
-			rs = ps.executeQuery();
-		} catch (SQLException ex) {
-			System.out.println(ex);
-		}
-		return rs;
-	}
 	public void initComments() throws SQLException {
-		ResultSet rs = getComments();
+		ResultSet rs = DbConnection.getComments(comicId);
 		rs.beforeFirst();
 		ObservableList<Comment> items =  FXCollections.observableArrayList ();
 		while (rs.next()) {
 
-			ResultSet usernameRs = getUserById(rs.getInt("userid"));
+			ResultSet usernameRs = DbConnection.getUserById(rs.getInt("userid"));
 			usernameRs.beforeFirst();
 			String username = null;
 			while(usernameRs.next())
@@ -245,24 +218,19 @@ public class ComicsController implements Initializable {
 				}
 			}
 		});
+		rs.close();
 	}
 	public void initRating(){
 		ResultSet rs = null;
 		try {
-			PreparedStatement ps;
-			String query = "select * from rating where idUser =  ? and idComic = ?";
-			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			ps.setInt(1, userId);
-			ps.setString(2,comicId);
-			rs = ps.executeQuery();
+			rs = DbConnection.getRating(comicId);
 			if(rs.next()){
 				rateComics.setRating(rs.getDouble("rating"));
 			}
 			else{
 				rateComics.setRating(0);
 			}
-			ps.close();
+			rs.close();
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
@@ -270,11 +238,7 @@ public class ComicsController implements Initializable {
 	public void initAverageRating(){
 		ResultSet rs = null;
 		try {
-			PreparedStatement ps;
-			String query = "SELECT AVG(rating) FROM Rating where idComic = ?";
-			ps = con.prepareStatement(query);
-			ps.setString(1,comicId);
-			rs = ps.executeQuery();
+			rs = DbConnection.getAverageRating(comicId);
 			if(rs.next()){
 				DecimalFormat df = new DecimalFormat("#.##");
 				averageRating.setText("Rating : "+ df.format(rs.getDouble(1)));
@@ -282,7 +246,7 @@ public class ComicsController implements Initializable {
 			else{
 				averageRating.setText("No rating available");
 			}
-			ps.close();
+			rs.close();
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
@@ -293,26 +257,20 @@ public class ComicsController implements Initializable {
 	void addComicsToLibrary(MouseEvent event) {
 		future.thenAccept(comic -> {
 			try {
-				PreparedStatement ps;
-				String query = "insert into library (idUser,idComic,imageComic,nameComic)values (?,?,?,?)";
-				ps = con.prepareStatement(query);
-				ps.setInt(1, userId);
-				ps.setString(2, comicId);
+				int r = DbConnection.addComicToLibrary(comic,comicId);
 
-				 ps.setString(3, comic.get("image").get("thumb_url").textValue());
-				 ps.setString(4,comic.get("name").textValue());
-
-				if (ps.executeUpdate() > 0) {
+				if (r > 0) {
 				 AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
 						 "Comic added successfuly to your library");
-					DbConnection.addAuthorsAsPref(authorsList,comicId);
-					DbConnection.addConceptsAsPref(conceptsList,comicId);
-				} else {
-				 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+				 DbConnection.addAuthorsAsPref(authorsList,comicId);
+				 DbConnection.addConceptsAsPref(conceptsList,comicId);
+				}
+				else {
+					AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
 						 "Something went wrong.");
-		 	}
+		 		}
 			}catch (SQLException ex) {
-			 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+			 	AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
 					 "Something went wrong.");
 				System.out.println(ex);
 			}
@@ -321,16 +279,10 @@ public class ComicsController implements Initializable {
 
 	@FXML
 	void publishComment(MouseEvent event) throws IOException {
+		window = averageRating.getScene().getWindow();
 		try {
-			Statement stmt;
-			PreparedStatement ps;
-			stmt = con.createStatement();
-			String query = "insert into comments (userid,idComic,commentContent)values (?,?,?)";
-			ps = con.prepareStatement(query);
-			ps.setInt(1, userId);
-			ps.setString(2, comicId);
-			ps.setString(3, commentArea.getText());
-			if (ps.executeUpdate() > 0) {
+			int r = DbConnection.addComment(comicId,commentArea.getText());
+			if (r > 0) {
 				AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
 						"Comment Added successfully");
 				initComments();
@@ -339,42 +291,16 @@ public class ComicsController implements Initializable {
 						"Something went wrong.");
 			}
 		}catch (SQLException ex) {
-			/*AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-					"Something went wrong.");*/
+			AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+					"Something went wrong.");
 			System.out.println(ex);
 		}
 	}
 	@FXML
 	void doRating(MouseEvent event) throws IOException {
 	 Double note =rateComics.getRating();
-	 ResultSet rs = null;
 		try {
-			PreparedStatement ps;
-			String query = "select * from rating where idUser =  ? and idComic = ?";
-			ps = con.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			ps.setInt(1, userId);
-			ps.setString(2,comicId);
-			rs = ps.executeQuery();
-			if(rs.next()){
-				String query1 = "UPDATE Rating SET rating = ? WHERE idUser = ? and idComic = ?";
-				ps = con.prepareStatement(query1);
-				ps.setDouble(1,note);
-				ps.setInt(2,userId);
-				ps.setString(3,comicId);
-				ps.executeUpdate();
-				ps.close();
-			}
-			else{
-				String query2 = "insert into Rating (rating,idUser,idComic)values (?,?,?)";
-				ps = con.prepareStatement(query2);
-				ps.setDouble(1,note);
-				ps.setInt(2,userId);
-				ps.setString(3,comicId);
-				ps.executeUpdate();
-				ps.close();
-			}
-			ps.close();
+			DbConnection.addRating(comicId,note);
 			initAverageRating();
 		} catch (SQLException ex) {
 			AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",

@@ -2,6 +2,7 @@ package com.example.develop.controllers;
 
 import com.example.develop.ComicApplication;
 import com.example.develop.helper.AlertHelper;
+import com.example.develop.service.DbConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,18 +60,8 @@ public class RegisterController implements Initializable {
     private void register() {
         window = registerButton.getScene().getWindow();
         if (this.isValidated()) {
-            Statement stmt;
             try {
-                PreparedStatement ps;
-                stmt = con.createStatement();
-                String query = "insert into users (firstname,lastname,email,username,password)values (?,?,?,?,?)";
-                ps = con.prepareStatement(query);
-                ps.setString(1, firstName.getText());
-                ps.setString(2, lastName.getText());
-                ps.setString(3, email.getText());
-                ps.setString(4, username.getText());
-                ps.setString(5, password.getText());
-                if (ps.executeUpdate() > 0) {
+                if (DbConnection.SignUp(firstName.getText(),lastName.getText(),email.getText(),username.getText(),password.getText()) > 0) {
                     this.clearForm();
                     AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
                             "You have registered successfully.");
@@ -84,25 +75,6 @@ public class RegisterController implements Initializable {
                         "Something went wrong.");
             }
         }
-    }
-
-    private boolean isAlreadyRegistered() {
-        PreparedStatement ps;
-        ResultSet rs;
-        boolean usernameExist = false;
-
-        String query = "select * from users WHERE username = ?";
-        try {
-            ps = con.prepareStatement(query);
-            ps.setString(1, username.getText());
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                usernameExist = true;
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return usernameExist;
     }
 
     private boolean isValidated() {
@@ -160,7 +132,7 @@ public class RegisterController implements Initializable {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                     "Password and confirm password text fields does not match.");
             password.requestFocus();
-        } else if (isAlreadyRegistered()) {
+        } else if (DbConnection.isAlreadyRegistered(username.getText())) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                     "The username is already taken by someone else.");
             username.requestFocus();
