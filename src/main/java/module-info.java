@@ -4,8 +4,6 @@ module com.example.comicsapp {
 
     requires org.controlsfx.controls;
     requires java.desktop;
-    requires rest.assured;
-    requires org.hamcrest;
     requires com.fasterxml.jackson.annotation;
     requires java.logging;
     requires java.sql;
