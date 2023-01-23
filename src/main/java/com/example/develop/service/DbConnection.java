@@ -206,7 +206,7 @@ public class DbConnection {
 		statement.close();
 	}
 	public static ArrayList<String> getPrefAuthors() throws SQLException {
-		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ?");
+		PreparedStatement statement = con.prepareStatement("SELECT authorName from authorPref where userid = ? GROUP BY authorName ORDER BY COUNT(authorName) DESC LIMIT 3");
 		statement.setInt(1,UserModel.getUserModel().getUserid());
 		ResultSet rs = statement.executeQuery();
 		ArrayList<String> authors = new ArrayList<>();
@@ -217,7 +217,7 @@ public class DbConnection {
 		return authors;
 	}
 	public static ArrayList<String> getPrefConcepts() throws SQLException {
-		PreparedStatement statement = con.prepareStatement("SELECT concept from conceptPref where userid = ?");
+		PreparedStatement statement = con.prepareStatement("SELECT concept from conceptPref where userid = ? GROUP BY concept ORDER BY COUNT(concept) DESC LIMIT 3");
 		statement.setInt(1,UserModel.getUserModel().getUserid());
 		ResultSet rs = statement.executeQuery();
 		ArrayList<String> concepts = new ArrayList<>();

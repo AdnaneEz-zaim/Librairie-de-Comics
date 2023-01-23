@@ -40,6 +40,8 @@ public class CharacterController implements Initializable {
     private ImageView imgCharacter;
     private CompletableFuture<JsonNode> future ;
     private final String characterId = ObjectClicked.getObjectClicked().getId();
+    private ComicVineService comicVineService = ComicVineService.getComicVineService();
+
     @FXML
     private ListView<Comic> listOfIssues = new ListView<>();
     @FXML
@@ -49,7 +51,6 @@ public class CharacterController implements Initializable {
 
 
     public void initCharacter() throws IOException {
-        ComicVineService comicVineService = new ComicVineService();
         future = comicVineService.searchCharacter(characterId);
         future.thenAccept(character -> Platform.runLater(()-> {
 

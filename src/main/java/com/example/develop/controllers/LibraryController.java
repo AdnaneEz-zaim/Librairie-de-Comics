@@ -65,8 +65,6 @@ public class LibraryController implements Initializable {
 
         myListOfComics.setItems(items);
         myListOfComics.setCellFactory(param -> new ListCell<Comic>() {
-            private ImageView imageView = new ImageView();
-            Button removeButton = new Button("Remove");
             @Override
             public void updateItem(Comic comic, boolean empty) {
                 super.updateItem(comic, empty);
@@ -106,6 +104,7 @@ public class LibraryController implements Initializable {
                                                 myListOfComics.getItems().remove(selectedcomic);
                                             } catch (SQLException e) {
                                                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
+                                                System.out.println(e);
                                             }
                                         }
                                     });
@@ -113,8 +112,12 @@ public class LibraryController implements Initializable {
                                         try {
                                             String selectedItem = (String) comicState.getSelectionModel().getSelectedItem();
                                             DbConnection.changeComicState(getItem().getId(), idUser,selectedItem);
+                                            getItem().setState(selectedItem);
+                                            comicState.setValue(selectedItem);
+                                            comicState.getSelectionModel().select(selectedItem);
                                         } catch (SQLException ex) {
                                             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
+                                            System.out.println(ex);
                                         }
                                     });
                                 }
@@ -152,13 +155,22 @@ public class LibraryController implements Initializable {
     }
     @FXML
     void stateSelected(ActionEvent event){
-        String selectedState = (String) stateList.getValue();
-        if(selectedState.equals("all")){
-            myListOfComics.setItems(items);
-        }else{
-            // filter the items in the listView based on the selected state
-            myListOfComics.setItems(items.filtered(comic -> comic.getState().equals(selectedState)));
+        window = stateList.getScene().getWindow();
+        try{
+            initLibrary();
+            String selectedState = (String) stateList.getValue();
+            if(selectedState.equals("all")){
+                myListOfComics.setItems(items);
+            }else{
+                // filter the items in the listView based on the selected state
+                myListOfComics.setItems(items.filtered(comic -> comic.getState().equals(selectedState)));
+            }
+        }catch (SQLException e){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "Something went wrong.");
+            System.out.println(e);
         }
+
     }
 
     @Override

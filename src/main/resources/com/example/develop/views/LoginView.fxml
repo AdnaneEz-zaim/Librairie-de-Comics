@@ -13,14 +13,14 @@
    <left>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="361.0" style="-fx-background-color: #d01e00;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" layoutX="44.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TSE Universe" textAlignment="CENTER" wrappingWidth="289.9117431640625">
-               <font>
-                  <Font name="System Bold" size="42.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="48.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explore the wide world of comics!" textAlignment="CENTER" wrappingWidth="281.30859375">
+            <Text fill="WHITE" layoutX="40.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explore the wide world of comics!" textAlignment="CENTER" wrappingWidth="281.30859375">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="36.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TSE Universe" textAlignment="CENTER" wrappingWidth="289.9117431640625">
+               <font>
+                  <Font name="System Bold" size="42.0" />
                </font>
             </Text>
          </children>
@@ -32,12 +32,12 @@
    <center>
       <AnchorPane prefHeight="600.0" prefWidth="522.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="username" layoutX="117.0" layoutY="180.0" prefHeight="42.0" prefWidth="302.0" promptText="username or Email" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
+            <TextField fx:id="username" layoutX="117.0" layoutY="180.0" prefHeight="42.0" prefWidth="302.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" layoutX="121.0" layoutY="245.0" prefHeight="47.0" prefWidth="296.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
+            <PasswordField fx:id="password" layoutX="121.0" layoutY="245.0" prefHeight="47.0" prefWidth="296.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #d01e00; -fx-border-width: 0px 0px 2px 0px;">
                <font>
                   <Font size="14.0" />
                </font></PasswordField>
@@ -53,7 +53,7 @@
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Text>
-            <Text fill="#d01e00" layoutX="147.0" layoutY="418.0" onMouseClicked="#showRegisterStage" strokeType="OUTSIDE" strokeWidth="0.0" text="you don't have an account? Sign up" wrappingWidth="242.30853271484375">
+            <Text fill="#d01e00" layoutX="147.0" layoutY="418.0" onMouseClicked="#showRegisterStage" strokeType="OUTSIDE" strokeWidth="0.0" text="You don't have an account? Sign up" wrappingWidth="242.30853271484375">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

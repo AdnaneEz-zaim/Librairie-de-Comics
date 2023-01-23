@@ -29,7 +29,7 @@ public class ComicVineServiceTest {
     private static CompletableFuture<JsonNode> future = null;
     @Before
     public void init() throws IOException {
-        comicVineService = new ComicVineService();
+        comicVineService = ComicVineService.getComicVineService();
         RestAssured.port = 443;
     }
 
@@ -52,7 +52,6 @@ public class ComicVineServiceTest {
     @Test
     public void search() throws IOException, ExecutionException, InterruptedException {
 
-        comicVineService = new ComicVineService();
         String titre = "";
         future = comicVineService.search("issues", "United", 10, 0);
         JsonNode prefComics = future.get();

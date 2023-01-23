@@ -31,9 +31,9 @@ public class RecommendationController implements Initializable {
 
     @FXML
     private ListView<Comic> listOfRecommendations = new ListView<>();
+    private ComicVineService comicVineService = ComicVineService.getComicVineService();
 
     public void initPref() throws SQLException, IOException, ExecutionException, InterruptedException {
-        ComicVineService comicVineService = new ComicVineService();
         ArrayList<String> prefAuthors =  DbConnection.getPrefAuthors();
         ArrayList<String> prefConcepts = DbConnection.getPrefConcepts();
 
