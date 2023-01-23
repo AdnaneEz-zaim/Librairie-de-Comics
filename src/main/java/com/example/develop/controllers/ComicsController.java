@@ -39,6 +39,8 @@ public class ComicsController implements Initializable {
 	private final int userId= UserModel.getUserModel().getUserid();
 	private String comicId = ObjectClicked.getObjectClicked().getId();
 	private Window window;
+	private ComicVineService comicVineService = ComicVineService.getComicVineService();
+
 	@FXML
 	private Label descComic;
 	@FXML
@@ -142,10 +144,10 @@ public class ComicsController implements Initializable {
 
 	}
 	public void initComicInfo() throws IOException {
-		ComicVineService comicVineService = new ComicVineService();
 		future = comicVineService.GetComicById(comicId);
 		future.thenAccept(comic -> Platform.runLater(() -> {
 
+			//for saving comics concept for recommendation use
 			ObjectMapper objectMapper = new ObjectMapper();
 			JsonNode concepts = null;
 			try {
@@ -158,7 +160,16 @@ public class ComicsController implements Initializable {
 					conceptsList.add(concept.get("name").textValue());
 			}
 
+			//init comic info
 			imgComic.setImage(new Image(comic.get("image").get("thumb_url").textValue()));
+
+			if(comic.get("name").isNull()){
+				nameComic.setText(comic.get("volume").get("name").textValue()+" #"+comic.get("issue_number"));
+			}
+			else{
+				nameComic.setText(comic.get("name").textValue());
+			}
+
 			nameComic.setText(comic.get("name").textValue());
 
 			if (comic.get("description").textValue() == null)
@@ -270,8 +281,6 @@ public class ComicsController implements Initializable {
 						 "Something went wrong.");
 		 		}
 			}catch (SQLException ex) {
-			 	AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-					 "Something went wrong.");
 				System.out.println(ex);
 			}
 		});

@@ -23,12 +23,24 @@ public class ComicVineService {
 			.connectionPool(new ConnectionPool(5, 5, TimeUnit.MINUTES))
 			.build();
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	public ComicVineService() throws IOException {
-		InputStream input = ComicApplication.class.getResourceAsStream("prop/API.prop");
-		p.load(input);
-		apiKey= (String) p.get("Api_Key");
-		baseURI =  (String) p.get("Base_Uri");
+	private static ComicVineService comicVineService = null;
+	private ComicVineService() {
+		try{
+			InputStream input = ComicApplication.class.getResourceAsStream("prop/API.prop");
+			p.load(input);
+			apiKey= (String) p.get("Api_Key");
+			baseURI =  (String) p.get("Base_Uri");
+		}catch (IOException e){
+			System.out.println(e);
+		}
+
 	}
+	public static ComicVineService getComicVineService(){
+		if(comicVineService == null)
+			comicVineService = new ComicVineService();
+		return  comicVineService;
+	}
+
 	private CompletableFuture<JsonNode> sendRequest(HttpUrl.Builder urlBuilder) {
 		String url = urlBuilder.build().toString();
 		return CompletableFuture.supplyAsync(() -> {

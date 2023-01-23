@@ -44,10 +44,11 @@ public class MainPageController implements Initializable {
 	private ListView<Comic> listOfComics = new ListView<Comic>();
 	@FXML
 	private ListView<Comic> myListOfComics = new ListView<Comic>();;
-
 	@FXML
 	private ChoiceBox stateList;
-	ObservableList<Comic> items;
+	private ObservableList<Comic> items;
+	private ComicVineService comicVineService = ComicVineService.getComicVineService();
+
 
 	public MainPageController() {
 		DbConnection dbc = DbConnection.getDatabaseConnection();
@@ -55,7 +56,6 @@ public class MainPageController implements Initializable {
 	}
 
 	public CompletableFuture<JsonNode> getLatestComics() throws IOException {
-		ComicVineService comicVineService = new ComicVineService();
 		return comicVineService.searchLatestComics(10, 0)
 				.thenApply(result -> {
 					for (int i = 0; i < result.size(); i++) {
@@ -77,21 +77,17 @@ public class MainPageController implements Initializable {
 			// Do something with the latest comics
 			ObservableList<Comic> items = FXCollections.observableArrayList();
 			for (JsonNode res : latestComics) {
+				Comic comic = new Comic();
 				if(res.get("name").isNull()){
-					Comic comic = new Comic();
 					comic.setName(res.get("volume").get("name").textValue()+" #"+res.get("issue_number"));
-					comic.setId(String.valueOf(res.get("id")));
-					comic.setImage(res.get("image").get("icon_url").textValue());
 
-					items.add(comic);
 				}
 				else{
-					Comic comic = new Comic();
 					comic.setName(res.get("name").textValue());
-					comic.setId(String.valueOf(res.get("id")));
-					comic.setImage(res.get("image").get("icon_url").textValue());
-					items.add(comic);
 				}
+				comic.setId(String.valueOf(res.get("id")));
+				comic.setImage(res.get("image").get("icon_url").textValue());
+				items.add(comic);
 			}
 
 			listOfComics.setItems(items);
@@ -117,7 +113,6 @@ public class MainPageController implements Initializable {
 
 
 	}
-
 	public void initLibrary() throws SQLException {
 		ResultSet resultSet = DbConnection.getUserLibrary();
 
@@ -185,9 +180,11 @@ public class MainPageController implements Initializable {
 									});
 									comicState.setOnAction(event -> {
 										try {
-											System.out.println("hi");
 											String selectedItem = (String) comicState.getSelectionModel().getSelectedItem();
 											DbConnection.changeComicState(getItem().getId(), idUser,selectedItem);
+											getItem().setState(selectedItem);
+											comicState.setValue(selectedItem);
+											comicState.getSelectionModel().select(selectedItem);
 										} catch (SQLException ex) {
 											AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Something went wrong.");
 											System.out.println(ex);
@@ -205,6 +202,8 @@ public class MainPageController implements Initializable {
 			}
 		});
 	}
+
+
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -232,13 +231,22 @@ public class MainPageController implements Initializable {
 	}
 	@FXML
 	void stateSelected(ActionEvent event){
-		String selectedState = (String) stateList.getValue();
-		if(selectedState.equals("all")){
-			myListOfComics.setItems(items);
-		}else{
-			// filter the items in the listView based on the selected state
-			myListOfComics.setItems(items.filtered(comic -> comic.getState().equals(selectedState)));
+		window = stateList.getScene().getWindow();
+		try{
+			initLibrary();
+			String selectedState = (String) stateList.getValue();
+			if(selectedState.equals("all")){
+				myListOfComics.setItems(items);
+			}else{
+				// filter the items in the listView based on the selected state
+				myListOfComics.setItems(items.filtered(comic -> comic.getState().equals(selectedState)));
+			}
+		}catch (SQLException e){
+			AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+					"Something went wrong.");
+			System.out.println(e);
 		}
+
 	}
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {

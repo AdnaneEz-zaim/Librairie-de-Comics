@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
 public class SearchComicsController implements Initializable {
 
 	private ObjectSearch objectSearch = ObjectSearch.getObjectSearch();
-
+	private ComicVineService comicVineService = ComicVineService.getComicVineService();
 	@FXML
 	private ListView<Research> listOfResearch = new ListView<Research>();
 
@@ -63,7 +63,6 @@ public class SearchComicsController implements Initializable {
 	}
 
 	public CompletableFuture<JsonNode> getSearch() throws IOException {
-		ComicVineService comicVineService = new ComicVineService();
 		return comicVineService.search(objectSearch.getDomain(), objectSearch.getSearch(), 10, 0)
 				.thenApply(result -> {
 					for (int i = 0; i < result.size(); i++) {

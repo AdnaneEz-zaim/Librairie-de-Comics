@@ -43,9 +43,9 @@ public class AuthorController  implements Initializable {
     private Text country;
     private CompletableFuture<JsonNode> future = null;
     private final String authorId = ObjectClicked.getObjectClicked().getId();
+    private ComicVineService comicVineService = ComicVineService.getComicVineService();
 
     public void initAuthor() throws IOException {
-        ComicVineService comicVineService = new ComicVineService();
         future = comicVineService.searchAuthor(authorId);
         future.thenAccept(author -> Platform.runLater(()->{
             imgAuthor.setImage(new Image(author.get("image").get("thumb_url").textValue()));
