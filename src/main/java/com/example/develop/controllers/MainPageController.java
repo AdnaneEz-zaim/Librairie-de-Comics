@@ -70,6 +70,8 @@ public class MainPageController implements Initializable {
 					return result;
 				});
 	}
+
+	/** renders the latest comics in listView  */
 	public void initLatestComics() throws IOException {
 
 		CompletableFuture<JsonNode> future = getLatestComics();
@@ -113,6 +115,8 @@ public class MainPageController implements Initializable {
 
 
 	}
+
+	/** renders current user library */
 	public void initLibrary() throws SQLException {
 		ResultSet resultSet = DbConnection.getUserLibrary();
 
@@ -203,7 +207,7 @@ public class MainPageController implements Initializable {
 		});
 	}
 
-
+	/**  if comic is clicked then redirection to comicView  */
 	@FXML
 	void ComicClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -229,6 +233,8 @@ public class MainPageController implements Initializable {
 			stage.show();
 		}
 	}
+
+	/** shows the items (comics) by their state in the listView  */
 	@FXML
 	void stateSelected(ActionEvent event){
 		window = stateList.getScene().getWindow();

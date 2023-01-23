@@ -45,6 +45,7 @@ public class AuthorController  implements Initializable {
     private final String authorId = ObjectClicked.getObjectClicked().getId();
     private ComicVineService comicVineService = ComicVineService.getComicVineService();
 
+    /** send Author info to view : image, name , date of birth and desc  */
     public void initAuthor() throws IOException {
         future = comicVineService.searchAuthor(authorId);
         future.thenAccept(author -> Platform.runLater(()->{
@@ -59,6 +60,8 @@ public class AuthorController  implements Initializable {
         }));
 
     }
+
+    /** send Author info to view : listView of issues created by the author  */
     public void initIssues(){
         future.thenAccept(author -> Platform.runLater(()-> {
 
@@ -94,6 +97,8 @@ public class AuthorController  implements Initializable {
             });
         }));
     }
+
+    /** send Author info to view : listView of characters created by the author  */
     public void initCharacters(){
         future.thenAccept(author -> Platform.runLater(()-> {
 
@@ -130,6 +135,7 @@ public class AuthorController  implements Initializable {
         }));
     }
 
+    /** handle a click on a character : redirection to CharacterView  */
     @FXML
     void CharacterClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
@@ -150,6 +156,8 @@ public class AuthorController  implements Initializable {
             stage.show();
         }
     }
+
+    /** handle a click on an issue : redirection to ComicView  */
     @FXML
     void issueClicked(MouseEvent event) throws IOException {
         Boolean empty = false;

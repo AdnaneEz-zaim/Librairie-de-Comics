@@ -33,6 +33,7 @@ public class HeaderController implements Initializable {
         domainList.setItems(observableList2);
     }
 
+    /** handle a click profile image : redirection to ProfileMenu  */
     @FXML
     void handleClickProfileImage(MouseEvent event) throws IOException {
         Stage stage = (Stage) domainList.getScene().getWindow();
@@ -45,6 +46,7 @@ public class HeaderController implements Initializable {
         stage.show();
     }
 
+    /** hand a click on recommendation Btn : redirection to RecommendationView  */
     @FXML
     void recommendationHandler(MouseEvent event) throws IOException {
         Stage stage = (Stage) domainList.getScene().getWindow();
@@ -58,6 +60,7 @@ public class HeaderController implements Initializable {
 
     }
 
+    /** handle a click on a search btn : redirection to searchView if all required inputs are filled  */
     @FXML
     void searchButtonHandler(MouseEvent event) throws IOException {
         if(domainList.getValue() == null){
@@ -91,6 +94,8 @@ public class HeaderController implements Initializable {
             }
         }
     }
+
+    /** handle a click on return btn : redirection to Mainpage  */
 
     @FXML
     void returnHandler(MouseEvent event) throws IOException, SQLException {

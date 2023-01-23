@@ -43,6 +43,9 @@ public class LibraryController implements Initializable {
         DbConnection dbc = DbConnection.getDatabaseConnection();
         con = dbc.getConnection();
     }
+
+    /** renders library of current user from DB , add delete btn and a choiceBox to change state (to read , finished, current)
+     * to every comic */
     public void initLibrary() throws SQLException {
         ResultSet resultSet = DbConnection.getUserLibrary();
 
@@ -133,6 +136,7 @@ public class LibraryController implements Initializable {
         });
     }
 
+    /** handle a click on comic  : redirection to ComicView  */
     @FXML
     void ComicClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
@@ -153,6 +157,8 @@ public class LibraryController implements Initializable {
             stage.show();
         }
     }
+
+    /** shows the items (comics) by their state in the listView  */
     @FXML
     void stateSelected(ActionEvent event){
         window = stateList.getScene().getWindow();

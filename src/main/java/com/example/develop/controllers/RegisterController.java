@@ -56,6 +56,7 @@ public class RegisterController implements Initializable {
         con = dbc.getConnection();
     }
 
+    /** if from is validated then add user to DB */
     @FXML
     private void register() {
         window = registerButton.getScene().getWindow();
@@ -77,6 +78,7 @@ public class RegisterController implements Initializable {
         }
     }
 
+    /** check if user exists in DB and inputs are correctly filled */
     private boolean isValidated() {
 
         window = registerButton.getScene().getWindow();
@@ -152,6 +154,7 @@ public class RegisterController implements Initializable {
         return true;
     }
 
+    /** redirection to login page */
     @FXML
     private void showLoginStage() throws IOException {
         Stage stage = (Stage) registerButton.getScene().getWindow();

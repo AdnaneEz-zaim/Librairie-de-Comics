@@ -39,6 +39,7 @@ public class profileManagementController implements Initializable {
         emailInput.setText(UserModel.getUserModel().getEmail());
     }
 
+    /** check if password is correct  */
     public Boolean isPasswordCorrect(){
         if(UserModel.getUserModel().getPassword() != passwordInput.getText()){
             return false;
@@ -46,6 +47,7 @@ public class profileManagementController implements Initializable {
         return true;
     }
 
+    /**  check if all inputs are correctly filled  */
     private boolean isValidated() {
 
         window = passwordInput.getScene().getWindow();
@@ -98,6 +100,8 @@ public class profileManagementController implements Initializable {
         }
         return false;
     }
+
+    /** check if new password == confirm password  */
     private boolean isPasswordChangeValidated(){
         if(!changePasswordInput.getText().equals(""))
             if(confirmPasswordInput.getText().equals(changePasswordInput.getText()))
@@ -106,6 +110,7 @@ public class profileManagementController implements Initializable {
 
     }
 
+    /** if save btn is clicked and data is validated then save user info  */
     @FXML
     public void saveUserInfo() {
         if(isValidated()){

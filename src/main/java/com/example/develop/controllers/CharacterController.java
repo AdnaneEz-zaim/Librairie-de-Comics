@@ -49,7 +49,7 @@ public class CharacterController implements Initializable {
     @FXML
     private ListView<Character> listOfCEnemies = new ListView<>();
 
-
+    /** renders character info in the view ( image, name, date added, desc  ) */
     public void initCharacter() throws IOException {
         future = comicVineService.searchCharacter(characterId);
         future.thenAccept(character -> Platform.runLater(()-> {
@@ -65,6 +65,8 @@ public class CharacterController implements Initializable {
                 descCharacter.setText(character.get("description").textValue().replaceAll("<[^>]*>", ""));
         }));
     }
+
+    /** renders character info in the view ( listView of issues that has the current character ) */
     public void initIssues(){
         future.thenAccept(character -> Platform.runLater(()-> {
 
@@ -100,6 +102,8 @@ public class CharacterController implements Initializable {
             });
         }));
     }
+
+    /** renders character info in the view ( listView of characters related to the subject ) */
     public void initCEnemies_Friends(ListView l,String field){
         future.thenAccept(character -> Platform.runLater(()-> {
 
@@ -136,7 +140,7 @@ public class CharacterController implements Initializable {
         }));
     }
 
-
+    /** hand a click on a Comic : redirection to ComicView  */
     @FXML
     void issueClicked(MouseEvent event) throws IOException {
         Boolean empty = false;
@@ -156,6 +160,8 @@ public class CharacterController implements Initializable {
             stage.show();
         }
     }
+
+    /** hand a click on a character : redirection to character view  */
     @FXML
     void characterClicked(MouseEvent event) throws IOException {
         Boolean empty = false;

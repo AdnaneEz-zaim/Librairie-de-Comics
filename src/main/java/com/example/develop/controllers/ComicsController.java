@@ -68,6 +68,7 @@ public class ComicsController implements Initializable {
 		 con = dbc.getConnection();
 	 }
 
+	/** renders comic info in the view ( listView of characters related to the current comic ) */
 	public void initCharacters(){
 		future.thenAccept(comic -> Platform.runLater(()-> {
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -104,6 +105,8 @@ public class ComicsController implements Initializable {
 			});
 		}));
 	}
+
+	/** renders comic info in the view ( listView of creators related to the current comic ) */
 	public void initCreators(){
 		future.thenAccept(comic ->Platform.runLater(()->{
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -143,6 +146,8 @@ public class ComicsController implements Initializable {
 		}));
 
 	}
+
+	/** renders comic info in the view ( name, image, desc )  and add related authors and concepts to a arrayList*/
 	public void initComicInfo() throws IOException {
 		future = comicVineService.GetComicById(comicId);
 		future.thenAccept(comic -> Platform.runLater(() -> {
@@ -181,6 +186,7 @@ public class ComicsController implements Initializable {
 		initCharacters();
 	}
 
+	/** renders comments from database */
 	public void initComments() throws SQLException {
 		ResultSet rs = DbConnection.getComments(comicId);
 		rs.beforeFirst();
@@ -231,6 +237,8 @@ public class ComicsController implements Initializable {
 		});
 		rs.close();
 	}
+
+	/** renders rating from database of current user */
 	public void initRating(){
 		ResultSet rs = null;
 		try {
@@ -246,6 +254,8 @@ public class ComicsController implements Initializable {
 			System.out.println(ex);
 		}
 	}
+
+	/** renders the average rating from database of the current comic */
 	public void initAverageRating(){
 		ResultSet rs = null;
 		try {
@@ -264,6 +274,8 @@ public class ComicsController implements Initializable {
 
 
 	}
+
+	/** when the add to library button is clicked the current comic is added to database associated with the current user id */
 	@FXML
 	void addComicsToLibrary(MouseEvent event) {
 		future.thenAccept(comic -> {
@@ -286,6 +298,7 @@ public class ComicsController implements Initializable {
 		});
 	}
 
+	/** when publish comment button is clicked the comment is rendered and added to DB associated with current user id */
 	@FXML
 	void publishComment(MouseEvent event) throws IOException {
 		window = averageRating.getScene().getWindow();
@@ -305,6 +318,8 @@ public class ComicsController implements Initializable {
 			System.out.println(ex);
 		}
 	}
+
+	/** when a rating is selected the note is added to DB associated with current user id  */
 	@FXML
 	void doRating(MouseEvent event) throws IOException {
 	 Double note =rateComics.getRating();
@@ -316,6 +331,8 @@ public class ComicsController implements Initializable {
 					"Something went wrong.");
 		}
 	}
+
+	/** hand a click on a character : redirection to CharacterView  */
 	@FXML
 	void CharacterClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;
@@ -335,6 +352,8 @@ public class ComicsController implements Initializable {
 			stage.show();
 		}
 	}
+
+	/** hand a click on an author: redirection to AuthorView  */
 	@FXML
 	void AuthorClicked(MouseEvent event) throws IOException {
 		Boolean empty = false;

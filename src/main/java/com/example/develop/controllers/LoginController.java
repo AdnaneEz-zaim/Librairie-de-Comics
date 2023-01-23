@@ -45,6 +45,7 @@ public class LoginController implements Initializable {
         con = dbc.getConnection();
     }
 
+    /** check if user exists in DB if true then save it as current user */
     @FXML
     private void login() throws Exception {
         if (this.isValidated()) {
@@ -75,6 +76,7 @@ public class LoginController implements Initializable {
         }
     }
 
+    /** check if all inputs are correctly filled   */
     private boolean isValidated() {
 
         window = loginButton.getScene().getWindow();
@@ -100,6 +102,7 @@ public class LoginController implements Initializable {
         return false;
     }
 
+    /** redirection to SignUp   */
     @FXML
     private void showRegisterStage() throws IOException {
         Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -111,6 +114,7 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
+    /** save current user (Singleton)  */
     private void SaveUser(ResultSet rs) throws SQLException {
         UserModel userModel = UserModel.getUserModel();
         userModel.setUserid(rs.getInt(1));

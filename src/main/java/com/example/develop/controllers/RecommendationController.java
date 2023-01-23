@@ -33,6 +33,7 @@ public class RecommendationController implements Initializable {
     private ListView<Comic> listOfRecommendations = new ListView<>();
     private ComicVineService comicVineService = ComicVineService.getComicVineService();
 
+    /** renders 2 comics of top 3 most occurring authors and concepts in current user library  */
     public void initPref() throws SQLException, IOException, ExecutionException, InterruptedException {
         ArrayList<String> prefAuthors =  DbConnection.getPrefAuthors();
         ArrayList<String> prefConcepts = DbConnection.getPrefConcepts();
@@ -92,6 +93,7 @@ public class RecommendationController implements Initializable {
         }
     }
 
+    /** go to comicView if a comic is clicked  */
     @FXML
     void ComicClicked(MouseEvent event) throws IOException {
         Boolean empty = false;

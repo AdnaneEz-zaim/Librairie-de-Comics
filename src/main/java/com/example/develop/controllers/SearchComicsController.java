@@ -76,6 +76,7 @@ public class SearchComicsController implements Initializable {
 				});
 	}
 
+	/** renders comics related to the search */
 	public void initSearch() throws IOException {
 
 		CompletableFuture<JsonNode> future = getSearch();
